@@ -27,17 +27,11 @@
 *.thm
 *.toc
 
-# Generated files (plain text)
-*.cls
-*.def
-*.ins
-*.sty
-
 # Generated files (binary)
 *.dvi
 *.xdv
 *.pdf
-!main.pdf
+!doc-zh-cn/main.pdf
 !doc-en/*.pdf
 
 # GitHub Pages
