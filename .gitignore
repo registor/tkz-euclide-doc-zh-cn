@@ -35,7 +35,7 @@
 
 # Generated files (binary)
 *.dvi
-*.pdf
+#*.pdf
 *.xdv
 
 # GitHub Pages

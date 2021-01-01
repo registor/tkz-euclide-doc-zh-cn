@@ -10,7 +10,7 @@ tkz-euclide欧氏几何绘图宏包使用手册翻译，欢迎大家批评指正
 3. 仅在TeXLive2020+Ubuntu 20.04下用`latexmk`+` xelatex`进行了编译，不保证其它发行版和操作平台的正确编译。
 
 ### 贡献
-由于对欧氏几何部分概念的遗忘，不能保证翻译的准确性，如果您有任何改进意见或者功能需求，欢迎提交 [issue](https://github.com/registor/tkz-euclide-doc-zh-cn/issues) 或 [pull request](https://github.com/registor/tkz-euclide-doc-zh-cn/pulls)。
+由于对欧氏几何部分概念的遗忘，并且受能力所限，无保证翻译的准确性和合理性。如果您有任何改进意见或者功能需求，欢迎提交 [issue](https://github.com/registor/tkz-euclide-doc-zh-cn/issues) 或 [pull request](https://github.com/registor/tkz-euclide-doc-zh-cn/pulls)。
 
 ### 许可证
 
