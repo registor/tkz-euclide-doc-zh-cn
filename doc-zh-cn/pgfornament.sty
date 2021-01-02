@@ -1,0 +1,229 @@
+% pgfornament.sty (utf8 encoding)
+% Copyright 2020  Alain Matthes
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status “maintained”.
+%
+% The Current Maintainer of this work is Alain Matthes.
+%---------%---------%---------%---------%---------%---------%---------%---------
+%  First version created by Alain Matthes le 2012-02-22.
+%---------%---------%---------%---------%---------%---------%---------%---------
+% Inspired from psvectorian P Fradin H Voss
+\NeedsTeXFormat{LaTeX2e}
+\RequirePackage{tikz,pgfopts}
+\ProvidesPackage{pgfornament}[2020/05/28 v1.2 vector ornaments]
+\gdef\pgfOrnamentsObject{pgflibraryvectorian.code.tex}
+\gdef\OrnamentsFamily{vectorian}
+\pgfkeys{%
+  /pgfOrnaments/object/.cd,
+  /pgfOrnaments/object/.code = \gdef\pgfOrnamentsObject{pgflibrary#1.code.tex}
+                               \gdef\OrnamentsFamily{#1}%
+}
+\ProcessPgfOptions{/pgfOrnaments}
+\input{\pgfOrnamentsObject}%
+%---------%---------%---------%---------%---------%---------%---------%--------
+%    tools
+%---------%---------%---------%---------%---------%---------%---------%--------
+\makeatletter
+\newenvironment{newfamily}[1][vectorian]{%
+ \global\let\SavedOrnamentsFamily\OrnamentsFamily
+ \newpgfornamentfamily{#1}
+ }{\newpgfornamentfamily{\SavedOrnamentsFamily}}%
+
+\def\pgf@@ornament#1{%
+\begingroup
+\def\ubb{\pgfusepath{use as bounding box}}
+\def\i{\pgfusepath{clip}}%
+\def\k{\pgfusepath{stroke}}%
+\let\o\pgfpathclose
+\let\s\pgfusepathqfillstroke
+\def\p ##1##2{\pgfqpoint{##1bp}{##2bp}}%
+\def\m ##1 ##2 {\pgfpathmoveto{\p{##1}{##2}}}%
+\def\l ##1 ##2 {\pgfpathlineto{\p{##1}{##2}}}%
+\def\r ##1 ##2 ##3 ##4 {\pgfpathrectangle{\p{##1}{##2}}{\p{##3}{##4}}}%
+\def\c ##1 ##2 ##3 ##4 ##5 ##6 {%
+\pgfpathcurveto{\p{##1}{##2}}{\p{##3}{##4}}{\p{##5}{##6}}}%
+\@@input \OrnamentsFamily#1.pgf%
+\endgroup}%
+
+\newcommand{\callornament}[1]{%
+\begingroup
+\def\ubb{\pgfusepath{use as bounding box}}
+\def\i{\pgfusepath{clip}}%
+\let\o\pgfpathclose
+\let\s\pgfusepathqfillstroke
+\def\p ##1##2{\pgfqpoint{##1bp}{##2bp}}%
+\def\m ##1 ##2 {\pgfpathmoveto{\p{##1}{##2}}}%
+\def\l ##1 ##2 {\pgfpathlineto{\p{##1}{##2}}}%
+\def\r ##1 ##2 ##3 ##4 {\pgfpathrectangle{\p{##1}{##2}}{%
+                       \p{##3}{##4}}}%
+\def\c ##1 ##2 ##3 ##4 ##5 ##6 {%
+\pgfpathcurveto{\p{##1}{##2}}{\p{##3}{##4}}{\p{##5}{##6}}}%
+\@@input #1\relax
+\endgroup}
+%---------%---------%---------%---------%---------%---------%---------%---------
+% Les options de \pgfornament sont:
+%
+% scale        : nombre (échelle, 1 par défaut)
+% width        : nombre + unité (largeur, naturelle par défaut)
+% height       : nombre + unité (hauteur, naturelle par défaut)
+% color        : couleur ( par défaut couleur courante )
+% symmetry=h   : true/false (symétrie horizontale, false par défaut)
+% symmetry=v   : true/false (symétrie verticale,   false par défaut)
+% symmetry=c   : true/false (symétrie centrale h+v,false par défaut)
+%---------%---------%---------%---------%---------%---------%---------%--------
+\tikzset{pgfornamentstyle/.style={}}%
+\pgfkeys{%
+  /ornament/.cd,
+  scale/.code         =  {\def\pgfornamentscale{#1}},
+  width/.code         =  {\def\pgfornamentwidth{#1}},
+  height/.code        =  {\def\pgfornamentheight{#1}},
+  color/.code         =  {\def\pgfornamentcolor{#1}},
+  opacity/.code       =  {\def\pgfornamentopacity{#1}},
+  anchor/.code        =  {\def\pgfornamentanchor{#1}},
+  ydelta/.code        =  {\def\pgfornamentydelta{#1}},
+  symmetry/.is choice,
+  symmetry/v/.code     = {\tikzset{pgfornamentstyle/.append
+     style={cm={-1,0,0,1,(0,0)}}}},
+  symmetry/c/.code     = {\tikzset{pgfornamentstyle/.append
+     style={cm={-1,0,0,-1,(0,0)}}}},
+  symmetry/h/.code     = {\tikzset{pgfornamentstyle/.append
+     style={cm={1,0,0,-1,(0,0)}}}},
+  symmetry/none/.code  = {\tikzset{pgfornamentstyle/.append style={cm={1,0,0,1,(0,0)}}}}%
+}%
+%---------%---------%---------%---------%---------%---------%---------%---------
+\def\pgfornament{\pgfutil@ifnextchar[{\pgf@ornament}{\pgf@ornament[]}}%
+\def\pgf@ornament[#1]#2{%
+\pgfkeys{%
+  /ornament/.cd,
+   scale    =  1,
+   opacity  =  {},
+   width    =  {},
+   height   =  {},
+   color    =  {},
+   ydelta   =  0 pt,
+   symmetry =  none ,
+   anchor   =  center
+   }%
+\pgfqkeys{/ornament}{#1}%
+\ifx\pgfornamentcolor\empty
+    \tikzset{pgfornamentstyle/.append style={}}%
+\else
+    \tikzset{pgfornamentstyle/.append style={color=\pgfornamentcolor}}%
+\fi
+\ifx\pgfornamentopacity\empty
+    \tikzset{pgfornamentstyle/.append style={}}%
+\else
+    \tikzset{pgfornamentstyle/.append style={opacity=\pgfornamentopacity}}%
+\fi
+\ifx\pgfornamentwidth\empty
+   \else
+   \@pgfornamentDim{#2}% bug correction LianTze
+   \pgfmathsetmacro{\pgfornamentscale}{\pgfornamentwidth/\@pgfornamentX bp}%
+\fi
+\ifx\pgfornamentheight\empty
+   \else
+    \@pgfornamentDim{#2}% bug correction LianTze
+    \pgfmathsetmacro{\pgfornamentscale}{\pgfornamentheight/\@pgfornamentY bp}%
+\fi
+\begin{tikzpicture}[%
+baseline={([yshift=\pgfornamentydelta]current bounding box.\pgfornamentanchor)},
+   pgfornamentstyle]
+   \pgftransformscale{\pgfornamentscale}%
+   \pgf@@ornament{#2}%
+\end{tikzpicture}%
+\tikzset{pgfornamentstyle/.style={cm={1,0,0,1,(0,0)}}}
+}% end pgfornament
+
+\gdef\ornamenttopos{.5}
+\gdef\ornamenttoanchor{center}
+\gdef\ornamenttosymmetry{none}
+\tikzset{options default/.style={anchor=center,
+                                 sloped,
+                                 allow upside down,
+                                 inner sep=0pt}}
+\tikzset{ornament/at/.code={\def\ornamenttopos{#1}},
+         options/.style={options default,#1},
+         ornament symmetry/.code={\def\ornamenttosymmetry{#1}},
+         node anchor/.code={\def\ornamenttoanchor{#1}},
+         ornament/.style={%
+         to path={%
+\pgfextra{%
+      \tikz@scan@one@point\pgfutil@firstofone(\tikztostart)\relax
+         \pgf@xa=\pgf@x
+         \pgf@ya=\pgf@y
+      \tikz@scan@one@point\pgfutil@firstofone(\tikztotarget)\relax
+         \pgf@xb=\pgf@x
+         \pgf@yb=\pgf@y
+         \advance\pgf@xa by-\pgf@xb
+         \advance\pgf@ya by-\pgf@yb
+      \pgfmathveclen{\pgf@xa}{\pgf@ya}%
+      \global\let\ornamentlen\pgfmathresult}
+       --  node [pos=\ornamenttopos,options,
+              anchor=\ornamenttoanchor]{%
+        \pgfornament[width    = \ornamentlen,
+                 symmetry=\ornamenttosymmetry]{#1}}
+            (\tikztotarget)\tikztonodes %end pgfextra
+    }% end to path
+  }% end style
+}% end \tikzset
+
+\def\pgfornamenthline#1#2#3#4{%
+  \pgfextractx{\pgf@x}{\pgfpointanchor{#1}{#3 east}}
+  \pgf@xa=\pgf@x
+  \pgfextractx{\pgf@x}{\pgfpointanchor{#2}{#3 west}}
+  \pgf@xb=\pgf@x
+  \advance\pgf@xb by -\pgf@xa
+\node[inner sep=0pt] at ($(#1.#3 east)!.5!(#2.#3 west)$) {\pgfornament[width=\pgf@xb]{#4}} ;
+}
+\def\pgfornamentvline#1#2#3#4{%
+  \pgfextracty{\pgf@y}{\pgfpointanchor{#1}{south #3}}
+  \pgf@ya=\pgf@y
+  \pgfextracty{\pgf@y}{\pgfpointanchor{#2}{north #3}}
+  \pgf@yb=\pgf@y
+  \advance\pgf@yb by -\pgf@ya
+\node[inner sep=0pt,rotate=90] at ($(#1.south #3)!.5!(#2.north #3)$) {\pgfornament[width=\pgf@yb]{#4}} ;
+}%
+\def\getornamentlength#1#2#3#4{%
+ \pgfpointdiff{\pgfpointanchor{#1}{#2}}%
+              {\pgfpointanchor{#3}{#4}}%
+   \pgf@xa=\pgf@x
+   \pgf@ya=\pgf@y
+   \pgfmathveclen{\pgf@xa}{\pgf@ya}%
+   \global\let\ornamentlen\pgfmathresult
+}%
+\def\getornamentangle#1#2#3{%
+  \pgfpointdiff{\pgfpointanchor{#2}{center}}{\pgfpointanchor{#3}{center}}%
+  \pgfmathsetmacro{#1}{atan2(\pgf@x,\pgf@y)}%
+}%
+\makeatother
+\newcommand{\resetpgfornamentstyle}{\tikzset{pgfornamentstyle/.style={}}}
+
+% 2020 Changing vector objects
+\def\newpgfornamentfamily#1{%
+  \edef\OrnamentsFamily{#1}
+  \gdef\pgfOrnamentsObject{pgflibrary\OrnamentsFamily.code.tex}
+  \input{\pgfOrnamentsObject}%
+  }%
+
+\makeatletter
+\pgfkeys{/ornamentline/.cd,
+         color/.store in                 = \ornamentcolor,
+         color                           = black,
+  /ornamentline/.search also={/tikz}}
+\def\pgfornamentline{\pgfutil@ifnextchar[{\pgf@ornamentline}{\pgf@ornamentline[]}}%
+\def\pgf@ornamentline[#1]#2#3#4#5{%
+
+\pgfqkeys{/ornamentline}{#1}%
+\pgfmathsetmacro\nbo{#4}
+\path (#2) -- (#3) foreach \i in {0,...,\nbo} {coordinate[pos=\i/\nbo] (p\i)}
+ [color=\ornamentcolor] foreach \i [count=\j]  in {0,...,\number\numexpr\nbo-1} { (p\i)  to [ornament=#5]   (p\j)};
+}
+\makeatother
+\endinput

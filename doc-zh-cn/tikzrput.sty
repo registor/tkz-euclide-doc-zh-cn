@@ -1,0 +1,113 @@
+% pgflibraryam.code.tex (utf8 encoding)
+% Copyright 2020  Alain Matthes
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status “maintained”.
+%
+% The Current Maintainer of this work is Alain Matthes.
+
+\typeout{2020/04/06 1.1  pgflibraryam.code.tex}
+\NeedsTeXFormat{LaTeX2e}%
+\RequirePackage{tikz,iftex}%
+\ProvidesPackage{tikzrput}[2020/05/28 v1.2 rput for tikz]%
+\edef\tikzrputPtVirCode{\the\catcode`\;}
+\edef\tikzrputAtCode{\the\catcode`\@}
+\edef\tikzrputTwoPtCode{\the\catcode`\:}
+\catcode`\;=12\relax
+\catcode`\:=12\relax
+\catcode`\@=11\relax
+
+\newif\ifrput@polar\rput@polarfalse
+\def\rput@empty{}
+
+\def\rput@parsecoordinate#1{%
+\rput@getseparator#1,\@nil
+\ifrput@polar
+   \rput@getfrompolar#1\@nil
+\fi
+}%
+\def\rput@getseparator#1,#2\@nil{%
+\ifx\rput@empty#2\rput@empty%
+   \rput@polartrue
+\else
+   \rput@polarfalse
+\fi
+}%
+\def\rput@getfrompolar#1;#2\@nil{%
+  \def\pos@rput{#1:#2}%
+}%
+
+\def\rput@pos@   {\def\rput@anchor{center}}
+\def\rput@pos@B  {\def\rput@anchor{base}}
+\def\rput@pos@Br {\def\rput@anchor{base east}}
+\def\rput@pos@Bl {\def\rput@anchor{base west}}
+\def\rput@pos@tr {\def\rput@anchor{north east}}
+\def\rput@pos@tl {\def\rput@anchor{north west}}
+\def\rput@pos@br {\def\rput@anchor{south east}}
+\def\rput@pos@bl {\def\rput@anchor{south west}}
+\def\rput@pos@t  {\def\rput@anchor{north}}
+\def\rput@pos@b  {\def\rput@anchor{south}}
+\def\rput@pos@r  {\def\rput@anchor{east}}
+\def\rput@pos@l  {\def\rput@anchor{west}}
+\let\rput@pos@mc\rput@pos@
+\let\rput@pos@rB\rput@pos@Br
+\let\rput@pos@lB\rput@pos@Bl
+\let\rput@pos@rt\rput@pos@tr
+\let\rput@pos@lt\rput@pos@tl
+\let\rput@pos@rb\rput@pos@br
+\let\rput@pos@lb\rput@pos@bl
+\newbox\mybox
+\ifpdf% Pablo 04/2020
+\pgfutil@ifundefined{rput}{%
+  \tikzset{rput style/.style={}}
+  \def\rput{\pgfutil@ifnextchar[{\rput@i}{%
+        \global\edef\opt@rput{}\rput@ii}}%
+  \def\rput@i[#1]{\global\edef\opt@rput{#1}\rput@ii}%
+  \def\rput@ii{\pgfutil@ifnextchar({%
+        \def\angle@rput{0}\rput@iv}{\rput@iii}}%
+  \def\rput@iii#1{%
+  \ifx\rput@empty#1\rput@empty\def\angle@rput{0}\else%
+        \def\angle@rput{#1}\fi%
+  \pgfutil@ifnextchar({\rput@iv}{\rput@iv(0,0)}}%,
+  \def\rput@iv(#1){\def\pos@rput{#1}%
+                   \rput@parsecoordinate{#1}%
+                   \rput@v}%
+  \def\rput@v#1{%
+  \sbox\mybox{%
+  \pgfinterruptpicture#1\endpgfinterruptpicture}%
+     \begingroup
+      \tikzifinpicture{%
+      \let\begin@my@tikz@env\scope
+      \let\end@my@tikz@env\endscope
+      }{%
+      \let\begin@my@tikz@env\tikzpicture
+      \let\end@my@tikz@env\endtikzpicture
+      }%
+         \@nameuse{rput@pos@\opt@rput}%
+         \begin{pgfinterruptboundingbox}%
+           \begin@my@tikz@env[overlay]
+              \path (0,0)--(\pos@rput);
+              \protected@edef\rput@temp{%
+              \noexpand\node[inner sep = 0pt,
+                           anchor    = \rput@anchor,
+                           rotate    = \angle@rput,
+                           rput style]}%
+            \rput@temp at (\pos@rput){\box\mybox};
+           \end@my@tikz@env
+         \end{pgfinterruptboundingbox}%
+     \endgroup
+     \ignorespaces
+     }%
+  }{%
+   }%
+\fi
+\catcode`\;=\tikzrputPtVirCode\relax
+\catcode`\@=\tikzrputAtCode\relax
+\catcode`\:=\tikzrputTwoPtCode\relax
+\endinput
