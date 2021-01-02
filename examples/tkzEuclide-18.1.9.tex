@@ -1,0 +1,20 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 148 (Section 18.1.9 : Orthogonal circle passing through two given points, option \tkzname{orthogonal through})
+
+\begin{tikzpicture}[scale=1]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(1,0){A}
+  \tkzDrawCircle(O,A)
+  \tkzDefPoint(-1.5,-1.5){z1}
+  \tkzDefPoint(1.5,-1.25){z2}
+  \tkzDefCircle[orthogonal through=z1 and z2](O,A)
+   \tkzGetPoint{c}
+  \tkzDrawCircle[thick,color=red](tkzPointResult,z1)
+  \tkzDrawPoints[fill=red,color=black,
+  size=4](O,A,z1,z2,c)
+  \tkzLabelPoints(O,A,z1,z2,c)
+\end{tikzpicture}
+
+\end{document}

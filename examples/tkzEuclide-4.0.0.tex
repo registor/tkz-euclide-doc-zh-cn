@@ -1,0 +1,24 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 21 (Section  4 : Definition of a point)
+
+\begin{tikzpicture}[,scale=1]
+  \tkzInit[xmax=5,ymax=5]
+  \tkzDefPoints{0/0/O,1/0/I,0/1/J}
+  \tkzDefPoint(40:4){P}
+  \tkzDrawXY[noticks,>=triangle 45]
+  \tkzDrawSegment[dim={$d$,
+                 16pt,above=6pt}](O,P)
+  \tkzDrawPoints(O,P)
+  \tkzMarkAngle[mark=none,->](I,O,P)
+  \tkzFillAngle[fill=blue!20,
+                opacity=.5](I,O,P)
+  \tkzLabelAngle[pos=1.25](I,O,P){$\alpha$}
+  \tkzLabelPoint(P){$P  (\alpha : d )$}
+  \tkzDrawPoints[shape=cross](I,J)
+  \tkzLabelPoints(O,I)
+  \tkzLabelPoints[left](J)
+\end{tikzpicture}
+
+\end{document}

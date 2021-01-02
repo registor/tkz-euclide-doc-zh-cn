@@ -1,0 +1,20 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 61 (Section 10.1.2 : Option \tkzname{colinear at} with $K$)
+
+\begin{tikzpicture}[vect/.style={->,
+	             shorten >=3pt,>=latex'}]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(5,0){B}
+  \tkzDefPoint(1,2){C}
+  \tkzDefPointWith[colinear=at C](A,B)
+  \tkzGetPoint{G}
+  \tkzDefPointWith[colinear=at C,K=0.5](A,B)
+  \tkzGetPoint{H}
+  \tkzLabelPoints(A,B,C,G,H)
+  \tkzDrawPoints(A,B,C,G,H)
+	\tkzDrawSegments[vect](A,B C,H)
+\end{tikzpicture}
+
+\end{document}

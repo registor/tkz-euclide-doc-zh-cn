@@ -1,0 +1,29 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 146 (Section 18.1.7 : Circles exinscribed to a given triangle option \tkzname{ex})
+
+\begin{tikzpicture}[scale=.6]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(3,0){B}
+  \tkzDefPoint(1,2.5){C}
+  \tkzDefCircle[ex](A,B,C) \tkzGetPoint{I}
+    \tkzGetLength{rI}
+  \tkzDefCircle[ex](C,A,B) \tkzGetPoint{J}
+    \tkzGetLength{rJ}
+  \tkzDefCircle[ex](B,C,A) \tkzGetPoint{K}
+    \tkzGetLength{rK}
+   \tkzDefCircle[in](B,C,A) \tkzGetPoint{O}
+     \tkzGetLength{rO}
+  \tkzDrawLines[add=1.5 and 1.5](A,B A,C B,C)
+  \tkzDrawPoints(I,J,K)
+  \tkzDrawPolygon(A,B,C)
+  \tkzDrawPolygon[dashed](I,J,K)
+  \tkzDrawCircle[R,blue!50!black](O,\rO)
+  \tkzDrawSegments[dashed](A,K B,J C,I)
+  \tkzDrawPoints(A,B,C)
+  \tkzDrawCircles[R](J,{\rJ} I,{\rI} K,{\rK})
+  \tkzLabelPoints(A,B,C,I,J,K)
+\end{tikzpicture}
+
+\end{document}

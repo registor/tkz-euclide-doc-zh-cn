@@ -1,0 +1,26 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 236 (Section 30.2.6 : Example 2:  John Kitzmiller )
+
+\begin{tikzpicture}[scale=2,decoration={markings,
+  mark=at position 3cm with {\arrow[scale=2]{>}}}]
+  \tkzDefPoints{0/0/E, 6/0/F, 0/1.8/P, 6/1.8/Q, 0/3/R, 6/3/S}
+  \tkzDrawLines[postaction={decorate}](E,F P,Q R,S)
+  \tkzDefPoints{3.5/3/A, 5/3/B}
+  \tkzDrawSegments(E,A F,B)
+  \tkzInterLL(E,A)(P,Q) \tkzGetPoint{C}
+  \tkzInterLL(B,F)(P,Q) \tkzGetPoint{D}
+  \tkzLabelPoints[above right](A,B)
+  \tkzLabelPoints[below](E,F)
+  \tkzLabelPoints[above left](C)
+  \tkzDrawSegments[style=dashed](A,F)
+  \tkzInterLL(A,F)(P,Q) \tkzGetPoint{G}
+  \tkzLabelPoints[above right](D,G)
+  \tkzDrawSegments[color=teal, line width=3pt, opacity=0.4](A,C A,G)
+  \tkzDrawSegments[color=magenta, line width=3pt, opacity=0.4](C,E G,F)
+  \tkzDrawSegments[color=teal, line width=3pt, opacity=0.4](B,D)
+  \tkzDrawSegments[color=magenta, line width=3pt, opacity=0.4](D,F)
+\end{tikzpicture}
+
+\end{document}

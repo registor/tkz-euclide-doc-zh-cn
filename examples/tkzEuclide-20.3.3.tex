@@ -1,0 +1,22 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 170 (Section 20.3.3 : An isosceles triangle.)
+
+\begin{tikzpicture}[rotate=120,scale=.75]
+ \tkzDefPoint(1,2){A}
+ \tkzDefPoint(4,0){B}
+ \tkzInterCC[R](A,4cm)(B,4cm)
+ \tkzGetPoints{C}{D}
+ \tkzDrawCircle[R,dashed](A,4 cm)
+ \tkzDrawCircle[R,dashed](B,4 cm)
+ \tkzCompass[color=red](A,C)
+ \tkzCompass[color=red](B,C)
+ \tkzDrawPolygon(A,B,C)
+ \tkzDrawPoints[color=blue](A,B,C)
+ \tkzMarkSegments[mark=s|](A,C B,C)
+ \tkzLabelPoints[](A,B)
+ \tkzLabelPoint[above](C){$C$}
+\end{tikzpicture}
+
+\end{document}

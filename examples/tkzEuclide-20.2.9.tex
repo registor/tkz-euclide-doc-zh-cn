@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 167 (Section 20.2.9 : Option "with nodes")
+
+\begin{tikzpicture}[scale=.75]
+\tkzDefPoints{0/0/A,4/0/B,1/1/D,2/0/E}
+\tkzDefTriangle[equilateral](A,B)
+\tkzGetPoint{C}
+\tkzDrawCircle(C,A)
+\tkzInterLC[with nodes](D,E)(C,A,B)
+\tkzGetPoints{F}{G}
+\tkzDrawPolygon(A,B,C)
+\tkzDrawPoints(A,...,G)
+\tkzDrawLine(F,G)
+\end{tikzpicture}
+
+\end{document}

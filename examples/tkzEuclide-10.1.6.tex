@@ -1,0 +1,26 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 65 (Section 10.1.6 : Option \tkzname{orthogonal} more complicated example)
+
+\begin{tikzpicture}[scale=.75]
+  \tkzDefPoints{0/0/A,6/0/B}
+  \tkzDefMidPoint(A,B)
+	  \tkzGetPoint{I}
+  \tkzDefPointWith[orthogonal,K=-.75](B,A)
+  \tkzGetPoint{C}
+  \tkzInterLC(B,C)(B,I)
+	   \tkzGetPoints{D}{F}
+  \tkzDuplicateSegment(B,F)(A,F)
+  \tkzGetPoint{E}
+  \tkzDrawArc[delta=10](F,E)(B)
+  \tkzInterLC(A,B)(A,E)
+	  \tkzGetPoints{N}{M}
+  \tkzDrawArc[delta=10](A,M)(E)
+  \tkzDrawLines(A,B B,C A,F)
+  \tkzCompass(B,F)
+  \tkzDrawPoints(A,B,C,F,M,E)
+  \tkzLabelPoints(A,B,C,F,M,E)
+\end{tikzpicture}
+
+\end{document}

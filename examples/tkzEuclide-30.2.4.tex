@@ -1,0 +1,28 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 234 (Section 30.2.4 : Example: Dimitris Kapeta)
+
+\begin{tikzpicture}[scale=1.25]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(2.5,0){N}
+  \tkzDefPoint(-4.2,0.5){M}
+  \tkzDefPointBy[rotation=center O angle 30](N)
+  \tkzGetPoint{B}
+  \tkzDefPointBy[rotation=center O angle -50](N)
+  \tkzGetPoint{A}
+  \tkzInterLC(M,B)(O,N) \tkzGetFirstPoint{C}
+  \tkzInterLC(M,A)(O,N) \tkzGetSecondPoint{A'}
+  \tkzMarkAngle[mkpos=.2, size=0.5](A,C,B)
+  \tkzMarkAngle[mkpos=.2, size=0.5](A,M,C)
+  \tkzDrawSegments(A,C M,A M,B)
+  \tkzDrawCircle(O,N)
+  \tkzLabelCircle[above left](O,N)(120){$\mathcal{C}$}
+  \tkzMarkAngle[mkpos=.2, size=1.2](C,A,M)
+  \tkzDrawPoints(O, A, B, M, B, C)
+  \tkzLabelPoints[right](O,A,B)
+  \tkzLabelPoints[above left](M,C)
+  \tkzLabelPoint[below left](A'){$A'$}
+\end{tikzpicture}
+
+\end{document}

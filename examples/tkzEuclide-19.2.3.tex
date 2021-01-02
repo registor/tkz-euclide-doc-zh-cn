@@ -1,0 +1,19 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 153 (Section 19.2.3 : Exinscribed circles.)
+
+\begin{tikzpicture}[scale=1]
+\tkzDefPoints{0/0/A,4/0/B,1/2.5/C}
+\tkzDrawPolygon(A,B,C)
+\tkzDefCircle[ex](B,C,A)
+\tkzGetPoint{J_c} \tkzGetSecondPoint{T_c}
+\tkzGetLength{rJc}
+\tkzDrawCircle[R](J_c,{\rJc pt})
+\tkzDrawLines[add=0 and 1](C,A C,B)
+\tkzDrawSegment(J_c,T_c)
+\tkzMarkRightAngle(J_c,T_c,B)
+\tkzDrawPoints(A,B,C,J_c,T_c)
+\end{tikzpicture}
+
+\end{document}

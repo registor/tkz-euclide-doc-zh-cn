@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 118 (Section 16.0.3 : Option \tkzname{ex} or \tkzname{excentral} )
+
+\begin{tikzpicture}[scale=.6]
+ \tkzDefPoints{0/0/A,6/0/B,0.8/4/C}
+ \tkzDefSpcTriangle[excentral,name=J](A,B,C){_a,_b,_c}
+ \tkzDefSpcTriangle[extouch,name=T](A,B,C){_a,_b,_c}
+ \tkzDrawPolygon[blue](A,B,C)
+ \tkzDrawPolygon[red](J_a,J_b,J_c)
+ \tkzDrawPoints(A,B,C)
+ \tkzDrawPoints[red](J_a,J_b,J_c)
+ \tkzLabelPoints(A,B,C)
+ \tkzLabelPoints[red](J_b,J_c)
+ \tkzLabelPoints[red,above](J_a)
+ \tkzClipBB \tkzShowBB
+ \tkzDrawCircles[gray](J_a,T_a J_b,T_b J_c,T_c)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,27 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 244 (Section 31.1.2 : Example 2: change style of line)
+
+\begin{tikzpicture}[scale=.6]
+ \tkzDefPoint(1,0){A} \tkzDefPoint(4,0){B}
+ \tkzDefPoint(1,1){C} \tkzDefPoint(5,1){D}
+ \tkzDefPoint(1,2){E} \tkzDefPoint(6,2){F}
+ \tkzDefPoint(0,4){A'}\tkzDefPoint(3,4){B'}
+ \tkzCalcLength[cm](C,D)  \tkzGetLength{rCD}
+ \tkzCalcLength[cm](E,F)  \tkzGetLength{rEF}
+ \tkzInterCC[R](A',\rCD cm)(B',\rEF cm)
+ \tkzGetPoints{I}{J}
+ \tkzSetUpLine[style=dashed,color=gray]
+ \tkzDrawLine(A',B')
+ \tkzCompass(A',B')
+ \tkzDrawSegments(A,B C,D E,F)
+ \tkzDrawCircle[R](A',\rCD cm)
+ \tkzDrawCircle[R](B',\rEF cm)
+ \tkzSetUpLine[color=red]
+ \tkzDrawSegments(A',I B',I)
+ \tkzDrawPoints(A,B,C,D,E,F,A',B',I,J)
+ \tkzLabelPoints(A,B,C,D,E,F,A',B',I,J)
+\end{tikzpicture}
+
+\end{document}

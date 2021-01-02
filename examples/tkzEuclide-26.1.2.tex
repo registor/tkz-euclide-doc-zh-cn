@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 215 (Section 26.1.2 : Option \tkzname{delta})
+
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(5,0){B}
+  \tkzInterCC[R](A,4cm)(B,3cm)
+  \tkzGetPoints{C}{D}
+  \tkzDrawPoints(A,B,C)
+  \tkzCompass[color=red,delta=20](A,C)
+  \tkzCompass[color=red,delta=20](B,C)
+  \tkzDrawPolygon(A,B,C)
+  \tkzMarkAngle(A,C,B)
+\end{tikzpicture}
+
+\end{document}

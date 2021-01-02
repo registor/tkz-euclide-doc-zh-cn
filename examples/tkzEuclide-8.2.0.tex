@@ -1,0 +1,23 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 49 (Section  8.2 : Point on a circle)
+
+\begin{tikzpicture}
+ \tkzDefPoints{0/0/A,4/0/B,0.8/3/C}
+ \tkzDefPointOnCircle[angle=90,center=B,radius=1 cm]
+ \tkzGetPoint{I}
+ \tkzDefCircle[circum](A,B,C)
+ \tkzGetPoint{G} \tkzGetLength{rG}
+ \tkzDefPointOnCircle[angle=30,center=G,radius=\rG pt]
+ \tkzGetPoint{J}
+ \tkzDrawCircle[R,teal](B,1cm)
+ \tkzDrawPoint[teal](I)
+ \tkzDrawPoints(A,B,C)
+ \tkzDrawCircle(G,J)
+ \tkzDrawPoints(G,J)
+ \tkzDrawPoint[red](J)
+ \tkzLabelPoints(G,J)
+\end{tikzpicture}
+
+\end{document}

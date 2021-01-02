@@ -1,0 +1,13 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 111 (Section 15.2.1 : Option \tkzname{pythagore})
+
+\begin{tikzpicture}
+ \tkzDefPoint(0,0){A}
+ \tkzDefPoint(4,0){B}
+ \tkzDrawTriangle[pythagore,fill=blue!30](A,B)
+ \tkzMarkRightAngles(A,B,tkzPointResult)
+\end{tikzpicture}
+
+\end{document}

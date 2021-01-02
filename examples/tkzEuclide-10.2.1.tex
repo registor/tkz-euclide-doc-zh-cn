@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 71 (Section 10.2.1 : Coordinate transfer with \tkzcname{tkzGetVectxy})
+
+\begin{tikzpicture}
+ \tkzDefPoint(0,0){O}
+ \tkzDefPoint(1,1){A}
+ \tkzDefPoint(4,2){B}
+ \tkzGetVectxy(A,B){v}
+ \tkzDefPoint(\vx,\vy){V}
+ \tkzDrawSegment[->,color=red](O,V)
+ \tkzDrawSegment[->,color=blue](A,B)
+ \tkzDrawPoints(A,B,O)
+ \tkzLabelPoints(A,B,O,V)
+\end{tikzpicture}
+
+\end{document}

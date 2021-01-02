@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 108 (Section 15.1.1 : Option \tkzname{golden})
+
+\begin{tikzpicture}[scale=.8]
+\tkzInit[xmax=5,ymax=3] \tkzClip[space=.5]
+  \tkzDefPoint(0,0){A}      \tkzDefPoint(4,0){B}
+  \tkzDefTriangle[golden](A,B)\tkzGetPoint{C}
+  \tkzDrawPolygon(A,B,C) \tkzDrawPoints(A,B,C)
+  \tkzLabelPoints(A,B) \tkzDrawBisector(A,C,B)
+  \tkzLabelPoints[above](C)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,24 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 137 (Section 17.9.1 : \tkzcname{tkzFillPolygon})
+
+\begin{tikzpicture}[scale=0.7]
+\tkzInit[xmin=-3,xmax=6,ymin=-1,ymax=6]
+\tkzDrawX[noticks]
+\tkzDrawY[noticks]
+\tkzDefPoint(0,0){O}  \tkzDefPoint(4,2){A}
+\tkzDefPoint(-2,6){B}
+\tkzPointShowCoord[xlabel=$x$,ylabel=$y$](A)
+\tkzPointShowCoord[xlabel=$x'$,ylabel=$y'$,%
+                   ystyle={right=2pt}](B)
+\tkzDrawSegments[->](O,A O,B)
+\tkzLabelSegment[above=3pt](O,A){$\vec{u}$}
+\tkzLabelSegment[above=3pt](O,B){$\vec{v}$}
+\tkzMarkAngle[fill= yellow,size=1.8cm,%
+              opacity=.5](A,O,B)
+\tkzFillPolygon[red!30,opacity=0.25](A,B,O)
+\tkzLabelAngle[pos = 1.5](A,O,B){$\alpha$}
+\end{tikzpicture}
+
+\end{document}

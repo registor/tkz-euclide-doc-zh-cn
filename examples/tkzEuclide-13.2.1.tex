@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 95 (Section 13.2.1 : Example with \tkzcname{tkzLabelLine})
+
+\begin{tikzpicture}
+   \tkzDefPoints{0/0/A,3/0/B,1/1/C}
+   \tkzDefLine[perpendicular=through C,K=-1](A,B)
+   \tkzGetPoint{c}
+   \tkzDrawLines(A,B C,c)
+   \tkzLabelLine[pos=1.25,blue,right](C,c){$(\delta)$}
+   \tkzLabelLine[pos=-0.25,red,left](C,c){again $(\delta)$}
+\end{tikzpicture}
+
+\end{document}

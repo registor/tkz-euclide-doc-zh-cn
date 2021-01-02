@@ -1,0 +1,19 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 212 (Section 25.5.1 : Coordinate transfer with \tkzcname{tkzGetPointCoord})
+
+\begin{tikzpicture}
+ \tkzInit[xmax=5,ymax=3]
+ \tkzGrid[sub,orange]
+ \tkzAxeXY
+ \tkzDefPoint(1,0){A}
+ \tkzDefPoint(4,2){B}
+ \tkzGetPointCoord(A){a}
+ \tkzGetPointCoord(B){b}
+ \tkzDefPoint(\ax,\ay){C}
+ \tkzDefPoint(\bx,\by){D}
+ \tkzDrawPoints[color=red](C,D)
+\end{tikzpicture}
+
+\end{document}

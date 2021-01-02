@@ -1,0 +1,29 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 243 (Section 31.1.1 : Example 1: change line width)
+
+\begin{tikzpicture}
+   \tkzSetUpLine[color=blue,line width=1pt]
+\begin{scope}[rotate=-90]
+    \tkzDefPoint(10,6){C}
+    \tkzDefPoint( 0,6){A}
+    \tkzDefPoint(10,0){B}
+    \tkzDefPointBy[projection = onto B--A](C)
+    \tkzGetPoint{H}
+    \tkzDrawPolygon(A,B,C)
+    \tkzMarkRightAngle[size=.4,fill=blue!20](B,C,A)
+    \tkzMarkRightAngle[size=.4,fill=red!20](B,H,C)
+    \tkzDrawSegment[color=red](C,H)
+\end{scope}
+ \tkzLabelSegment[below](C,B){$a$}
+ \tkzLabelSegment[right](A,C){$b$}
+ \tkzLabelSegment[left](A,B){$c$}
+ \tkzLabelSegment[color=red](C,H){$h$}
+ \tkzDrawPoints(A,B,C)
+ \tkzLabelPoints[above left](H)
+ \tkzLabelPoints(B,C)
+ \tkzLabelPoints[above](A)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,20 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 89 (Section 13.1.1 : Examples  with \tkzname{add})
+
+\begin{tikzpicture}
+ \tkzInit[xmin=-2,xmax=3,ymin=-2.25,ymax=2.25]
+ \tkzClip[space=.25]
+ \tkzDefPoint(0,0){A} \tkzDefPoint(2,0.5){B}
+ \tkzDefPoint(0,-1){C}\tkzDefPoint(2,-0.5){D}
+ \tkzDefPoint(0,1){E} \tkzDefPoint(2,1.5){F}
+ \tkzDefPoint(0,-2){G} \tkzDefPoint(2,-1.5){H}
+ \tkzDrawLine(A,B)    \tkzDrawLine[add = 0 and .5](C,D)
+ \tkzDrawLine[add = 1 and 0](E,F)
+ \tkzDrawLine[add = 0 and 0](G,H)
+ \tkzDrawPoints(A,B,C,D,E,F,G,H)
+ \tkzLabelPoints(A,B,C,D,E,F,G,H)
+\end{tikzpicture}
+
+\end{document}

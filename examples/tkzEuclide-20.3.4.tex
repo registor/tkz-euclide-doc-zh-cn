@@ -1,0 +1,36 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 171 (Section 20.3.4 : Segment trisection)
+
+\begin{tikzpicture}[scale=.8]
+ \tkzDefPoint(0,0){A}
+ \tkzDefPoint(3,2){B}
+ \tkzInterCC(A,B)(B,A)
+ \tkzGetPoints{C}{D}
+ \tkzInterCC(D,B)(B,A)
+ \tkzGetPoints{A}{E}
+ \tkzInterCC(D,B)(A,B)
+ \tkzGetPoints{F}{B}
+ \tkzInterLC(E,F)(F,A)
+ \tkzGetPoints{D}{G}
+ \tkzInterLL(A,G)(B,E)
+ \tkzGetPoint{O}
+ \tkzInterLL(O,D)(A,B)
+ \tkzGetPoint{J}
+ \tkzInterLL(O,F)(A,B)
+ \tkzGetPoint{I}
+ \tkzDrawCircle(D,A)
+ \tkzDrawCircle(A,B)
+ \tkzDrawCircle(B,A)
+ \tkzDrawCircle(F,A)
+ \tkzDrawSegments[color=red](O,G
+  O,B O,D O,F)
+ \tkzDrawPoints(A,B,D,E,F,G,I,J)
+ \tkzLabelPoints(A,B,D,E,F,G,I,J)
+ \tkzDrawSegments[blue](A,B B,D A,D%
+  A,F F,G E,G B,E)
+ \tkzMarkSegments[mark=s|](A,I I,J J,B)
+\end{tikzpicture}
+
+\end{document}

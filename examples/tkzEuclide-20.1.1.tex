@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 159 (Section 20.1.1 : Example of intersection between two straight lines)
+
+\begin{tikzpicture}[rotate=-45,scale=.75]
+  \tkzDefPoint(2,1){A}
+     \tkzDefPoint(6,5){B}
+  \tkzDefPoint(3,6){C}
+     \tkzDefPoint(5,2){D}
+  \tkzDrawLines(A,B C,D)
+  \tkzInterLL(A,B)(C,D)
+     \tkzGetPoint{I}
+  \tkzDrawPoints[color=blue](A,B,C,D)
+   \tkzDrawPoint[color=red](I)
+\end{tikzpicture}
+
+\end{document}

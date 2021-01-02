@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 102 (Section 14.3.2 : Use of \tkzname{mark})
+
+\begin{tikzpicture}
+  \tkzDefPoint(2,1){A}
+  \tkzDefPoint(6,4){B}
+  \tkzDrawSegment(A,B)
+  \tkzMarkSegment[color=gray,pos=0.2,mark=s|](A,B)
+  \tkzMarkSegment[color=gray,pos=0.4,mark=s||](A,B)
+  \tkzMarkSegment[color=brown,pos=0.6,mark=||](A,B)
+  \tkzMarkSegment[color=red,pos=0.8,mark=|||](A,B)
+\end{tikzpicture}
+
+\end{document}

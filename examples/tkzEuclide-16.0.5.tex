@@ -1,0 +1,33 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 120 (Section 16.0.5 : Option \tkzname{extouch})
+
+\begin{tikzpicture}[scale=.7]
+\tkzDefPoints{0/0/A,6/0/B,0.8/4/C}
+\tkzDefSpcTriangle[excentral,
+                 name=J](A,B,C){_a,_b,_c}
+\tkzDefSpcTriangle[extouch,
+                  name=T](A,B,C){_a,_b,_c}
+\tkzDefTriangleCenter[nagel](A,B,C)
+\tkzGetPoint{N_a}
+\tkzDefTriangleCenter[centroid](A,B,C)
+\tkzGetPoint{G}
+\tkzDrawPoints[blue](J_a,J_b,J_c)
+\tkzClipBB \tkzShowBB
+\tkzDrawCircles[gray](J_a,T_a J_b,T_b J_c,T_c)
+\tkzDrawLines[add=1 and 1](A,B B,C C,A)
+\tkzDrawSegments[gray](A,T_a B,T_b C,T_c)
+\tkzDrawSegments[gray](J_a,T_a J_b,T_b J_c,T_c)
+\tkzDrawPolygon[blue](A,B,C)
+\tkzDrawPolygon[red](T_a,T_b,T_c)
+\tkzDrawPoints(A,B,C,N_a)
+\tkzLabelPoints(N_a)
+\tkzAutoLabelPoints[center=Na,blue](A,B,C)
+\tkzAutoLabelPoints[center=G,red,
+                         dist=.4](T_a,T_b,T_c)
+\tkzMarkRightAngles[fill=gray!15](J_a,T_a,B
+ J_b,T_b,C J_c,T_c,A)
+\end{tikzpicture}
+
+\end{document}

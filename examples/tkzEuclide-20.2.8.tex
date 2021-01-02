@@ -1,0 +1,22 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 166 (Section 20.2.8 : Squares in half a disc)
+
+\begin{tikzpicture}[scale=.75]
+ \tkzDefPoints{0/0/A,8/0/B,4/0/I}
+ \tkzDefSquare(A,B) \tkzGetPoints{C}{D}
+ \tkzInterLC(I,C)(I,B)\tkzGetPoints{E'}{E}
+ \tkzInterLC(I,D)(I,B)\tkzGetPoints{F'}{F}
+ \tkzDefPointsBy[projection = onto A--B](E,F){H,G}
+ \tkzDefPointsBy[symmetry   = center H](I){J}
+ \tkzDefSquare(H,J)\tkzGetPoints{K}{L}
+ \tkzDrawSector[fill=brown!30](I,B)(A)
+ \tkzFillPolygon[color=red!40](H,E,F,G)
+ \tkzFillPolygon[color=blue!40](H,J,K,L)
+ \tkzDrawPolySeg[color=red](H,E,F,G)
+ \tkzDrawPolySeg[color=red](J,K,L)
+ \tkzDrawPoints(E,G,H,F,J,K,L)
+\end{tikzpicture}
+
+\end{document}

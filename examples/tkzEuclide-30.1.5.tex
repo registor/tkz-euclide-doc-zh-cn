@@ -1,0 +1,33 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 230 (Section 30.1.5 : Altitudes - other construction)
+
+\begin{tikzpicture}[scale=.75]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(8,0){B}
+  \tkzDefPoint(3.5,10){C}
+  \tkzDefMidPoint(A,B)
+  \tkzGetPoint{O}
+  \tkzDefPointBy[projection=onto A--B](C)
+  \tkzGetPoint{P}
+  \tkzInterLC(C,A)(O,A)
+  \tkzGetSecondPoint{M}
+  \tkzInterLC(C,B)(O,A)
+  \tkzGetFirstPoint{N}
+  \tkzInterLL(B,M)(A,N)
+  \tkzGetPoint{I}
+  \tkzDrawCircle[diameter](A,B)
+  \tkzDrawSegments(C,A C,B A,B B,M A,N)
+  \tkzMarkRightAngles[fill=brown!20](A,M,B A,N,B A,P,C)
+  \tkzDrawSegment[style=dashed,color=orange](C,P)
+  \tkzLabelPoints(O,A,B,P)
+  \tkzLabelPoint[left](M){$M$}
+  \tkzLabelPoint[right](N){$N$}
+  \tkzLabelPoint[above](C){$C$}
+  \tkzLabelPoint[above right](I){$I$}
+  \tkzDrawPoints[color=red](M,N,P,I)
+  \tkzDrawPoints[color=brown](O,A,B,C)
+\end{tikzpicture}
+
+\end{document}

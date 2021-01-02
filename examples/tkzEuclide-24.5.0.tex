@@ -1,0 +1,14 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 204 (Section 24.5 : Option \tkzname{R with nodes})
+
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(2,-1){A}
+  \tkzDefPoint(1,1){B}
+  \tkzCalcLength(B,A)\tkzGetLength{radius}
+  \tkzDrawArc[R with nodes](B,\radius pt)(A,O)
+\end{tikzpicture}
+
+\end{document}

@@ -2,7 +2,7 @@
 tkz-euclide欧氏几何绘图宏包使用手册翻译，欢迎大家批评指正。
 
 #### 介绍
-计划将tkz-euclide欧氏几何绘图宏包使用手册翻译成中文，以方便后期查阅和使用。
+计划将[tkz-euclide欧氏几何绘图宏包使用手册](https://github.com/tkz-sty/tkz-euclide)翻译成中文，以方便后期查阅和使用。
 
 #### 说明
 1. 为保持与原说明手册格式一致，仅在原`tkz-doc.cls`文档类中添加了`ctex`宏包的调用，并将其重命令为`tkz-doc-zh.cls`。

@@ -1,0 +1,260 @@
+% tkz-obj-eu-draw-circles.tex
+% Copyright 2020  Alain Matthes
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status “maintained”.
+%
+% The Current Maintainer of this work is Alain Matthes.
+
+%  utf8 encoding
+\def\fileversion{3.06c}
+\def\filedate{2020/04/06}
+\typeout{2020/04/06 3.06c tkz-obj-eu-draw-circles.tex}
+\makeatletter
+%for compatibility
+%<--------------------------------------------------------------------------–>
+\def\tkzDefCircleR(#1,#2){%
+\begingroup
+  \edef\tkzLengthResult{\fpeval{round(#2,5)}}
+  \global\let\tkzLengthResult\tkzLengthResult
+  \tkzRenamePoint(#1){tkzPointResult}
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+%              Through  Circle center and point
+%<--------------------------------------------------------------------------–>
+\def\tkzDefCircleThrough(#1,#2){%
+\begingroup
+  \tkzCalcLength(#1,#2)
+  \tkzRenamePoint(#1){tkzPointResult}
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+%              Diameter Circle
+%<--------------------------------------------------------------------------–>
+\def\tkzDefCircleD(#1,#2){%
+\begingroup
+  \tkzDefMidPoint(#1,#2)
+  \tkzCalcLength(#1,tkzPointResult)
+\endgroup
+}
+
+\def\tkz@numdc{0}
+\pgfkeys{/tkzdrawc/.cd,
+      through/.code                 =   \def\tkz@numdc{0},
+      R/.code                       =   \def\tkz@numdc{1},
+      diameter/.code                =   \def\tkz@numdc{2},
+      circum/.code                  =   \def\tkz@numdc{3},
+      in/.code                      =   \def\tkz@numdc{4},
+      ex/.code                      =   \def\tkz@numdc{5},
+      euler/.code                   =   \def\tkz@numdc{6},
+      nine/.code                    =   \def\tkz@numdc{6},
+      apollonius/.code              =   \def\tkz@numdc{7},
+      orthogonal from/.code args    =  {#1}{\def\tkz@ptfrom{#1},
+                                        \def\tkz@numdc{8}},
+      orthogonal through/.code args =  {#1 and #2}{\def\tkz@ptone{#1}
+                                                   \def\tkz@pttwo{#2}
+                                                   \def\tkz@numdc{9}},
+      K/.store in                   = \tkz@koeff,% apollonius
+      through,
+      K                      =   1,
+   /tkzdrawc/.search also={/tikz}
+}
+%<--------------------------------------------------------------------------–>
+%<--------------------------------------------------------------------------–>
+%            Drawing a circle                                                >
+%<--------------------------------------------------------------------------–>
+\def\tkzDrawCircle{\pgfutil@ifnextchar[{\tkz@DrawCircle}{\tkz@DrawCircle[]}}
+\def\tkz@DrawCircle[#1](#2){%
+\begingroup
+\pgfqkeys{/tkzdrawc}{#1}
+\ifcase\tkz@numdc%
+    \tkzDefCircleThrough(#2)
+  \or% 1
+    \tkzDefCircleR(#2)
+  \or% 2
+    \tkzDefCircleD(#2)
+  \or% 3
+      \tkzDefCircumCircle(#2)
+  \or% 4
+   \tkzDefInCircle(#2)
+  \or% 4
+   \tkzDefExCircle(#2)
+  \or% 5
+   \tkzDefEulerCircle(#2)
+  \or% 6
+   \tkzDefApolloniusCircle(#2)
+  \or% 7
+   \tkzDefOrthogonalCircle(#2,\tkz@ptfrom)
+  \or% 8
+   \tkzDefOrthoThroughCircle(#2,\tkz@ptone,\tkz@pttwo)
+ \fi
+   \draw[line style,/tkzdrawc/.cd,#1]
+                  (tkzPointResult) circle (\tkzLengthResult pt);
+\endgroup
+}
+
+%<--------------------------------------------------------------------------–>
+\def\tkz@multicircles#1 #2\@nil{%
+\protected@edef\tkz@temp{
+\noexpand \tkzDrawCircle[\tkz@optcircle](#1)}\tkz@temp%
+\def\tkz@nextArg{#2}%
+\ifx\tkzutil@empty\tkz@nextArg
+     \let\next\@gobble
+\fi
+\next#2\@nil
+}
+%<--------------------------------------------------------------------------–>
+\def\tkzDrawCircles{\pgfutil@ifnextchar[{\tkz@DrawCircles}{\tkz@DrawCircles[]}}
+\def\tkz@DrawCircles[#1](#2){%
+\xdef\tkz@optcircle{#1}
+\begingroup
+   \let\next\tkz@multicircles
+   \next#2 \@nil %
+\endgroup
+}%
+%<--------------------------------------------------------------------------–>
+%<--------------------------------------------------------------------------–>
+% #2 #3 rayon
+\def\tkz@numdsc{0}
+\pgfkeys{/tkzdrawsc/.cd,
+       through/.code         =  \def\tkz@numdsc{0},
+       diameter/.code        =  \def\tkz@numdsc{1},
+       swap/.is if           =  tkz@sawp@sc,
+       swap/.default         =  true,
+       swap                  =  false,
+       through,
+         /tkzdrawsc/.search also={/tikz}
+   }
+\def\tkzDrawSemiCircle{\pgfutil@ifnextchar[{\tkz@DrawSemiCircle}{%
+                                    \tkz@DrawSemiCircle[]}}
+\def\tkz@DrawSemiCircle[#1](#2){%
+\begingroup
+\pgfqkeys{/tkzdrawsc}{#1}
+\ifcase\tkz@numdsc%
+   \tkzDrawSemiCircleThrough(#2)
+\or%
+   \tkzDrawSemiCircleDiameter(#2)
+\fi
+ \tkzDrawArc[#1](\tkz@Center,\tkz@FirstPoint)(\tkz@SecondPoint)
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+\def\tkzDrawSemiCircleThrough(#1,#2){%
+   \tkzDefPointBy[symmetry=center #1](#2)
+         \pgfnodealias{tkz@pt}{tkzPointResult}
+   \def\tkz@Center{#1}
+   \iftkz@sawp@sc
+         \gdef\tkz@FirstPoint{tkz@pt}
+      \gdef\tkz@SecondPoint{#2}
+   \else
+         \gdef\tkz@FirstPoint{#2}
+      \gdef\tkz@SecondPoint{tkz@pt}
+   \fi
+}
+%<--------------------------------------------------------------------------–>
+\def\tkzDrawSemiCircleDiameter(#1,#2){%
+  \tkzDefMidPoint(#1,#2)
+  \pgfnodealias{tkz@Center}{tkzPointResult}
+  \def\tkz@Center{tkz@Center}
+  \iftkz@sawp@sc
+      \def\tkz@FirstPoint{#1}
+      \def\tkz@SecondPoint{#2}
+   \else
+      \def\tkz@FirstPoint{#2}
+      \def\tkz@SecondPoint{#1}
+   \fi
+}
+
+%<---------------------------- Fill Circle  --------------------------------–>
+\def\tkz@numfc{0}
+\pgfkeys{/fillcircle/.cd, radius/.code      =      \def\tkz@numfc{0},
+                       R/.code           =      \def\tkz@numfc{1},
+                    radius,
+  /fillcircle/.search also={/tikz}
+}
+\def\tkzFillCircle{\pgfutil@ifnextchar[{\tkz@FillCircle}{\tkz@FillCircle[]}}
+\def\tkz@FillCircle[#1](#2,#3){%
+\begingroup
+\pgfqkeys{/fillcircle}{#1}
+\ifcase\tkz@numfc%
+ % first case 0
+    \tkzCalcLength(#2,#3)
+   \fill[/fillcircle/.cd,#1] (#2) circle (\tkzLengthResult pt);%
+  \or% 1
+   \fill[/fillcircle/.cd,#1] (#2) circle (#3);%
+  \fi
+\endgroup
+}
+%<----------------------- Out Clip Circle  ---------------------------------–>
+\def\tkz@numocc{0}
+\pgfkeys{/clipoutcircle/.cd, radius/.code =  \def\tkz@numocc{0},
+                         R/.code      =   \def\tkz@numocc{1},
+                      radius}
+%<--------------------------------------------------------------------------–>
+\def\tkzClipOutCircle{\pgfutil@ifnextchar[{\tkz@ClipOutCircle}{%
+                                        \tkz@ClipOutCircle[]}}
+\def\tkz@ClipOutCircle[#1](#2,#3){%
+\pgfqkeys{/clipoutcircle}{#1}
+\ifcase\tkz@numocc
+     \tkzCalcLength(#2,#3)
+     \clip[tkzreverseclip]  (#2) circle (\tkzLengthResult pt);
+  \or% 1
+     \clip[tkzreverseclip]  (#2) circle (#3);
+  \fi
+}
+%<--------------------------- Clip Circle  ---------------------------------–>
+\def\tkz@numcc{0}
+\pgfkeys{/tkzclipc/.cd,
+         through/.code    =  \def\tkz@numcc{0},
+         R/.code          =  \def\tkz@numcc{1},
+         through}
+%<--------------------------------------------------------------------------–>
+\def\tkzClipCircle{\pgfutil@ifnextchar[{\tkz@ClipCircle}{\tkz@ClipCircle[]}}
+
+\def\tkz@ClipCircle[#1](#2,#3){%
+\pgfqkeys{/tkzclipc}{#1}
+\ifcase\tkz@numcc
+   \tkzCalcLength(#2,#3)
+   \clip  (#2) circle (\tkzLengthResult pt);
+ \or% 1
+   \clip  (#2) circle (#3);
+ \fi
+}
+%<--------------------------- Label Circle  --------------------------------–>
+% attention radius circle is defined by center and a point on the circle
+% R defined by center and the value of the radius
+\def\tkz@numlc{0}
+\pgfkeys{/tkzlabelc/.cd,
+          through/.code    = \def\tkz@numlc{0},
+          R/.code          = \def\tkz@numlc{1},
+          through,
+          /tkzlabelc/.search also={/tikz}
+}
+
+\def\tkzLabelCircle{\pgfutil@ifnextchar[{\tkz@LabelCircle}{%
+                                         \tkz@LabelCircle[]}}
+% [option]  (#2,#3) #2 center #3 soit un point du cercle soit le radius
+%          #4 angle #5 the label
+\def\tkz@LabelCircle[#1](#2,#3)(#4)#5{%
+\begingroup
+\pgfqkeys{/tkzlabelc}{#1}
+\ifcase\tkz@numlc
+   \tkzURotateAngle(#2,#4)(#3)
+   \node[/tkzlabelc/.cd,#1] at (tkzPointResult) {#5};
+\or% 1
+  \path (#2)--++(#3,0) coordinate (tkzPointResult);
+  \tkzURotateAngle(#2,#4)(tkzPointResult)
+   \node[/tkzlabelc/.cd,#1] at (tkzPointResult) {#5};
+\fi
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+ \makeatother
+\endinput

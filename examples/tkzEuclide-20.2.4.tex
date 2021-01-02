@@ -1,0 +1,26 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 163 (Section 20.2.4 : More complex example)
+
+\begin{tikzpicture}[scale=1.25]
+  \tkzDefPoint(0,1){J}
+  \tkzDefPoint(0,0){O}
+  \tkzDrawArc[R,line width=1pt,color=red](J,2.5 cm)(180,0)
+  \foreach \i in {0,-5,-10,...,-85,-90}{
+    \tkzDefPoint({2.5*cosd(\i)},{1+2.5*sind(\i)}){P}
+     \tkzDrawSegment[color=orange](J,P)
+     \tkzInterLC[R](P,J)(O,1 cm)
+     \tkzGetPoints{M}{N}
+     \tkzDrawPoints[red](N)
+     }
+  \foreach \i in {-90,-95,...,-175,-180}{
+     \tkzDefPoint({2.5*cosd(\i)},{1+2.5*sind(\i)}){P}
+     \tkzDrawSegment[color=orange](J,P)
+     \tkzInterLC[R](P,J)(O,1 cm)
+     \tkzGetPoints{M}{N}
+     \tkzDrawPoints[red](M)
+     }
+\end{tikzpicture}
+
+\end{document}

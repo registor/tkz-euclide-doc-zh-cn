@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 76 (Section 11.5 : Random point on a circle)
+
+\begin{tikzpicture}
+  \tkzInit[xmax=5,ymax=5]  \tkzGrid
+  \tkzDefPoints{3/2/A,1/1/B}
+  \tkzCalcLength[cm](A,B) \tkzGetLength{rAB}
+  \tkzDrawCircle[R](A,\rAB cm)
+  \tkzDefRandPointOn[circle = center A radius
+   \rAB cm]\tkzGetPoint{a}
+  \tkzDrawSegment(A,a)
+  \tkzDrawPoints(A,B,a)
+  \tkzLabelPoints(A,B,a)
+\end{tikzpicture}
+
+\end{document}

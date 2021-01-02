@@ -1,0 +1,19 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 211 (Section 25.4.1 : Example)
+
+\begin{tikzpicture}[scale=.5]
+ \tkzDefPoint(0,0){A}
+ \tkzDefPoint(3,-4){B}
+ \tkzDefCircle[through](A,B)
+ \tkzGetLength{rABpt}
+ \tkzpttocm(\rABpt){rABcm}
+ \tkzDrawCircle(A,B)
+ \tkzDrawPoints(A,B)
+ \tkzLabelPoints(A,B)
+ \tkzDrawSegment[dashed](A,B)
+ \tkzLabelSegment(A,B){$\pgfmathprintnumber{\rABcm}$}
+\end{tikzpicture}
+
+\end{document}

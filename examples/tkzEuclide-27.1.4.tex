@@ -1,0 +1,17 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 221 (Section 27.1.4 : Example of \tkzcname{tkzShowLine} and \tkzname{mediator})
+
+\begin{tikzpicture}
+\tkzDefPoint(2,2){A}
+\tkzDefPoint(5,4){B}
+\tkzDrawPoints(A,B)
+\tkzShowLine[mediator,color=orange,length=1](A,B)
+\tkzGetPoints{i}{j}
+\tkzDrawLines[add=-0.1 and -0.1](i,j)
+\tkzDrawLines(A,B)
+\tkzLabelPoints[below =3pt](A,B)
+\end{tikzpicture}
+
+\end{document}

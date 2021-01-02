@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 73 (Section 11.3 : Random point on a segment)
+
+\begin{tikzpicture}
+  \tkzInit[xmax=5,ymax=5] \tkzGrid
+  \tkzDefPoints{0/0/A,2/2/B,3/3/C,5/5/D}
+  \tkzDefRandPointOn[segment = A--B]\tkzGetPoint{a}
+  \tkzDefRandPointOn[segment = C--D]\tkzGetPoint{d}
+  \tkzDrawPoints(A,B,C,D,a,d)
+  \tkzLabelPoints(A,B,C,D,a,d)
+\end{tikzpicture}
+
+\end{document}

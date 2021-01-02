@@ -1,0 +1,30 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 238 (Section 30.2.8 : Example 4: author John Kitzmiller )
+
+\begin{tikzpicture}[scale=2]
+  \tkzDefPoint(0,3){A}    \tkzDefPoint(6,3){E}  \tkzDefPoint(1.35,3){B}
+  \tkzDefPoint(4.65,3){D} \tkzDefPoint(1,1){G}  \tkzDefPoint(5,5){F}
+  \tkzDefMidPoint(A,E)    \tkzGetPoint{C}
+  \tkzFillPolygon[yellow, opacity=0.4](B,G,C)
+  \tkzFillPolygon[yellow, opacity=0.4](D,F,C)
+  \tkzFillPolygon[blue, opacity=0.3](A,B,G)
+  \tkzFillPolygon[blue, opacity=0.3](E,D,F)
+  \tkzMarkAngles[size=0.5 cm](B,G,A D,F,E)
+  \tkzMarkAngles[size=0.5 cm](B,C,G D,C,F)
+  \tkzMarkAngles[size=0.5 cm](G,B,C F,D,C)
+  \tkzMarkAngles[size=0.5 cm](A,B,G E,D,F)
+  \tkzFillAngles[size=0.5 cm,fill=green](B,G,A D,F,E)
+  \tkzFillAngles[size=0.5 cm,fill=orange](B,C,G D,C,F)
+  \tkzFillAngles[size=0.5 cm,fill=yellow](G,B,C F,D,C)
+  \tkzFillAngles[size=0.5 cm,fill=red](A,B,G E,D,F)
+  \tkzMarkSegments[mark=|](B,C D,C)  \tkzMarkSegments[mark=s||](G,C F,C)
+  \tkzMarkSegments[mark=o](A,G E,F)  \tkzMarkSegments[mark=s](B,G D,F)
+  \tkzDrawSegment[color=red](A,E)
+  \tkzDrawSegment[color=blue](F,G)
+  \tkzDrawSegments(A,G G,B E,F F,D)
+  \tkzLabelPoints[below](C,D,E,G)  \tkzLabelPoints[above](A,B,F)
+\end{tikzpicture}
+
+\end{document}

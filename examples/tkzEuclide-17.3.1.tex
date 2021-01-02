@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 127 (Section 17.3.1 : Example of a parallelogram definition)
+
+\begin{tikzpicture}[scale=1]
+ \tkzDefPoints{0/0/A,3/0/B,4/2/C}
+ \tkzDefParallelogram(A,B,C)
+ \tkzGetPoint{D}
+ \tkzDrawPolygon(A,B,C,D)
+ \tkzLabelPoints(A,B)
+ \tkzLabelPoints[above right](C,D)
+ \tkzDrawPoints(A,...,D)
+\end{tikzpicture}
+
+\end{document}

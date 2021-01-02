@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 38 (Section  6.1.3 : Option \tkzname{circum})
+
+\begin{tikzpicture}
+  \tkzDefPoints{0/1/A,3/2/B,1/4/C}
+  \tkzDefTriangleCenter[circum](A,B,C)
+  \tkzGetPoint{G}
+  \tkzDrawPolygon[color=brown](A,B,C)
+  \tkzDrawCircle(G,A)
+  \tkzDrawPoints(A,B,C,G)
+\end{tikzpicture}
+
+\end{document}

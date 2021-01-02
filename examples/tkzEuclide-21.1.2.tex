@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 175 (Section 21.1.2 : Changing the order of items)
+
+\begin{tikzpicture}
+   \tkzInit
+   \tkzDefPoints{0/0/O,5/0/A,3/4/B}
+   % Don't forget {} to get, () to use
+   \tkzFillAngle[size=4cm,left color=white,
+                 right color=red!50](A,O,B)
+   \tkzDrawLines(O,A O,B)
+   \tkzDrawPoints(O,A,B)
+\end{tikzpicture}
+
+\end{document}

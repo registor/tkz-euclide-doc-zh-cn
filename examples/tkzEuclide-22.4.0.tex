@@ -1,0 +1,27 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 187 (Section 22.4 : Example of the use of \tkzcname{tkzFindAngle} )
+
+\begin{tikzpicture}
+   \tkzInit[xmin=-1,ymin=-1,xmax=7,ymax=7]
+   \tkzClip
+   \tkzDefPoint (0,0){O}  \tkzDefPoint (6,0){A}
+   \tkzDefPoint (5,5){B}  \tkzDefPoint (3,4){M}
+   \tkzFindAngle (A,O,M)  \tkzGetAngle{an}
+   \tkzDefPointBy[rotation=center O angle \an](A)
+   \tkzGetPoint{C}
+   \tkzDrawSector[fill = blue!50,opacity=.5](O,A)(C)
+   \tkzFindAngle(M,B,A)   \tkzGetAngle{am}
+   \tkzDefPointBy[rotation = center O angle \am](A)
+   \tkzGetPoint{D}
+   \tkzDrawSector[fill = red!50,opacity = .5](O,A)(D)
+   \tkzDrawPoints(O,A,B,M,C,D)
+   \tkzLabelPoints(O,A,B,M,C,D)
+	\edef\an{\fpeval{round(\an,2)}}\edef\am{\fpeval{round(\am,2)}}
+   \tkzDrawSegments(M,B B,A)
+   \tkzText(4,2){$\widehat{AOC}=\widehat{AOM}=\an^{\circ}$}
+   \tkzText(1,4){$\widehat{AOD}=\widehat{MBA}=\am^{\circ}$}
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 154 (Section 19.2.4 : Cardioid)
+
+\begin{tikzpicture}[scale=.5]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(2,0){A}
+  \foreach \ang in {5,10,...,360}{%
+     \tkzDefPoint(\ang:2){M}
+     \tkzDrawCircle(M,A)
+   }
+\end{tikzpicture}
+
+\end{document}

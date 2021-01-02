@@ -1,0 +1,20 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 52 (Section  9.2.2 : Example of \tkzname{homothety} and \tkzname{projection})
+
+\begin{tikzpicture}[scale=1.2]
+  \tkzDefPoint(0,1){A}   \tkzDefPoint(5,3){B}   \tkzDefPoint(3,4){C}
+  \tkzDefLine[bisector](B,A,C)                     \tkzGetPoint{a}
+  \tkzDrawLine[add=0 and 0,color=magenta!50 ](A,a)
+  \tkzDefPointBy[homothety=center A ratio .5](a)   \tkzGetPoint{a'}
+  \tkzDefPointBy[projection = onto A--B](a')       \tkzGetPoint{k'}
+  \tkzDefPointBy[projection = onto A--B](a)       \tkzGetPoint{k}
+  \tkzDrawLines[add= 0 and .3](A,k A,C)
+  \tkzDrawSegments[blue](a',k' a,k)
+  \tkzDrawPoints(a,a',k,k',A)
+  \tkzDrawCircles(a',k' a,k)
+  \tkzLabelPoints(a,a',k,A)
+\end{tikzpicture}
+
+\end{document}

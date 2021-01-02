@@ -1,0 +1,12 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 112 (Section 15.2.2 : Option \tkzname{school})
+
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){A} \tkzDefPoint(4,0){B}
+  \tkzDrawTriangle[school,fill=red!30](A,B)
+  \tkzMarkRightAngles(tkzPointResult,B,A)
+\end{tikzpicture}
+
+\end{document}

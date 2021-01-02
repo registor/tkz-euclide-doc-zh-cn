@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 105 (Section 14.5.1 : Multiple labels)
+
+\begin{tikzpicture}
+\tkzInit
+\tkzDefPoint(0,0){A}
+\tkzDefPoint(6,0){B}
+\tkzDrawSegment(A,B)
+\tkzLabelSegment[above,pos=.8](A,B){$a$}
+\tkzLabelSegment[below,pos=.2](A,B){$4$}
+\end{tikzpicture}
+
+\end{document}

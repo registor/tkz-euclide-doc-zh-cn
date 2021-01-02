@@ -1,0 +1,17 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 165 (Section 20.2.7 : Calculation of radius example 3)
+
+\begin{tikzpicture}
+	\tkzDefPoints{2/2/A,5/4/B,4/4/0}
+  \tkzLength=2cm
+  \tkzDrawCircle[R](O,\tkzLength)
+  \tkzInterLC[R](A,B)(O,\tkzLength)
+  \tkzGetPoints{I}{J}
+  \tkzDrawPoints[color=blue](A,B)
+  \tkzDrawPoints[color=red](I,J)
+  \tkzDrawLine(I,J)
+\end{tikzpicture}
+
+\end{document}

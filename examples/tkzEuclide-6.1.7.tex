@@ -1,0 +1,23 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 42 (Section  6.1.7 : Option \tkzname{symmedian})
+
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(5,0){B}
+  \tkzDefPoint(1,4){C}
+  \tkzDefTriangleCenter[symmedian](A,B,C)\tkzGetPoint{K}
+  \tkzDefTriangleCenter[median](A,B,C)\tkzGetPoint{G}
+  \tkzDefTriangleCenter[in](A,B,C)\tkzGetPoint{I}
+  \tkzDefSpcTriangle[centroid,name=M](A,B,C){a,b,c}
+  \tkzDefSpcTriangle[incentral,name=I](A,B,C){a,b,c}
+  \tkzDrawPolygon[color=blue](A,B,C)
+  \tkzDrawLines[add = 0 and 2/3,blue](A,K B,K C,K)
+  \tkzDrawSegments[red,dashed](A,Ma B,Mb C,Mc)
+  \tkzDrawSegments[orange,dashed](A,Ia B,Ib C,Ic)
+  \tkzDrawLine[add=2 and 2](G,I)
+  \tkzDrawPoints(A,B,C,K,G,I)
+\end{tikzpicture}
+
+\end{document}

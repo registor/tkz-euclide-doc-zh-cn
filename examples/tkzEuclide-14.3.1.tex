@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 101 (Section 14.3.1 : Several marks )
+
+\begin{tikzpicture}
+  \tkzDefPoint(2,1){A}
+  \tkzDefPoint(6,4){B}
+  \tkzDrawSegment(A,B)
+  \tkzMarkSegment[color=brown,size=2pt,pos=0.4, mark=z](A,B)
+  \tkzMarkSegment[color=blue,pos=0.2, mark=oo](A,B)
+  \tkzMarkSegment[pos=0.8,mark=s,color=red](A,B)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 12 (Section  1.4 : The Elements of tkz code)
+
+\begin{tikzpicture}[scale=.75]
+    \tkzDefPoints{0/0/A,8/0/B}
+    \foreach \tr in {equilateral,half,pythagore,%
+            school,golden,euclide, gold,cheops}
+    {\tkzDefTriangle[\tr](A,B) \tkzGetPoint{C}
+    \tkzDrawPoint(C)
+    \tkzLabelPoint[right](C){\tr}
+    \tkzDrawSegments(A,C C,B)}
+    \tkzDrawPoints(A,B)
+    \tkzDrawSegments(A,B)
+\end{tikzpicture}
+
+\end{document}

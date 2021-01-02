@@ -1,0 +1,14 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 250 (Section 31.4 : Own style)
+
+\begin{tikzpicture}
+    \tkzDefPoint(0,0){O}
+    \tkzDefPoint(0,1){A}
+    \tkzDrawPoints(O) % general style
+    \tkzDrawPoints[mystyle,size=4](A) % my style
+    \tkzLabelPoints(O,A)
+\end{tikzpicture}
+
+\end{document}

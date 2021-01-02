@@ -1,0 +1,26 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 223 (Section 27.2.2 : Another example of the use of \tkzcname{tkzShowTransformation})
+
+\begin{tikzpicture}[scale=.6]
+  \tkzDefPoints{0/0/A,8/0/B,3.5/10/I}
+  \tkzDefMidPoint(A,B) \tkzGetPoint{O}
+  \tkzDefPointBy[projection=onto A--B](I)
+     \tkzGetPoint{J}
+  \tkzInterLC(I,A)(O,A)  \tkzGetPoints{M'}{M}
+  \tkzInterLC(I,B)(O,A)  \tkzGetPoints{N}{N'}
+  \tkzDrawSemiCircle[diameter](A,B)
+  \tkzDrawSegments(I,A I,B A,B B,M A,N)
+  \tkzMarkRightAngles(A,M,B A,N,B)
+  \tkzDrawSegment[style=dashed,color=blue](I,J)
+  \tkzShowTransformation[projection=onto A--B,
+                  color=red,size=3,gap=-3](I)
+  \tkzDrawPoints[color=red](M,N)
+  \tkzDrawPoints[color=blue](O,A,B,I)
+  \tkzLabelPoints(O)
+  \tkzLabelPoints[above right](N,I)
+  \tkzLabelPoints[below left](M,A)
+\end{tikzpicture}
+
+\end{document}

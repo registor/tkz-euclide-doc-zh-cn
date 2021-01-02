@@ -1,0 +1,30 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 176 (Section 21.1.3 : Multiples angles)
+
+\begin{tikzpicture}[scale=0.75]
+  \tkzDefPoint(0,0){B}
+  \tkzDefPoint(8,0){C}
+  \tkzDefPoint(0,8){A}
+  \tkzDefPoint(8,8){D}
+  \tkzDrawPolygon(B,C,D,A)
+  \tkzDefTriangle[equilateral](B,C)
+  \tkzGetPoint{M}
+  \tkzInterLL(D,M)(A,B) \tkzGetPoint{N}
+  \tkzDefPointBy[rotation=center N angle -60](D)
+  \tkzGetPoint{L}
+  \tkzInterLL(N,L)(M,B)     \tkzGetPoint{P}
+  \tkzInterLL(M,C)(D,L)     \tkzGetPoint{Q}
+  \tkzDrawSegments(D,N N,L L,D B,M M,C)
+  \tkzDrawPoints(L,N,P,Q,M,A,D)
+  \tkzLabelPoints[left](N,P,Q)
+  \tkzLabelPoints[above](M,A,D)
+  \tkzLabelPoints(L,B,C)
+  \tkzMarkAngles(C,B,M B,M,C M,C,B%
+                 D,L,N L,N,D N,D,L)
+  \tkzFillAngles[fill=red!20,opacity=.2](C,B,M%
+      B,M,C M,C,B D,L,N L,N,D N,D,L)
+\end{tikzpicture}
+
+\end{document}

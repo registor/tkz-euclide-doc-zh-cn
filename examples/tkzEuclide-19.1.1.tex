@@ -1,0 +1,17 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 150 (Section 19.1.1 : Circles and styles, draw a circle and color the disc)
+
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(3,0){A}
+  \tkzDrawCircle[color=blue](O,A)
+  \tkzDrawCircle[diameter,color=red,%
+                 line width=2pt,fill=red!40,%
+                 opacity=.5](O,A)
+  \edef\rayon{\fpeval{0.25*exp(1)}}
+  \tkzDrawCircle[R,color=orange](O,\rayon cm)
+\end{tikzpicture}
+
+\end{document}

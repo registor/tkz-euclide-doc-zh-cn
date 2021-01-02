@@ -1,0 +1,24 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 217 (Section 26.3.1 : Use of \tkzcname{tkzSetUpCompass})
+
+\begin{tikzpicture}[scale=.75,
+	      showbi/.style={bisector,size=2,gap=3}]
+  \tkzSetUpCompass[color=blue,line width=.3 pt]
+  \tkzDefPoints{0/1/A, 8/3/B, 3/6/C}
+  \tkzDrawPolygon(A,B,C)
+  \tkzDefLine[bisector](B,A,C)  \tkzGetPoint{a}
+  \tkzDefLine[bisector](C,B,A)  \tkzGetPoint{b}
+  \tkzShowLine[showbi](B,A,C)
+  \tkzShowLine[showbi](C,B,A)
+  \tkzInterLL(A,a)(B,b) \tkzGetPoint{I}
+  \tkzDefPointBy[projection= onto A--B](I)
+	 \tkzGetPoint{H}
+  \tkzDrawCircle[radius,color=gray](I,H)
+  \tkzDrawSegments[color=gray!50](I,H)
+  \tkzDrawLines[add=0 and -.2,color=blue!50 ](A,a B,b)
+	\tkzShowBB
+\end{tikzpicture}
+
+\end{document}

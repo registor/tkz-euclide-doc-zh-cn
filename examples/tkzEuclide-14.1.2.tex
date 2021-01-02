@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 97 (Section 14.1.2 : Example of extending an segment with option \tkzname{add})
+
+\begin{tikzpicture}
+  \tkzDefPoints{0/0/A,6/0/B,0.8/4/C}
+  \tkzDefTriangleCenter[euler](A,B,C)
+  \tkzGetPoint{E}
+  \tkzDrawCircle[euler,red](A,B,C)
+  \tkzDrawLines[add=.5 and .5](A,B A,C B,C)
+  \tkzDrawPoints(A,B,C,E)
+  \tkzLabelPoints(A,B,C,E)
+\end{tikzpicture}
+
+\end{document}

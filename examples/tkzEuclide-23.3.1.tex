@@ -1,0 +1,20 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 199 (Section 23.3.1 : \tkzcname{tkzClipSector})
+
+\begin{tikzpicture}[scale=1.5]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(2,-1){A}
+  \tkzDefPoint(1,1){B}
+  \tkzDrawSector[color=blue,dashed](O,A)(B)
+  \tkzDrawSector[color=blue](O,B)(A)
+  \tkzClipBB
+  \begin{scope}
+    \tkzClipSector(O,B)(A)
+    \draw[fill=gray!20] (-1,0) rectangle (3,3);
+  \end{scope}
+  \tkzDrawPoints(A,B,O)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,25 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 140 (Section 18.1.1 : Example with a random point and  option \tkzname{through})
+
+\begin{tikzpicture}[scale=1]
+ \tkzDefPoint(0,4){A}
+ \tkzDefPoint(2,2){B}
+ \tkzDefMidPoint(A,B) \tkzGetPoint{I}
+ \tkzDefRandPointOn[segment = I--B]
+  \tkzGetPoint{C}
+ \tkzDefCircle[through](A,C)
+ \tkzGetLength{rACpt}
+ \tkzpttocm(\rACpt){rACcm}
+ \tkzDrawCircle(A,C)
+ \tkzDrawPoints(A,B,C)
+ \tkzLabelPoints(A,B,C)
+ \tkzLabelCircle[draw,fill=orange,
+          text width=3cm,text centered,
+          font=\scriptsize](A,C)(-90)%
+ {The radius measurement is:
+  \rACpt pt i.e. \rACcm cm}
+\end{tikzpicture}
+
+\end{document}

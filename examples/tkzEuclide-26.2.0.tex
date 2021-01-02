@@ -1,0 +1,22 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 216 (Section 26.2 : Multiple constructions \tkzcname{tkzCompasss})
+
+\begin{tikzpicture}[scale=.75]
+ \tkzDefPoint(2,2){A}  \tkzDefPoint(5,-2){B}
+ \tkzDefPoint(3,4){C}  \tkzDrawPoints(A,B)
+ \tkzDrawPoint[color=red,shape=cross out](C)
+ \tkzCompasss[color=orange](A,B A,C B,C C,B)
+ \tkzShowLine[mediator,color=red,
+                             dashed,length = 2](A,B)
+ \tkzShowLine[parallel = through C,
+                            color=blue,length=2](A,B)
+ \tkzDefLine[mediator](A,B)  \tkzGetPoints{i}{j}
+ \tkzDefLine[parallel=through C](A,B) \tkzGetPoint{D}
+ \tkzDrawLines[add=.6 and .6](C,D A,C B,D)
+ \tkzDrawLines(i,j) \tkzDrawPoints(A,B,C,i,j,D)
+ \tkzLabelPoints(A,B,C,i,j,D)
+\end{tikzpicture}
+
+\end{document}

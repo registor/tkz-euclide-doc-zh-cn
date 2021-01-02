@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 202 (Section 24.3 : Option \tkzname{rotate})
+
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(2,-2){A}
+  \tkzDefPoint(60:2){B}
+  \tkzDrawLines[add = 0 and .5](O,A O,B)
+  \tkzDrawArc[rotate,color=red](O,A)(180)
+  \tkzDrawPoints(O,A,B)
+  \tkzLabelPoints[below](O,A,B)
+\end{tikzpicture}
+
+\end{document}

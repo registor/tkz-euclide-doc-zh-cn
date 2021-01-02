@@ -1,0 +1,25 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 172 (Section 20.3.5 : With the option \tkzimp{with nodes})
+
+\begin{tikzpicture}[scale=.5]
+ \tkzDefPoints{0/0/a,0/5/B,5/0/C}
+ \tkzDefPoint(54:5){F}
+ \tkzDrawCircle[color=gray](A,C)
+ \tkzInterCC[with nodes](A,A,C)(C,B,F)
+ \tkzGetPoints{a}{e}
+ \tkzInterCC(A,C)(a,e) \tkzGetFirstPoint{b}
+ \tkzInterCC(A,C)(b,a) \tkzGetFirstPoint{c}
+ \tkzInterCC(A,C)(c,b) \tkzGetFirstPoint{d}
+ \tkzDrawPoints(a,b,c,d,e)
+ \tkzDrawPolygon[color=red](a,b,c,d,e)
+ \foreach \vertex/\num in {a/36,b/108,c/180,
+                          d/252,e/324}{%
+ \tkzDrawPoint(\vertex)
+ \tkzLabelPoint[label=\num:$\vertex$](\vertex){}
+ \tkzDrawSegment[color=gray,style=dashed](A,\vertex)
+ }
+\end{tikzpicture}
+
+\end{document}

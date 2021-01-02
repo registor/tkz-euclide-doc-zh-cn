@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 225 (Section 29.1 : The circular protractor)
+
+\begin{tikzpicture}[scale=.5]
+\tkzDefPoint(2,0){A}\tkzDefPoint(0,0){O}
+\tkzDefShiftPoint[A](31:5){B}
+\tkzDefShiftPoint[A](158:5){C}
+\tkzDrawPoints(A,B,C)
+\tkzDrawSegments[color = red,
+    line width = 1pt](A,B A,C)
+  \tkzProtractor[scale = 1](A,B)
+\end{tikzpicture}
+
+\end{document}

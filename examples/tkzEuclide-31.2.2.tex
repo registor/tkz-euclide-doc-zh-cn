@@ -1,0 +1,23 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 247 (Section 31.2.2 : Use of \tkzcname{tkzSetUpPoint} inside a group)
+
+\begin{tikzpicture}
+    \tkzInit[ymin=-0.5,ymax=3,xmin=-0.5,xmax=7]
+    \tkzDefPoint(0,0){A}
+    \tkzDefPoint(02.25,04.25){B}
+    \tkzDefPoint(4,0){C}
+    \tkzDefPoint(3,2){D}
+    \tkzDrawSegments(A,B A,C A,D)
+  {\tkzSetUpPoint[shape=cross out,
+              fill= teal!50,
+              size=4,color=teal]
+    \tkzDrawPoints(A,B)}
+    \tkzSetUpPoint[fill= teal!50,size=4,
+                 color=teal]
+     \tkzDrawPoints(C,D)
+    \tkzLabelPoints(A,B,C,D)
+\end{tikzpicture}
+
+\end{document}

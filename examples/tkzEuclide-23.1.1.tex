@@ -1,0 +1,19 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 192 (Section 23.1.1 : \tkzcname{tkzDrawSector} and \tkzname{towards})
+
+\begin{tikzpicture}[scale=1]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(-30:3){A}
+  \tkzDefPointBy[rotation = center O angle -60](A)
+  \tkzDrawSector[fill=red!50](O,A)(tkzPointResult)
+ \begin{scope}[shift={(-60:1cm)}]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(-30:3){A}
+  \tkzDefPointBy[rotation = center O angle -60](A)
+  \tkzDrawSector[fill=blue!50](O,tkzPointResult)(A)
+  \end{scope}
+\end{tikzpicture}
+
+\end{document}

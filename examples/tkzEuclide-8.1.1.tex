@@ -1,0 +1,24 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 48 (Section  8.1.1 : Use of option \tkzname{pos})
+
+\begin{tikzpicture}
+  \tkzDefPoints{0/0/A,4/0/B}
+  \tkzDrawLine[red](A,B)
+  \tkzDefPointOnLine[pos=1.2](A,B)
+  \tkzGetPoint{P}
+  \tkzDefPointOnLine[pos=-0.2](A,B)
+  \tkzGetPoint{R}
+  \tkzDefPointOnLine[pos=0.5](A,B)
+  \tkzGetPoint{S}
+  \tkzDrawPoints(A,B,P)
+  \tkzLabelPoints(A,B)
+  \tkzLabelPoint[above](P){pos=$1.2$}
+  \tkzLabelPoint[above](R){pos=$-.2$}
+  \tkzLabelPoint[above](S){pos=$.5$}
+  \tkzDrawPoints(A,B,P,R,S)
+  \tkzLabelPoints(A,B)
+\end{tikzpicture}
+
+\end{document}

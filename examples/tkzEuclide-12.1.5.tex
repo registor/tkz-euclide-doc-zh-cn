@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 83 (Section 12.1.5 : A parabola)
+
+\begin{tikzpicture}[scale=.75]
+ \tkzInit[xmin=-6,ymin=-4,xmax=6,ymax=6]
+ \tkzClip
+ \tkzDefPoint(0,0){O}
+ \tkzDefPoint(132:5){A}
+ \tkzDefPoint(4,0){B}
+ \foreach \ang in {5,10,...,360}{%
+  \tkzDefPoint(\ang:4){M}
+  \tkzDefLine[mediator](A,M)
+  \tkzDrawLine[color=magenta,add= 3 and 3](tkzFirstPointResult,tkzSecondPointResult)}
+\end{tikzpicture}
+
+\end{document}

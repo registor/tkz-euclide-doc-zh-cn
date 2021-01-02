@@ -1,0 +1,12 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 25 (Section  4.1.4 : Calculations and coordinates)
+
+\begin{tikzpicture}[scale=.5]
+  \foreach \an [count=\i] in {0,2,...,358}
+   { \tkzDefPoint(\an:sqrt(sqrt(\an mm))){A_\i}}
+   \tkzDrawPoints(A_1,A_...,A_180)
+\end{tikzpicture}
+
+\end{document}

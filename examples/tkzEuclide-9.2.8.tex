@@ -1,0 +1,22 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 58 (Section  9.2.8 : Point Inversion: Orthogonal Circles)
+
+\begin{tikzpicture}[scale=1.5]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(1,0){A}
+  \tkzDrawCircle(O,A)
+  \tkzDefPoint(0.5,-0.25){z1}
+  \tkzDefPoint(-0.5,-0.5){z2}
+  \tkzDefPointBy[inversion = %
+     center O through A](z1)
+  \tkzGetPoint{Z1}
+  \tkzCircumCenter(z1,z2,Z1)
+  \tkzGetPoint{c}
+  \tkzDrawCircle(c,Z1)
+  \tkzDrawPoints[color=black,
+     fill=red,size=4](O,z1,z2,Z1,O,A)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,34 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 6 (Section  1.3.1 : Example Part I: gold triangle)
+
+\begin{tikzpicture}
+    \tkzDefPoint(0,0){C}
+    \tkzDefPoint(4,0){D}
+    \tkzDefSquare(C,D)
+    \tkzGetPoints{e}{f}
+    \tkzDefMidPoint(C,f)
+    \tkzGetPoint{m}
+    \tkzInterLC(C,f)(m,e)
+    \tkzGetSecondPoint{n}
+    \tkzInterCC[with nodes](C,C,n)(D,C,n)
+    \tkzGetFirstPoint{B}
+    \tkzInterLC(C,D)(D,B) \tkzGetSecondPoint{A}
+    \tkzInterLC(B,A)(B,D) \tkzGetSecondPoint{E}
+    \tkzInterLL(B,D)(C,E) \tkzGetPoint{F}
+    \tkzDrawPoints(C,D,B)
+    \tkzDrawPolygon(B,...,D)
+    \tkzDrawPolygon(B,C,D)
+    \tkzDrawSegments(D,A A,B C,E)
+    \tkzDrawArc[delta=10](B,C)(E)
+    \tkzDrawPoints(A,...,F)
+    \tkzMarkRightAngle[fill=blue!20](B,F,C)
+    \tkzFillAngles[fill=blue!10](C,B,D E,A,D)
+    \tkzMarkAngles(C,B,D E,A,D)
+    \tkzLabelAngles[pos=1.5](C,B,D E,A,D){$\alpha$}
+    \tkzLabelPoints[below](A,C,D,E)
+    \tkzLabelPoints[above right](B,F)
+\end{tikzpicture}
+
+\end{document}

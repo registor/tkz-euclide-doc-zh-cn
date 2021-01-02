@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 91 (Section 13.1.3 : Example with  the option \tkzname{add})
+
+\begin{tikzpicture}[scale=.5]
+ \tkzDefPoint(0,0){O}
+ \tkzDefPoint(3,1){I}
+ \tkzDefPoint(1,4){J}
+ \tkzDefLine[bisector](I,O,J)
+   \tkzGetPoint{i}
+ \tkzDefLine[bisector out](I,O,J)
+   \tkzGetPoint{j}
+ \tkzDrawLines[add = 1 and .5,color=red](O,I O,J)
+ \tkzDrawLines[add = 1 and .5,color=blue](O,i O,j)
+\end{tikzpicture}
+
+\end{document}

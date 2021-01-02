@@ -1,0 +1,27 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 75 (Section 11.4.1 : Example of random points)
+
+\begin{tikzpicture}
+ \tkzDefPoints{0/0/A,2/2/B,-1/-1/C}
+ \tkzDefCircle[through=](A,C)
+ \tkzGetLength{rAC}
+ \tkzDrawCircle(A,C)
+ \tkzDrawCircle(A,B)
+ \tkzDefRandPointOn[rectangle=A and B]
+ \tkzGetPoint{a}
+ \tkzDefRandPointOn[segment=A--B]
+ \tkzGetPoint{b}
+ \tkzDefRandPointOn[circle=center A radius \rAC pt]
+    \tkzGetPoint{d}
+ \tkzDefRandPointOn[circle through= center A through B]
+     \tkzGetPoint{c}
+ \tkzDefRandPointOn[disk through=center A through B]
+     \tkzGetPoint{e}
+ \tkzLabelPoints[above right=3pt](A,B,C,a,b,...,e)
+ \tkzDrawPoints[](A,B,C,a,b,...,e)
+ \tkzDrawRectangle(A,B)
+\end{tikzpicture}
+
+\end{document}

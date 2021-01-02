@@ -1,0 +1,24 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 233 (Section 30.2.3 : Archimedes)
+
+\begin{tikzpicture}[scale=1.25]
+  \tkzDefPoint(0,0){A}\tkzDefPoint(6,0){D}
+  \tkzDefPoint(8,0){B}\tkzDefPoint(4,0){I}
+  \tkzDefLine[orthogonal=through D](A,D)
+  \tkzInterLC[R](D,tkzPointResult)(I,4 cm) \tkzGetFirstPoint{C}
+  \tkzDefLine[orthogonal=through C](I,C)    \tkzGetPoint{c}
+  \tkzDefLine[orthogonal=through B](A,B)    \tkzGetPoint{b}
+  \tkzInterLL(C,c)(B,b) \tkzGetPoint{T}
+  \tkzInterLL(A,T)(C,D) \tkzGetPoint{P}
+  \tkzDrawArc(I,B)(A)
+  \tkzDrawSegments(A,B A,T C,D I,C) \tkzDrawSegment[color=orange](I,C)
+  \tkzDrawLine[add = 1 and 0](C,T)   \tkzDrawLine[add = 0 and 1](B,T)
+  \tkzMarkRightAngle(I,C,T)
+  \tkzDrawPoints(A,B,I,D,C,T)
+  \tkzLabelPoints(A,B,I,D)  \tkzLabelPoints[above right](C,T)
+  \tkzMarkSegment[pos=.25,mark=s|](C,D) \tkzMarkSegment[pos=.75,mark=s|](C,D)
+\end{tikzpicture}
+
+\end{document}

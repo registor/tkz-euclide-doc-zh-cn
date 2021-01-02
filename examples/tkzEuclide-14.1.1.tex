@@ -1,0 +1,14 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 96 (Section 14.1.1 : Example with point references)
+
+\begin{tikzpicture}[scale=1.5]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(2,1){B}
+  \tkzDrawSegment[color=red,thin](A,B)
+  \tkzDrawPoints(A,B)
+  \tkzLabelPoints(A,B)
+\end{tikzpicture}
+
+\end{document}

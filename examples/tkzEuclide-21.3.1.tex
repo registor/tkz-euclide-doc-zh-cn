@@ -1,0 +1,28 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 180 (Section 21.3.1 : Example with \tkzname{pos})
+
+\begin{tikzpicture}[rotate=30]
+  \tkzDefPoint(2,1){S}
+  \tkzDefPoint(7,3){T}
+  \tkzDefPointBy[rotation=center S angle 60](T)
+  \tkzGetPoint{P}
+  \tkzDefLine[bisector,normed](T,S,P)
+  \tkzGetPoint{s}
+  \tkzDrawPoints(S,T,P)
+  \tkzDrawPolygon[color=blue](S,T,P)
+  \tkzDrawLine[dashed,color=blue,add=0 and 3](S,s)
+  \tkzLabelPoint[above right](P){$P$}
+  \tkzLabelPoints(S,T)
+  \tkzMarkAngle[size = 1.8cm,mark = |,arc=ll,
+                    color = blue](T,S,P)
+  \tkzMarkAngle[size = 2.1cm,mark = |,arc=l,
+                    color = blue](T,S,s)
+  \tkzMarkAngle[size = 2.3cm,mark = |,arc=l,
+                    color = blue](s,S,P)
+ \tkzLabelAngle[pos = 1.5](T,S,P){$60^{\circ}$}%
+ \tkzLabelAngles[pos = 2.7](T,S,s s,S,P){$30^{\circ}$}%
+\end{tikzpicture}
+
+\end{document}

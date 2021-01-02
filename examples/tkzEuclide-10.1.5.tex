@@ -1,0 +1,20 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 64 (Section 10.1.5 : Option \tkzname{orthogonal} with $K=-1$)
+
+\begin{tikzpicture}[scale=.75]
+  \tkzDefPoint(1,2){O}
+  \tkzDefPoint(2,5){I}
+  \tkzDefPointWith[orthogonal](O,I)
+  \tkzGetPoint{J}
+  \tkzDefPointWith[orthogonal,K=-1](O,I)
+  \tkzGetPoint{K}
+  \tkzDrawSegment(O,I)
+  \tkzDrawSegments[->](O,J O,K)
+  \tkzMarkRightAngles(I,O,J I,O,K)
+  \tkzDrawPoints(O,I,J,K)
+  \tkzLabelPoints(O,I,J,K)
+\end{tikzpicture}
+
+\end{document}

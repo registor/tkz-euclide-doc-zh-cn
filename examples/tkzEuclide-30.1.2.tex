@@ -1,0 +1,24 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 227 (Section 30.1.2 : Revised version of "Tangente")
+
+\begin{tikzpicture}[scale=.8,rotate=60]
+  \tkzDefPoint(6,0){X}   \tkzDefPoint(3,3){Y}
+  \tkzDefShiftPoint[X](-110:6){A}    \tkzDefShiftPoint[X](-70:6){B}
+  \tkzDefShiftPoint[Y](-110:4.2){A'} \tkzDefShiftPoint[Y](-70:4.2){B'}
+  \tkzDefPointBy[translation= from A' to B ](Y) \tkzGetPoint{Y}
+  \tkzDefPointBy[translation= from A' to B ](B') \tkzGetPoint{C}
+  \tkzInterLL(A,B)(X,Y) \tkzGetPoint{O}
+  \tkzDefMidPoint(X,Y) \tkzGetPoint{I}
+  \tkzDefPointWith[orthogonal](I,Y)
+  \tkzInterLL(I,tkzPointResult)(A,B) \tkzGetPoint{Z}
+  \tkzDefCircle[circum](X,Y,B) \tkzGetPoint{O}
+  \tkzDrawCircle(O,X)
+  \tkzDrawLines[add = 0 and 1.5](A,C) \tkzDrawLines[add = 0 and 3](X,Y)
+  \tkzDrawSegments(A,X B,X B,Y C,Y)   \tkzDrawSegments[color=red](X,Z Y,Z)
+  \tkzDrawPoints(A,B,C,X,Y,O,Z)
+  \tkzLabelPoints(A,B,C,Z)   \tkzLabelPoints[above right](X,Y,O)
+\end{tikzpicture}
+
+\end{document}

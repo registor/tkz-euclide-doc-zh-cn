@@ -1,0 +1,19 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 84 (Section 12.2.1 : Example of a tangent passing through a point on the circle )
+
+\begin{tikzpicture}[scale=.75]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(6,6){E}
+  \tkzDefRandPointOn[circle=center O radius 3cm]
+  \tkzGetPoint{A}
+  \tkzDrawSegment(O,A)
+  \tkzDrawCircle(O,A)
+  \tkzDefTangent[at=A](O)
+  \tkzGetPoint{h}
+  \tkzDrawLine[add = 4 and 3](A,h)
+  \tkzMarkRightAngle[fill=red!30](O,A,h)
+\end{tikzpicture}
+
+\end{document}

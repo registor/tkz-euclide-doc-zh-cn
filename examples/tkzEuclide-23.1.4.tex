@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 195 (Section 23.1.4 : \tkzcname{tkzDrawSector} and \tkzname{R})
+
+\begin{tikzpicture}[scale=1.25]
+ \tkzDefPoint(0,0){O}
+ \tkzDefPoint(4,-2){A}
+ \tkzDefPoint(4,1){B}
+ \tkzDefPoint(3,3){C}
+ \tkzDrawSector[R with nodes,%
+                fill=blue!20](O,1 cm)(B,C)
+ \tkzDrawSector[R with nodes,%
+                fill=red!20](O,1.25 cm)(A,B)
+\tkzDrawSegments(O,A O,B O,C)
+\tkzDrawPoints(O,A,B,C)
+\tkzLabelPoints(A,B,C)
+\tkzLabelPoints[left](O)
+\end{tikzpicture}
+
+\end{document}

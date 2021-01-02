@@ -1,0 +1,23 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 158 (Section 19.6.1 : Example)
+
+\begin{tikzpicture}
+ \tkzDefPoint(0,0){O} \tkzDefPoint(2,0){N}
+ \tkzDefPointBy[rotation=center O angle 50](N)
+     \tkzGetPoint{M}
+ \tkzDefPointBy[rotation=center O angle -20](N)
+      \tkzGetPoint{P}
+ \tkzDefPointBy[rotation=center O angle 125](N)
+      \tkzGetPoint{P'}
+ \tkzLabelCircle[above=4pt](O,N)(120){$\mathcal{C}$}
+ \tkzDrawCircle(O,M)
+ \tkzFillCircle[color=blue!20,opacity=.4](O,M)
+ \tkzLabelCircle[R,draw,fill=orange,%
+       text width=2cm,text centered](O,3 cm)(-60)%
+          {The circle\\ $\mathcal{C}$}
+ \tkzDrawPoints(M,P)\tkzLabelPoints[right](M,P)
+\end{tikzpicture}
+
+\end{document}

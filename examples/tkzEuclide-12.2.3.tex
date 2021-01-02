@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 86 (Section 12.2.3 : Example of Andrew Mertz)
+
+\begin{tikzpicture}[scale=.5]
+ \tkzDefPoint(100:8){A}\tkzDefPoint(50:8){B}
+ \tkzDefPoint(0,0){C} \tkzDefPoint(0,4){R}
+ \tkzDrawCircle(C,R)
+ \tkzDefTangent[from = A](C,R)  \tkzGetPoints{D}{E}
+ \tkzDefTangent[from = B](C,R)  \tkzGetPoints{F}{G}
+ \tkzDrawSector[fill=blue!80!black,opacity=0.5](A,D)(E)
+ \tkzFillSector[color=red!80!black,opacity=0.5](B,F)(G)
+ \tkzInterCC(A,D)(B,F) \tkzGetSecondPoint{I}
+ \tkzDrawPoint[color=black](I)
+\end{tikzpicture}
+
+\end{document}

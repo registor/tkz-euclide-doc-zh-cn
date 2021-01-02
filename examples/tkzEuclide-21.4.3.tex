@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 183 (Section 21.4.3 : Mix of styles)
+
+\begin{tikzpicture}[scale=.75]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(4,1){B}
+  \tkzDefPoint(2,5){C}
+  \tkzDefPointBy[projection=onto B--A](C)
+      \tkzGetPoint{H}
+  \tkzDrawLine(A,B)
+  \tkzDrawLine[add = .5 and .2,color=red](C,H)
+  \tkzMarkRightAngle[,size=1,color=red](C,H,A)
+  \tkzMarkRightAngle[german,size=.8,color=blue](B,H,C)
+  \tkzFillAngle[opacity=.2,fill=blue!20,size=.8](B,H,C)
+  \tkzLabelPoints(A,B,C,H)
+  \tkzDrawPoints(A,B,C)
+\end{tikzpicture}
+
+\end{document}

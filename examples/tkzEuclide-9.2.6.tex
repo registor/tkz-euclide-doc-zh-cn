@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 56 (Section  9.2.6 : Example of rotation in radian)
+
+\begin{tikzpicture}
+  \tkzDefPoint["$A$" left](1,5){A}
+  \tkzDefPoint["$B$" right](5,2){B}
+  \tkzDefPointBy[rotation in rad= center A angle pi/3](B)
+  \tkzGetPoint{C}
+  \tkzDrawSegment(A,B)
+  \tkzDrawPoints(A,B,C)
+  \tkzCompass[color=red](A,C)
+  \tkzCompass[color=red](B,C)
+  \tkzLabelPoints(C)
+\end{tikzpicture}
+
+\end{document}

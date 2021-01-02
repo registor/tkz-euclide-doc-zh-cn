@@ -1,0 +1,27 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 121 (Section 16.0.6 : Option \tkzname{feuerbach})
+
+\begin{tikzpicture}[scale=1]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(3,0){B}
+  \tkzDefPoint(0.5,2.5){C}
+  \tkzDefCircle[euler](A,B,C) \tkzGetPoint{N}
+  \tkzDefSpcTriangle[feuerbach,
+                       name=F](A,B,C){_a,_b,_c}
+  \tkzDefSpcTriangle[excentral,
+                       name=J](A,B,C){_a,_b,_c}
+  \tkzDefSpcTriangle[extouch,
+                        name=T](A,B,C){_a,_b,_c}
+  \tkzDrawPoints[blue](J_a,J_b,J_c,F_a,F_b,F_c,A,B,C)
+  \tkzClipBB \tkzShowBB
+  \tkzDrawCircle[purple](N,F_a)
+  \tkzDrawPolygon(A,B,C)
+  \tkzDrawPolygon[blue](F_a,F_b,F_c)
+  \tkzDrawCircles[gray](J_a,F_a J_b,F_b J_c,F_c)
+  \tkzAutoLabelPoints[center=N,dist=.3,
+   font=\scriptsize](A,B,C,F_a,F_b,F_c,J_a,J_b,J_c)
+\end{tikzpicture}
+
+\end{document}

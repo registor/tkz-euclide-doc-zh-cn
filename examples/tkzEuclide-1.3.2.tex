@@ -1,0 +1,32 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 8 (Section  1.3.2 : Example Part II: two others methods gold and euclide triangle)
+
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){C} % possible
+  % \tkzDefPoint[label=below:$C$](0,0){C}
+  % but don't do this
+  \tkzDefPoint(2,6){B}
+  % We get D and E with a rotation
+  \tkzDefPointBy[rotation= center B angle 36](C) \tkzGetPoint{D}
+  \tkzDefPointBy[rotation= center B angle 72](C) \tkzGetPoint{E}
+  % To get A we use an intersection of lines
+  \tkzInterLL(B,E)(C,D) \tkzGetPoint{A}
+  \tkzInterLL(C,E)(B,D) \tkzGetPoint{H}
+  % drawing
+  \tkzDrawArc[delta=10](B,C)(E)
+  \tkzDrawPolygon(C,B,D)
+  \tkzDrawSegments(D,A B,A C,E)
+  % angles
+  \tkzMarkAngles(C,B,D E,A,D) %this is to draw the arcs
+  \tkzLabelAngles[pos=1.5](C,B,D E,A,D){$\alpha$}
+  \tkzMarkRightAngle(B,H,C)
+  \tkzDrawPoints(A,...,E)
+  % Label only now
+  \tkzLabelPoints[below left](C,A)
+  \tkzLabelPoints[below right](D)
+  \tkzLabelPoints[above](B,E)
+\end{tikzpicture}
+
+\end{document}

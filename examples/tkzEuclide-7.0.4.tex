@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 47 (Section  7.0.4 : Second example)
+
+\begin{tikzpicture}[scale=.5]
+ \tkzDefPoint(2,3){A}  \tkzDefPoint(5,-1){B}
+ \tkzDefPoint[label=below:$\mathcal{C}$,
+               shift={(2,3)}](-30:5.5){E}
+ \begin{scope}[shift=(A)]
+    \tkzDefPoint(30:5){C}
+ \end{scope}
+ \tkzCalcLength[cm](A,B)\tkzGetLength{rAB}
+ \tkzDrawCircle[R](A,\rAB cm)
+ \tkzDrawSegment(A,B)
+ \tkzDrawPoints(A,B,C)
+ \tkzLabelPoints(B,C)
+ \tkzLabelPoints[above](A)
+\end{tikzpicture}
+
+\end{document}

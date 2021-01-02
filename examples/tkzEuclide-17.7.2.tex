@@ -1,0 +1,13 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 134 (Section 17.7.2 : Polygonal chain: index notation)
+
+\begin{tikzpicture}
+\foreach \pt in {1,2,...,8}	{%
+\tkzDefPoint(\pt*20:3){P_\pt}}
+\tkzDrawPolySeg(P_1,P_...,P_8)
+\tkzDrawPoints(P_1,P_...,P_8)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 87 (Section 12.2.4 : Drawing a tangent option \tkzimp{from with R} and \tkzimp{at})
+
+\begin{tikzpicture}[scale=.5]
+  \tkzDefPoint(0,0){O}
+  \tkzDefRandPointOn[circle=center O radius 4cm]
+  \tkzGetPoint{A}
+  \tkzDefTangent[at=A](O)
+  \tkzGetPoint{h}
+  \tkzDrawSegments(O,A)
+  \tkzDrawCircle(O,A)
+  \tkzDrawLine[add = 1 and 1](A,h)
+  \tkzMarkRightAngle[fill=red!30](O,A,h)
+\end{tikzpicture}
+
+\end{document}

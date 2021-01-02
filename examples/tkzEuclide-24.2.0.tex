@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 201 (Section 24.2 : Option \tkzname{towards})
+
+\begin{tikzpicture}[scale=1.5]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(2,-1){A}
+  \tkzDefPoint(1,1){B}
+  \tkzDrawArc[color=blue,->](O,A)(B)
+  \tkzDrawArc[color=gray](O,B)(A)
+  \tkzDrawArc(O,B)(A)
+  \tkzDrawLines[add = 0 and .5](O,A O,B)
+  \tkzDrawPoints(O,A,B)
+  \tkzLabelPoints[below](O,A,B)
+\end{tikzpicture}
+
+\end{document}

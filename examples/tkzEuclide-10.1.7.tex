@@ -1,0 +1,19 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 66 (Section 10.1.7 : Options \tkzname{colinear} and \tkzname{orthogonal})
+
+\begin{tikzpicture}[scale=1.2,
+  vect/.style={->,shorten >=3pt,>=latex'}]
+   \tkzDefPoint(2,1){A}
+   \tkzDefPoint(6,2){B}
+   \tkzDefPointWith[orthogonal,K=.5](A,B)
+   \tkzGetPoint{C}
+   \tkzDefPointWith[colinear=at C,K=.5](A,B)
+   \tkzGetPoint{D}
+   \tkzMarkRightAngle[fill=gray!20](B,A,C)
+   \tkzDrawSegments[vect](A,B A,C C,D)
+   \tkzDrawPoints(A,...,D)
+\end{tikzpicture}
+
+\end{document}

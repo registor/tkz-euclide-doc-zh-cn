@@ -1,0 +1,26 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 156 (Section 19.4.1 : Example from a sangaku)
+
+\begin{tikzpicture}
+   \tkzInit[xmin=0,xmax = 6,ymin=0,ymax=6]
+   \tkzDefPoint(0,0){B}  \tkzDefPoint(6,0){C}%
+   \tkzDefSquare(B,C)    \tkzGetPoints{D}{A}
+   \tkzClipPolygon(B,C,D,A)
+   \tkzDefMidPoint(A,D)  \tkzGetPoint{F}
+   \tkzDefMidPoint(B,C)  \tkzGetPoint{E}
+   \tkzDefMidPoint(B,D)  \tkzGetPoint{Q}
+   \tkzDefTangent[from = B](F,A) \tkzGetPoints{G}{H}
+   \tkzInterLL(F,G)(C,D) \tkzGetPoint{J}
+   \tkzInterLL(A,J)(F,E) \tkzGetPoint{K}
+   \tkzDefPointBy[projection=onto B--A](K)
+	 \tkzGetPoint{M}
+   \tkzFillPolygon[color = green](A,B,C,D)
+   \tkzFillCircle[color = orange](B,A)
+   \tkzFillCircle[color = blue!50!black](M,A)
+   \tkzFillCircle[color = purple](E,B)
+   \tkzFillCircle[color = yellow](K,Q)
+\end{tikzpicture}
+
+\end{document}

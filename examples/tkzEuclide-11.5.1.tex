@@ -1,0 +1,30 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 77 (Section 11.5.1 : Random example and circle of Apollonius)
+
+\begin{tikzpicture}[scale=1]
+ \tkzDefPoints{0/0/A,3/0/B}
+ \def\coeffK{2}
+ \tkzApolloniusCenter[K=\coeffK](A,B)
+ \tkzGetPoint{P}
+ \tkzDefApolloniusPoint[K=\coeffK](A,B)
+ \tkzGetPoint{M}
+ \tkzDefApolloniusRadius[K=\coeffK](A,B)
+ \tkzDrawCircle[R,color = blue!50!black,
+     fill=blue!20,
+     opacity=.4](tkzPointResult,\tkzLengthResult pt)
+ \tkzDefRandPointOn[circle through= center P through M]
+ \tkzGetPoint{N}
+ \tkzDrawPoints(A,B,P,M,N)
+ \tkzLabelPoints(A,B,P,M,N)
+ \tkzDrawSegments[red](N,A N,B)
+ \tkzDrawPoints(A,B)
+ \tkzDrawSegments[red](A,B)
+ \tkzLabelCircle[R,draw,fill=green!10,%
+     text width=3cm,%
+     text centered](P,\tkzLengthResult pt-20pt)(-120)%
+  { $MA/MB=\coeffK$\\$NA/NB=\coeffK$}
+\end{tikzpicture}
+
+\end{document}

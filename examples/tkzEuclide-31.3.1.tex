@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 248 (Section 31.3.1 : Use of \tkzcname{tkzSetUpCompass} with bisector)
+
+\begin{tikzpicture}[scale=0.75]
+    \tkzDefPoints{0/1/A, 8/3/B, 3/6/C}
+    \tkzDrawPolygon(A,B,C)
+    \tkzSetUpCompass[color=red,line width=.2 pt]
+    \tkzDefLine[bisector](A,C,B) \tkzGetPoint{c}
+    \tkzDefLine[bisector](B,A,C) \tkzGetPoint{a}
+    \tkzDefLine[bisector](C,B,A) \tkzGetPoint{b}
+    \tkzShowLine[bisector,size=2,gap=3](A,C,B)
+    \tkzShowLine[bisector,size=2,gap=3](B,A,C)
+    \tkzShowLine[bisector,size=1,gap=2](C,B,A)
+    \tkzDrawLines[add=0 and 0 ](B,b)
+    \tkzDrawLines[add=0 and -.4 ](A,a  C,c)
+    \tkzLabelPoints(A,B) \tkzLabelPoints[above](C)
+\end{tikzpicture}
+
+\end{document}

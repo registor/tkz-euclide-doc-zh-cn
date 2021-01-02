@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 68 (Section 10.1.9 : Option \tkzname{orthogonal normed} and $K=2$)
+
+\begin{tikzpicture}[scale=1.2,
+   vect/.style={->,shorten >=3pt,>=latex'}]
+   \tkzDefPoint(2,3){A}   \tkzDefPoint(5,1){B}
+   \tkzDefPointWith[orthogonal normed,K=2](A,B)
+   \tkzGetPoint{C}
+   \tkzDrawPoints[color=red](A,B,C)
+   \tkzDrawCircle[R](A,2cm)
+   \tkzDrawSegments[vect](A,B A,C)
+   \tkzMarkRightAngle[fill=gray!20](B,A,C)
+   \tkzLabelPoints[above=3pt](A,B,C)
+\end{tikzpicture}
+
+\end{document}

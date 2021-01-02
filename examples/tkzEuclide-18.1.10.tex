@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 149 (Section 18.1.10 : Orthogonal circle of given center)
+
+\begin{tikzpicture}[scale=.75]
+  \tkzDefPoints{0/0/O,1/0/A}
+  \tkzDefPoints{1.5/1.25/B,-2/-3/C}
+  \tkzDefCircle[orthogonal from=B](O,A)
+  \tkzGetPoints{z1}{z2}
+  \tkzDefCircle[orthogonal from=C](O,A)
+  \tkzGetPoints{t1}{t2}
+  \tkzDrawCircle(O,A)
+  \tkzDrawCircle[thick,color=red](B,z1)
+  \tkzDrawCircle[thick,color=red](C,t1)
+  \tkzDrawPoints(t1,t2,C)
+  \tkzDrawPoints(z1,z2,O,A,B)
+  \tkzLabelPoints(O,A,B,C)
+\end{tikzpicture}
+
+\end{document}

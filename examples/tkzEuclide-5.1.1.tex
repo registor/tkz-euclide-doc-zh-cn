@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 32 (Section  5.1.1 : Use of \tkzcname{tkzDefMidPoint})
+
+\begin{tikzpicture}[scale=1]
+ \tkzDefPoint(2,3){A}
+ \tkzDefPoint(4,0){B}
+ \tkzDefMidPoint(A,B) \tkzGetPoint{C}
+ \tkzDrawSegment(A,B)
+ \tkzDrawPoints(A,B,C)
+ \tkzLabelPoints[right](A,B,C)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,39 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 241 (Section 30.2.11 : Three circles)
+
+\begin{tikzpicture}[scale=1.5]
+  \tkzDefPoints{0/0/A,8/0/B,0/4/a,8/4/b,8/8/c}
+  \tkzDefTriangle[equilateral](A,B) \tkzGetPoint{C}
+  \tkzDrawPolygon(A,B,C)
+  \tkzDefSquare(A,B) \tkzGetPoints{D}{E}
+  \tkzClipBB
+  \tkzDefMidPoint(A,B) \tkzGetPoint{M}
+  \tkzDefMidPoint(B,C) \tkzGetPoint{N}
+  \tkzDefMidPoint(A,C) \tkzGetPoint{P}
+  \tkzDrawSemiCircle[gray,dashed](M,B)
+  \tkzDrawSemiCircle[gray,dashed](A,M)
+  \tkzDrawSemiCircle[gray,dashed](A,B)
+  \tkzDrawCircle[gray,dashed](B,A)
+  \tkzInterLL(A,N)(M,a) \tkzGetPoint{Ia}
+  \tkzDefPointBy[projection = onto A--B](Ia)
+  \tkzGetPoint{ha}
+  \tkzDrawCircle[gray](Ia,ha)
+  \tkzInterLL(B,P)(M,b) \tkzGetPoint{Ib}
+  \tkzDefPointBy[projection = onto A--B](Ib)
+  \tkzGetPoint{hb}
+  \tkzDrawCircle[gray](Ib,hb)
+  \tkzInterLL(A,c)(M,C) \tkzGetPoint{Ic}
+  \tkzDefPointBy[projection = onto A--C](Ic)
+  \tkzGetPoint{hc}
+  \tkzDrawCircle[gray](Ic,hc)
+  \tkzInterLL(A,Ia)(B,Ib) \tkzGetPoint{G}
+  \tkzDrawCircle[gray,dashed](G,Ia)
+  \tkzDrawPolySeg(A,E,D,B)
+  \tkzDrawPoints(A,B,C)
+  \tkzDrawPoints(G,Ia,Ib,Ic)
+  \tkzDrawSegments[gray,dashed](C,M A,N B,P M,a M,b A,a a,b b,B A,D Ia,ha)
+\end{tikzpicture}
+
+\end{document}

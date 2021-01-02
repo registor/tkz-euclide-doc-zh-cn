@@ -1,0 +1,23 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 104 (Section 14.5 : Another marking)
+
+\begin{tikzpicture}[scale=1]
+  \tkzDefPoint(0,0){A}\tkzDefPoint(3,2){B}
+  \tkzDefPoint(4,0){C}\tkzDefPoint(2.5,1){P}
+  \tkzDrawPolygon(A,B,C)
+  \tkzDefEquilateral(A,P) \tkzGetPoint{P'}
+  \tkzDefPointsBy[rotation=center A angle 60](P,B){P',C'}
+  \tkzDrawPolygon(A,P,P')
+  \tkzDrawPolySeg(P',C',A,P,B)
+  \tkzDrawSegment(C,P)
+  \tkzDrawPoints(A,B,C,C',P,P')
+  \tkzMarkSegments[mark=s|,size=6pt,
+  color=blue](A,P P,P' P',A)
+  \tkzMarkSegments[mark=||,color=orange](B,P P',C')
+  \tkzLabelPoints(A,C) \tkzLabelPoints[below](P)
+  \tkzLabelPoints[above right](P',C',B)
+\end{tikzpicture}
+
+\end{document}

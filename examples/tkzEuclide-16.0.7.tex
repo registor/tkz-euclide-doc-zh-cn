@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 122 (Section 16.0.7 : Option   \tkzname{tangential})
+
+\begin{tikzpicture}[scale=.5,rotate=80]
+  \tkzDefPoints{0/0/A,6/0/B,1.8/4/C}
+  \tkzDefSpcTriangle[tangential,
+    name=T](A,B,C){_a,_b,_c}
+  \tkzDrawPolygon[red](A,B,C)
+  \tkzDrawPolygon[blue](T_a,T_b,T_c)
+  \tkzDrawPoints[red](A,B,C)
+  \tkzDrawPoints[blue](T_a,T_b,T_c)
+  \tkzDefCircle[circum](A,B,C)
+  \tkzGetPoint{O}
+  \tkzDrawCircle(O,A)
+  \tkzLabelPoints[red](A,B,C)
+  \tkzLabelPoints[blue](T_a,T_b,T_c)
+\end{tikzpicture}
+
+\end{document}

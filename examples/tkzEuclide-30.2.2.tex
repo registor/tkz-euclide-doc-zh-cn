@@ -1,0 +1,22 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 232 (Section 30.2.2 : About right triangle)
+
+\begin{tikzpicture}[scale=.5]
+  \tkzDefPoint["$A$" left](2,1){A}
+  \tkzDefPoint(6,4){B}
+  \tkzDrawSegment(A,B)
+  \tkzDrawPoint[color=red](A)
+  \tkzDrawPoint[color=red](B)
+  \tkzDefPointWith[orthogonal,K=-1](B,A)
+  \tkzDrawLine[add = .5 and .5](B,tkzPointResult)
+  \tkzInterLC[R](B,tkzPointResult)(A,8 cm)
+  \tkzGetPoints{C}{J}
+  \tkzDrawPoint[color=red](C)
+  \tkzCompass(A,C)
+  \tkzMarkRightAngle(A,B,C)
+  \tkzDrawLine[color=gray,style=dashed](A,C)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,427 @@
+% tkz-tools-eu-points-by.tex
+% Copyright 2020  Alain Matthes
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status “maintained”.
+%
+% The Current Maintainer of this work is Alain Matthes.
+%  utf8 encoding
+\def\fileversion{3.06c}
+\def\filedate{2020/04/06}
+\typeout{2020/04/06 3.06c tkz-tools-eu-points-by.tex}
+\makeatletter
+%<--------------------------------------------------------------------------–>
+%                        Transformations Géométriques
+%<--------------------------------------------------------------------------–>
+\def\tkz@numtrsf{0}
+\pgfkeys{/tkzDefPointBy/.cd,
+translation/.code args={from #1 to #2}{%
+                                  \def\tkzfrom{#1}%
+                                  \def\tkzto{#2}%
+                                  \def\tkz@numtrsf{0}},
+ homothety/.code args={center #1 ratio #2}{%
+                                    \def\tkzcenter{#1}%
+                                    \def\tkzratio{#2}%
+                                    \def\tkz@numtrsf{1}},
+ reflection/.code args={over #1--#2}{%
+                                    \def\tkzdeb{#1}%
+                                    \def\tkzfin{#2}%
+                                    \def\tkz@numtrsf{2}},
+ symmetry/.code args={center #1}{%
+                                    \def\tkzcenter{#1}%
+                                    \def\tkz@numtrsf{3}},
+ projection/.code args={onto #1--#2}{%
+                                    \def\tkzdeb{#1}%
+                                    \def\tkzfin{#2}%
+                                    \def\tkz@numtrsf{4}},
+ rotation/.code args={center #1 angle #2}{%
+                                 \def\tkzcenter{#1}%
+                                 \def\tkzangle{#2}%
+                                 \def\tkz@numtrsf{5}},
+ rotation in rad/.code args={center #1 angle #2}{%
+                                 \def\tkzcenter{#1}%
+                                 \def\tkzangle{#2}%
+                                 \def\tkz@numtrsf{6}},
+inversion/.code args={center #1 through #2}{%
+                                 \def\tkzcenter{#1}%
+                                 \def\tkzpoint{#2}%
+                                 \def\tkz@numtrsf{7}}
+}
+%<--------------------------------------------------------------------------–>
+\def\tkzDefPointBy{\pgfutil@ifnextchar[{\tkz@DefPointBy}{\tkz@DefPointBy[]}}
+\def\tkz@DefPointBy[#1](#2){%
+\begingroup
+\pgfqkeys{/tkzDefPointBy}{#1}
+ \ifcase\tkz@numtrsf%
+%  % first case 0
+   \tkzUTranslation(\tkzfrom,\tkzto)(#2)
+\or% 1
+   \tkzUHomo(\tkzcenter,\tkzratio)(#2)
+\or% 2
+   \tkzUSymOrth(\tkzdeb,\tkzfin)(#2)
+\or% 3
+   \tkzUCSym(\tkzcenter)(#2)
+\or% 4
+   \tkzUProjection(\tkzdeb,\tkzfin)(#2)
+\or% 5
+   \tkzURotateAngle(\tkzcenter,\tkzangle)(#2)
+\or% 6
+   \tkzURotateInRad(\tkzcenter,\tkzangle)(#2)
+\or% 7
+   \tkzUInversePoint(\tkzcenter,\tkzpoint)(#2)
+\fi
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+\def\tkzDefPointsBy{\pgfutil@ifnextchar[{\tkz@DefPointsBy}{\tkz@DefPointsBy[]}}
+\def\tkz@DefPointsBy[#1](#2)#3{%
+\begingroup
+\pgfqkeys{/tkzDefPointBy}{#1}
+\ifcase\tkz@numtrsf%
+ % first case 0
+   \tkzTranslation(\tkzfrom,\tkzto)(#2){#3}
+ \or% 1
+   \tkzHomo(\tkzcenter,\tkzratio)(#2){#3}
+ \or% 2
+   \tkzSymOrth(\tkzdeb,\tkzfin)(#2){#3}
+ \or% 3
+   \tkzCSym(\tkzcenter)(#2){#3}
+ \or% 4
+      \tkzProjection(\tkzdeb,\tkzfin)(#2){#3}
+ \or% 5
+   \tkzRotateAngle(\tkzcenter,\tkzangle)(#2){#3}
+ \or% 6
+   \tkzRotateInRad(\tkzcenter,\tkzangle)(#2){#3}
+ \or% 7
+   \tkzInversePoint(\tkzcenter,\tkzpoint)(#2){#3}
+\fi
+\endgroup
+}
+
+%<--------------------------------------------------------------------------–>
+
+\def\ExtractPoint#1,#2\@nil{%
+\xdef\tkz@LastList{#2}
+\xdef\tkz@FirstPoint{#1}
+}
+\def\FirstPointInList#1{%
+\edef\tkz@templist{#1,}
+\expandafter\ExtractPoint\tkz@templist\@nil
+}
+%<--------------------------------------------------------------------------–>
+%  Translation par rapport à un point
+%<--------------------------------------------------------------------------–>
+\def\tkzTranslation(#1,#2)(#3)#4{%
+\begingroup
+\gdef\tkz@LastList{#4}
+\foreach\PT in {#3}{%
+   \FirstPointInList\tkz@LastList
+    \ifx\tkz@FirstPoint\tkzutil@empty
+      \def\tkz@pointtsf{\PT '}
+    \else
+        \def\tkz@pointtsf{\tkz@FirstPoint}
+    \fi
+   \tkz@VecCoLinear(#1,#2,\PT)
+    \pgfnodealias{\tkz@pointtsf}{tkzPointResult}
+   }
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+\def\tkzUTranslation(#1,#2)(#3){%
+\begingroup
+  \tkz@VecCoLinear(#1,#2,#3)%
+\endgroup
+}
+
+%<--------------------------------------------------------------------------–>
+%  Symétrie par rapport à un point Homo with (-1)
+% #2 le centre #3 l'antécédent
+%<--------------------------------------------------------------------------–>
+\def\tkzCSym(#1)(#2)#3{%
+\begingroup
+\gdef\tkz@LastList{#3}
+ \foreach\PointCS in {#2}{%
+   \FirstPointInList\tkz@LastList
+   \ifx\tkz@FirstPoint\tkzutil@empty
+      \xdef\tkz@pointtsf{\PointCS '}
+   \else
+      \xdef\tkz@pointtsf{\tkz@FirstPoint}
+   \fi
+     \pgfpointdiff{\pgfpointanchor{#1}{center}}%
+                  {\pgfpointanchor{\PointCS}{center}}%
+     \tkz@ax=\pgf@x%
+     \tkz@ay=\pgf@y%
+      \pgfinterruptboundingbox
+    \path(#1)--++(-\tkz@ax,-\tkz@ay)coordinate (\tkz@pointtsf);
+     \endpgfinterruptboundingbox
+}
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+\def\tkzUCSym(#1)(#2){%
+\begingroup
+    \pgfpointdiff{\pgfpointanchor{#1}{center}}%
+                 {\pgfpointanchor{#2}{center}}%
+    \tkz@ax=\pgf@x%
+    \tkz@ay=\pgf@y%
+   \path(#1)--++(-\tkz@ax,-\tkz@ay)coordinate (tkzPointResult);
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+%  Symétrie orthogonale par rapport à une droite
+%<--------------------------------------------------------------------------–>
+\def\tkzSymOrth(#1,#2)(#3)#4{%
+\begingroup
+\gdef\tkz@LastList{#4}
+    \foreach\PointSO in {#3}{%
+      \FirstPointInList\tkz@LastList
+      \ifx\tkz@FirstPoint\tkzutil@empty
+         \def\tkz@pointtsf{\PointSO '}
+      \else
+         \def\tkz@pointtsf{\tkz@FirstPoint}
+      \fi
+  \tkzUSymOrth(#1,#2)(\PointSO)
+  \pgfnodealias{\tkz@pointtsf}{tkzPointResult}
+  }
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+\def\tkzUSymOrth(#1,#2)(#3){%
+\begingroup
+   \pgfpointdiff{\pgfpointanchor{#1}{center}}%
+                {\pgfpointanchor{#2}{center}}%
+   \tkz@ax =\pgf@y%
+   \tkz@ay =\pgf@x%
+   \pgfinterruptboundingbox
+   \path[coordinate] (#3)--++(-\tkz@ax,\tkz@ay) coordinate  (tkz@point);
+     \endpgfinterruptboundingbox
+   \tkzInterLL(#1,#2)(#3,tkz@point)
+   \pgfnodealias{tkzPointofSym}{tkzPointResult}
+   \tkz@VecK[2](#3,tkzPointofSym)
+\endgroup
+}
+
+%<--------------------------------------------------------------------------–>
+%  Projection orthogonale sur une droite
+%<--------------------------------------------------------------------------–>
+\def\tkzProjection(#1,#2)(#3)#4{%
+\begingroup
+\gdef\tkz@LastList{#4}
+    \foreach\PointPJ in {#3}{%
+      \FirstPointInList\tkz@LastList
+      \ifx\tkz@FirstPoint\tkzutil@empty
+         \def\tkz@pointtsf{\PointPJ '}
+      \else
+         \def\tkz@pointtsf{\tkz@FirstPoint}
+      \fi
+  \tkzUProjection(#1,#2)(\PointPJ)
+  \pgfnodealias{\tkz@pointtsf}{tkzPointResult}
+  }
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+\def\tkzUProjection(#1,#2)(#3){%
+\begingroup
+  \pgfpointdiff{\pgfpointanchor{#1}{center}}%
+               {\pgfpointanchor{#2}{center}}%
+  \tkz@ax =\pgf@y%
+  \tkz@ay =\pgf@x%
+  \pgfinterruptboundingbox
+    \path[coordinate](#3)--++(-\tkz@ax,\tkz@ay) coordinate (tkz@point);
+    \tkzInterLL(#1,#2)(#3,tkz@point)% définit tkzPointResult
+	\endpgfinterruptboundingbox
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+\def\tkz@Projection(#1,#2)(#3)#4{%
+\begingroup
+  \pgfpointdiff{\pgfpointanchor{#1}{center}}%
+               {\pgfpointanchor{#2}{center}}%
+  \tkz@ax =\pgf@y%
+  \tkz@ay =\pgf@x%
+   \pgfinterruptboundingbox
+  \path[coordinate](#3)--++(-\tkz@ax,\tkz@ay) coordinate (tkz@point);
+   \endpgfinterruptboundingbox
+  \tkz@InterLL(#1,#2)(#3,tkz@point){#4}% définit tkzPointResult
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+%  Homothétie par rapport à un point
+%<--------------------------------------------------------------------------–>
+\def\tkzHomo(#1,#2)(#3)#4{%
+\begingroup
+\gdef\tkz@LastList{#4}
+    \foreach\PointHO in {#3}{%
+      \FirstPointInList\tkz@LastList
+      \ifx\tkz@FirstPoint\tkzutil@empty
+         \xdef\tkz@pointtsf{\PointHO '}
+      \else
+         \xdef\tkz@pointtsf{\tkz@FirstPoint}
+      \fi
+       \pgfpointdiff{\pgfpointanchor{#1}{center}}%
+                    {\pgfpointanchor{\PointHO}{center}}%
+       \pgf@xa=\pgf@x%
+       \pgf@ya=\pgf@y%
+      \pgfmathparse{#2}\edef\tkz@coeff{\pgfmathresult}%
+      \pgfinterruptboundingbox
+      \path[coordinate](#1)--++(\tkz@coeff\pgf@xa,\tkz@coeff\pgf@ya)%
+            coordinate(\tkz@pointtsf);
+     \endpgfinterruptboundingbox
+  }
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+\def\tkzUHomo(#1,#2)(#3){%
+\begingroup
+       \pgfpointdiff{\pgfpointanchor{#1}{center}}%
+                    {\pgfpointanchor{#3}{center}}%
+       \pgf@xa=\pgf@x%
+       \pgf@ya=\pgf@y%
+      \pgfmathparse{#2}\edef\tkz@coeff{\pgfmathresult}%
+        \pgfinterruptboundingbox
+      \path[coordinate](#1)--++(\tkz@coeff\pgf@xa,\tkz@coeff\pgf@ya)%
+            coordinate(tkzPointResult);
+              \endpgfinterruptboundingbox
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+%                 rotation  en degré
+%<--------------------------------------------------------------------------–>
+\def\tkzRotateAngle(#1,#2)(#3)#4{%
+\begingroup
+\gdef\tkz@LastList{#4}
+    \foreach\PointRot in {#3}{%
+      \FirstPointInList\tkz@LastList
+      \ifx\tkz@FirstPoint\tkzutil@empty
+         \def\tkz@pointtsf{\PointRot '}
+      \else
+         \def\tkz@pointtsf{\tkz@FirstPoint}
+      \fi
+        \tkz@@extractxy{\PointRot}
+        \tkz@ax\pgf@x%
+        \tkz@ay\pgf@y%
+        \tkz@@extractxy{#1}
+        \tkz@bx\pgf@x%
+        \tkz@by\pgf@y%
+        \pgfmathrotatepointaround{\pgfpoint{\tkz@ax}{\tkz@ay}}%
+                                 {\pgfpoint{\tkz@bx}{\tkz@by}}%
+                                 {#2}
+        \tkz@bx\pgf@x%
+        \tkz@by\pgf@y%
+          \pgfinterruptboundingbox
+        \path[coordinate](\tkz@bx,\tkz@by)coordinate(\tkz@pointtsf);%
+          \endpgfinterruptboundingbox
+        }
+  \endgroup
+}
+%<--------------------------------------------------------------------------–>
+\def\tkzURotateAngle(#1,#2)(#3){%
+\begingroup
+      \pgf@process{\pgfpointanchor{#3}{center}}%
+        \tkz@ax\pgf@x%
+        \tkz@ay\pgf@y%
+      \pgf@process{\pgfpointanchor{#1}{center}}%
+        \tkz@bx\pgf@x%
+        \tkz@by\pgf@y%
+        \pgfmathrotatepointaround{\pgfpoint{\tkz@ax}{\tkz@ay}}%
+                                 {\pgfpoint{\tkz@bx}{\tkz@by}}%
+                                 {#2}
+        \tkz@bx\pgf@x%
+        \tkz@by\pgf@y%
+          \pgfinterruptboundingbox
+        \path (\tkz@bx,\tkz@by) coordinate (tkzPointResult);%
+          \endpgfinterruptboundingbox
+  \endgroup
+}
+%<--------------------------------------------------------------------------–>
+% %                 rotation  en radian
+% %<--------------------------------------------------------------------------–>
+\def\tkzRotateInRad(#1,#2)(#3)#4{%
+\begingroup
+\gdef\tkz@LastList{#4}
+    \foreach\PointRot in {#3}{%
+      \FirstPointInList\tkz@LastList
+      \ifx\tkz@FirstPoint\tkzutil@empty
+         \xdef\tkz@pointtsf{\PointRot '}
+      \else
+         \xdef\tkz@pointtsf{\tkz@FirstPoint}
+      \fi
+   \pgfmathparse{#2 r}
+   \let\tkz@Angle\pgfmathresult
+    \tkz@@extractxy{\PointRot}
+    \tkz@ax\pgf@x%
+    \tkz@ay\pgf@y%
+    \tkz@@extractxy{#1}
+    \tkz@bx\pgf@x%
+    \tkz@by\pgf@y%
+    \pgfmathrotatepointaround{\pgfpoint{\tkz@ax}{\tkz@ay}}%
+                             {\pgfpoint{\tkz@bx}{\tkz@by}}%
+                             {\tkz@Angle}
+    \tkz@bx\pgf@x%
+    \tkz@by\pgf@y%
+      \pgfinterruptboundingbox
+    \path[coordinate](\tkz@bx,\tkz@by)coordinate(\tkz@pointtsf);
+      \endpgfinterruptboundingbox
+}
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+\def\tkzURotateInRad(#1,#2)(#3){%
+\begingroup
+   \pgfmathparse{#2 r}
+   \let\tkz@Angle\pgfmathresult
+    \tkz@@extractxy{#3}
+    \tkz@ax\pgf@x%
+    \tkz@ay\pgf@y%
+    \tkz@@extractxy{#1}
+    \tkz@bx\pgf@x%
+    \tkz@by\pgf@y%
+    \pgfmathrotatepointaround{\pgfpoint{\tkz@ax}{\tkz@ay}}%
+                             {\pgfpoint{\tkz@bx}{\tkz@by}}%
+                             {\tkz@Angle}
+    \tkz@bx\pgf@x%
+    \tkz@by\pgf@y%
+      \pgfinterruptboundingbox
+    \path[coordinate](\tkz@bx,\tkz@by)coordinate(tkzPointResult);
+      \endpgfinterruptboundingbox
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+%                   Inverse of a point
+%<--------------------------------------------------------------------------–>
+\def\tkzInversePoint(#1,#2)(#3)#4{%
+\begingroup
+\gdef\tkz@LastList{#4}
+    \foreach\PointIP in {#3}{%
+      \FirstPointInList\tkz@LastList
+      \ifx\tkz@FirstPoint\tkzutil@empty
+         \xdef\tkz@pointtsf{\PointIP '}
+      \else
+         \xdef\tkz@pointtsf{\tkz@FirstPoint}
+      \fi
+   \tkzCalcLength[cm](#1,#2)\tkzGetLength{tkz@lna}
+   \tkzCalcLength[cm](#1,\PointIP)\tkzGetLength{tkz@lnb}
+	\edef\tkz@lnc{\tkz@lna/\tkz@lnb*\tkz@lna}
+   \tkzVecKNorm[\tkz@lnb](#1,\PointIP)
+   }
+\endgroup
+}
+\def\tkzUInversePoint(#1,#2)(#3){%
+\begingroup
+   \tkzCalcLength[cm](#1,#2)\tkzGetLength{tkz@lna}%
+   \tkzCalcLength[cm](#1,#3)\tkzGetLength{tkz@lnb}%
+    \edef\tkz@lnc{\fpeval{\tkz@lna/\tkz@lnb*\tkz@lna}}
+   \tkzVecKNorm[\tkz@lnc](#1,#3)
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+%                   Fin des transformations
+%<--------------------------------------------------------------------------–>
+\makeatother
+\endinput

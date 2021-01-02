@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 54 (Section  9.2.4 : Example of symmetry)
+
+\begin{tikzpicture}[scale=1]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(2,-1){A}
+  \tkzDefPoint(2,2){B}
+  \tkzDefPointsBy[symmetry=center O](B,A){}
+  \tkzDrawLine(A,A')
+  \tkzDrawLine(B,B')
+  \tkzMarkAngle[mark=s,arc=lll,
+      size=2 cm,mkcolor=red](A,O,B)
+  \tkzLabelAngle[pos=1,circle,draw,
+     fill=blue!10](A,O,B){$60^{\circ}$}
+  \tkzDrawPoints(A,B,O,A',B')
+  \tkzLabelPoints(A,B,O,A',B')
+\end{tikzpicture}
+
+\end{document}

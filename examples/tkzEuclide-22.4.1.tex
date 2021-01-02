@@ -1,0 +1,30 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 188 (Section 22.4.1 : Determination of the three angles of a triangle)
+
+\begin{tikzpicture}[scale=1.25,rotate=30]
+  \tkzDefPoints{0.5/1.5/A, 3.5/4/B, 6/2.5/C}
+  \tkzDrawPolygon(A,B,C)
+  \tkzDrawPoints(A,B,C)
+  \tkzLabelPoints[below](A,C)
+  \tkzLabelPoints[above](B)
+  \tkzMarkAngle[size=1cm](B,C,A)
+  \tkzFindAngle(B,C,A)
+  \tkzGetAngle{angleBCA}
+  \edef\angleBCA{\fpeval{round(\angleBCA,2)}}
+  \tkzLabelAngle[pos = 1](B,C,A){$\angleBCA^{\circ}$}
+  \tkzMarkAngle[size=1cm](C,A,B)
+  \tkzFindAngle(C,A,B)
+  \tkzGetAngle{angleBAC}
+  \edef\angleBAC{\fpeval{round(\angleBAC,2)}}
+  \tkzLabelAngle[pos = 1.8](C,A,B){%
+             $\angleBAC^{\circ}$}
+  \tkzMarkAngle[size=1cm](A,B,C)
+  \tkzFindAngle(A,B,C)
+  \tkzGetAngle{angleABC}
+  \edef\angleABC{\fpeval{round(\angleABC,2)}}
+  \tkzLabelAngle[pos = 1](A,B,C){$\angleABC^{\circ}$}
+\end{tikzpicture}
+
+\end{document}

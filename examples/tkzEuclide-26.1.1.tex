@@ -1,0 +1,17 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 214 (Section 26.1.1 : Option \tkzname{length})
+
+\begin{tikzpicture}
+  \tkzDefPoint(1,1){A}
+  \tkzDefPoint(6,1){B}
+  \tkzInterCC[R](A,4cm)(B,3cm)
+  \tkzGetPoints{C}{D}
+  \tkzDrawPoint(C)
+  \tkzCompass[color=red,length=1.5](A,C)
+  \tkzCompass[color=red](B,C)
+  \tkzDrawSegments(A,B A,C B,C)
+\end{tikzpicture}
+
+\end{document}

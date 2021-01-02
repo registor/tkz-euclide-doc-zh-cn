@@ -1,0 +1,23 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 40 (Section  6.1.5 : Option \tkzname{ex})
+
+\begin{tikzpicture}[scale=.5]
+    \tkzDefPoints{0/1/A,3/2/B,1/4/C}
+    \tkzDefTriangleCenter[ex](B,C,A)
+    \tkzGetPoint{J_c}
+    \tkzDefPointBy[projection=onto A--B](J_c)
+    \tkzGetPoint{Tc}
+    %or
+    % \tkzDefCircle[ex](B,C,A)
+    % \tkzGetFirstPoint{J_c}
+    % \tkzGetSecondPoint{Tc}
+    \tkzDrawPolygon[color=blue](A,B,C)
+    \tkzDrawPoints(A,B,C,J_c)
+    \tkzDrawCircle[red](J_c,Tc)
+    \tkzDrawLines[add=1.5 and 0](A,C B,C)
+    \tkzLabelPoints(J_c)
+\end{tikzpicture}
+
+\end{document}

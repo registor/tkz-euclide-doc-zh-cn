@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 147 (Section 18.1.8 : Spieker circle with option \tkzname{spieker})
+
+\begin{tikzpicture}[scale=1]
+  \tkzDefPoints{ 0/0/A,4/0/B,0.8/4/C}
+   \tkzDefSpcTriangle[medial](A,B,C){M_a,M_b,M_c}
+   \tkzDefTriangleCenter[spieker](A,B,C)
+   \tkzGetPoint{S_p}
+   \tkzDrawPolygon[blue](A,B,C)
+   \tkzDrawPolygon[red](M_a,M_b,M_c)
+   \tkzDrawPoints[blue](B,C,A)
+   \tkzDrawPoints[red](M_a,M_b,M_c,S_p)
+   \tkzDrawCircle[in,red](M_a,M_b,M_c)
+   \tkzAutoLabelPoints[center=S_p,dist=.3](M_a,M_b,M_c)
+   \tkzLabelPoints[blue,right](S_p)
+   \tkzAutoLabelPoints[center=S_p](A,B,C)
+\end{tikzpicture}
+
+\end{document}

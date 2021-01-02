@@ -1,0 +1,126 @@
+% tkz-tools-math.tex
+% Copyright 2020  Alain Matthes
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status “maintained”.
+%
+% The Current Maintainer of this work is Alain Matthes.
+%  utf8 encoding
+\def\fileversion{3.06c}
+\def\filedate{2020/04/06}
+\typeout{2020/04/06 3.06c tkz-tools-math.tex}
+\makeatletter
+%<-------------------------------------------------------------------------->
+%  \tkzpointnormalised    normalise un point A-->A' tq ||v(OA')=1||
+% Ã©quivalent de \pgfpointnormalised avec fp
+% example
+% \tkzpointnormalised{%
+% \pgfpointdiff{\pgfpointanchor{A}{center}}
+%              {\pgfpointanchor{B}{center}}}
+
+% or
+% \pgf@x=1 cm
+% \pgf@y=12 cm
+% \tkzpointnormalised{}
+%<--------------------------------------------------------------------------
+\def\tkzpointnormalised#1{%
+\pgf@process{#1}%
+\edef\tkz@den{\fpeval{sqrt((\pgf@x)^2+(\pgf@y)^2)}}
+\edef\tkz@coordx{\fpeval{\pgf@x/\tkz@den}}
+\edef\tkz@coordx{\fpeval{round(\tkz@coordx,5)}}
+\edef\tkz@coordy{\fpeval{\pgf@y/\tkz@den}}
+\edef\tkz@coordy{\fpeval{round(\tkz@coordy,5)}}
+\pgf@x = \tkz@coordx pt
+\pgf@y = \tkz@coordy pt
+}
+%<-------------------------------------------------------------------------->
+% restaure and save length
+\def\tkz@save@length{%
+\global\let\tkz@temp@length\tkzLengthResult}%
+\def\tkz@restore@length{%
+ \global\let\tkzLengthResult\tkz@temp@length }%
+%<-------------------------------------------------------------------------->
+%    \tkzCalcLength      Distance entre deux points en pt ou en cm  avec xfp
+% \veclen mais avec fp
+%  option cm le rÃ©sultat est en cm sinon en pt
+%<-------------------------------------------------------------------------->
+\pgfkeys{tkzcalclen/.cd,
+       cm/.is if         = tkzLengthIncm,
+       cm/.default       = true}
+
+\def\tkzCalcLength{\pgfutil@ifnextchar[{\tkz@CalcLength}{\tkz@CalcLength[]}}
+\def\tkz@CalcLength[#1](#2,#3){%
+\pgfkeys{tkzcalclen/.cd, cm = false}
+\pgfqkeys{/tkzcalclen}{#1}%
+\begingroup
+\tkz@@CalcLength(#2,#3){tkzLengthResult}
+\iftkzLengthIncm
+   \pgfmathparse{\tkz@xfpMathLen pt/1cm}
+	\edef\tkz@xfpMathLen{\fpeval{round(\pgfmathresult,5)}}
+   \global\let\tkzLengthResult\tkz@xfpMathLen
+\fi
+\endgroup
+}%
+\def\tkz@@CalcLength(#1,#2)#3{%
+\pgfpointdiff{\pgfpointanchor{#1}{center}}%
+             {\pgfpointanchor{#2}{center}}%
+\edef\tkz@xfpMathLen{\fpeval{sqrt((\pgf@x)^2+(\pgf@y)^2)}}
+\edef\tkz@xfpMathLen{\fpeval{round(\tkz@xfpMathLen,5)}}
+\global\expandafter\edef\csname #3\endcsname{\tkz@xfpMathLen}
+}
+%<-------------------------------------------------------------------------->
+\def\tkzGetLength#1{%
+\global\expandafter\edef\csname #1\endcsname{\tkzLengthResult}}
+%<-------------------------------------------------------------------------->
+%     \tkzpttocm  passage de pt   cm div par 28.45274
+%<-------------------------------------------------------------------------->
+\def\tkzpttocm(#1)#2{%
+\begingroup
+  \pgfmathparse{#1/1cm}
+  \edef\tkz@mathresult{\fpeval{round(\pgfmathresult,5)}}
+  \global\let\tkz@mathresult\tkz@mathresult
+  \global\expandafter\edef\csname #2\endcsname{\tkz@mathresult}%
+\endgroup
+}%
+%<-------------------------------------------------------------------------->
+%     \tkzcmtopt  passage de cm   pt mul par 28.45274
+%<--------------------------------------------------------------------------
+\def\tkzcmtopt(#1)#2{%
+\begingroup
+   \pgfmathparse{#1/1pt}
+  \edef\tkz@mathresult{\fpeval{round(\pgfmathresult,5)}}
+  \global\let\tkz@mathresult\tkz@mathresult
+  \global\expandafter\edef\csname #2\endcsname{\tkz@mathresult}%
+\endgroup
+}%
+%<-------------------------------------------------------------------------->
+%                          Slope
+%<-------------------------------------------------------------------------->
+\def\tkzFindSlope{\tkz@FindSlope}
+\def\tkz@FindSlope(#1,#2)#3{%
+\begingroup
+   \tkzpointnormalised{\pgfpointdiff{\pgfpointanchor{#1}{center}}%
+                                    {\pgfpointanchor{#2}{center}}}
+     \edef\tkz@Slope{\fpeval{\pgfmath@tonumber{\pgf@y}/\pgfmath@tonumber{\pgf@x}}}
+     \edef\tkz@Slope{\fpeval{round(\tkz@Slope,5)}}
+    \global\expandafter\edef\csname #3\endcsname{\tkz@Slope}%
+\endgroup
+}
+%  Schrodinger's cat idea 03/01/20
+\tikzset{xfp/.code={%
+\pgfmathdeclarefunction*{veclen}{2}{%
+\begingroup%
+    \pgfmath@x##1pt\relax%
+    \pgfmath@y##2pt\relax%
+    \edef\tkz@xfpMathLen{\fpeval{sqrt((\pgf@x)^2+(\pgf@y)^2)}}
+    \pgfmath@returnone\tkz@xfpMathLen pt%
+\endgroup%
+}}}
+\makeatother
+\endinput

@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 85 (Section 12.2.2 : Example of tangents passing through an external point )
+
+\begin{tikzpicture}[scale=.8]
+  \tkzDefPoint(3,3){c}
+  \tkzDefPoint(6,3){a0}
+  \tkzRadius=1 cm
+  \tkzDrawCircle[R](c,\tkzRadius)
+  \foreach \an in {0,10,...,350}{
+     \tkzDefPointBy[rotation=center c angle \an](a0)
+     \tkzGetPoint{a}
+     \tkzDefTangent[from with R = a](c,\tkzRadius)
+     \tkzGetPoints{e}{f}
+     \tkzDrawLines[color=magenta](a,f a,e)
+      \tkzDrawSegments(c,e c,f)
+      }%
+\end{tikzpicture}
+
+\end{document}

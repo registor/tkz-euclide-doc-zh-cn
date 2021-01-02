@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 50 (Section  9.2 : Example of translation)
+
+\begin{tikzpicture}[>=latex]
+ \tkzDefPoint(0,0){A}  \tkzDefPoint(3,1){B}
+ \tkzDefPoint(3,0){C}
+ \tkzDefPointBy[translation= from B to A](C)
+ \tkzGetPoint{D}
+ \tkzDrawPoints[teal](A,B,C,D)
+ \tkzLabelPoints[color=teal](A,B,C,D)
+ \tkzDrawSegments[orange,->](A,B D,C)
+\end{tikzpicture}
+
+\end{document}

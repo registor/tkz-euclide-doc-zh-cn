@@ -1,0 +1,12 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 198 (Section 23.2.2 : \tkzcname{tkzFillSector} and \tkzname{rotate})
+
+\begin{tikzpicture}[scale=1.5]
+ \tkzDefPoint(0,0){O} \tkzDefPoint(2,2){A}
+ \tkzFillSector[rotate,color=red!20](O,A)(30)
+ \tkzFillSector[rotate,color=blue!20](O,A)(-30)
+\end{tikzpicture}
+
+\end{document}

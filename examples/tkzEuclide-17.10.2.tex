@@ -1,0 +1,12 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 139 (Section 17.10.2 : Option \tkzname{side})
+
+\begin{tikzpicture}[scale=1]
+    \tkzDefPoints{-4/0/A, -1/0/B}
+    \tkzDefRegPolygon[side,sides=5,name=P](A,B)
+    \tkzDrawPolygon[thick](P1,P...,P5)
+\end{tikzpicture}
+
+\end{document}

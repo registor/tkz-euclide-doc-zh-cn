@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 74 (Section 11.4 : Random point on a straight line)
+
+\begin{tikzpicture}
+  \tkzInit[xmax=5,ymax=5] \tkzGrid
+  \tkzDefPoints{0/0/A,2/2/B,3/3/C,5/5/D}
+  \tkzDefRandPointOn[line = A--B]\tkzGetPoint{E}
+  \tkzDefRandPointOn[line = C--D]\tkzGetPoint{F}
+  \tkzDrawPoints(A,...,F)
+  \tkzLabelPoints(A,...,F)
+\end{tikzpicture}
+
+\end{document}

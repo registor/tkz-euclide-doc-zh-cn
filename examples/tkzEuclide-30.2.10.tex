@@ -1,0 +1,58 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 240 (Section 30.2.10 : Example 2: from Indonesia)
+
+\begin{tikzpicture}[pol/.style={fill=brown!40,opacity=.5},
+                     seg/.style={tkzdotted,color=gray},
+                     hidden pt/.style={fill=gray!40},
+                     mra/.style={color=gray!70,tkzdotted,/tkzrightangle/size=.2},
+                     scale=3]
+  \tkzSetUpPoint[size=2]
+  \tkzDefPoints{0/0/A,2.5/0/B,1.33/0.75/D,0/2.5/E,2.5/2.5/F}
+  \tkzDefLine[parallel=through D](A,B) \tkzGetPoint{I1}
+  \tkzDefLine[parallel=through B](A,D) \tkzGetPoint{I2}
+  \tkzInterLL(D,I1)(B,I2) \tkzGetPoint{C}
+  \tkzDefLine[parallel=through E](A,D) \tkzGetPoint{I3}
+  \tkzDefLine[parallel=through D](A,E) \tkzGetPoint{I4}
+  \tkzInterLL(E,I3)(D,I4) \tkzGetPoint{H}
+  \tkzDefLine[parallel=through F](E,H) \tkzGetPoint{I5}
+  \tkzDefLine[parallel=through H](E,F) \tkzGetPoint{I6}
+  \tkzInterLL(F,I5)(H,I6) \tkzGetPoint{G}
+  \tkzDefMidPoint(G,H) \tkzGetPoint{P}
+  \tkzDefMidPoint(G,C) \tkzGetPoint{Q}
+  \tkzDefMidPoint(B,C) \tkzGetPoint{R}
+  \tkzDefMidPoint(A,B) \tkzGetPoint{S}
+  \tkzDefMidPoint(A,E) \tkzGetPoint{T}
+  \tkzDefMidPoint(E,H) \tkzGetPoint{U}
+  \tkzDefMidPoint(A,D) \tkzGetPoint{M}
+  \tkzDefMidPoint(D,C) \tkzGetPoint{N}
+  \tkzInterLL(B,D)(S,R) \tkzGetPoint{L}
+  \tkzInterLL(H,F)(U,P) \tkzGetPoint{K}
+  \tkzDefLine[parallel=through K](D,H) \tkzGetPoint{I7}
+  \tkzInterLL(K,I7)(B,D) \tkzGetPoint{O}
+
+  \tkzFillPolygon[pol](P,Q,R,S,T,U)
+  \tkzDrawSegments[seg](K,O K,L P,Q R,S T,U
+                    C,D H,D A,D M,N B,D)
+  \tkzDrawSegments(E,H B,C G,F G,H G,C Q,R S,T U,P H,F)
+  \tkzDrawPolygon(A,B,F,E)
+  \tkzDrawPoints(A,B,C,E,F,G,H,P,Q,R,S,T,U,K)
+  \tkzDrawPoints[hidden pt](M,N,O,D)
+  \tkzMarkRightAngle[mra](L,O,K)
+  \tkzMarkSegments[mark=|,size=1pt,thick,color=gray](A,S B,S B,R C,R
+                    Q,C Q,G G,P H,P
+                    E,U H,U E,T A,T)
+
+  \tkzLabelAngle[pos=.3](K,L,O){$\alpha$}
+  \tkzLabelPoints[below](O,A,S,B)
+  \tkzLabelPoints[above](H,P,G)
+  \tkzLabelPoints[left](T,E)
+  \tkzLabelPoints[right](C,Q)
+  \tkzLabelPoints[above left](U,D,M)
+  \tkzLabelPoints[above right](L,N)
+  \tkzLabelPoints[below right](F,R)
+  \tkzLabelPoints[below left](K)
+\end{tikzpicture}
+
+\end{document}

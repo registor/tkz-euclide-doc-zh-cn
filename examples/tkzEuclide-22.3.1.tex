@@ -1,0 +1,22 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 186 (Section 22.3.1 : Verification of angle measurement)
+
+\begin{tikzpicture}[scale=.75]
+  \tkzDefPoint(-1,1){A}
+  \tkzDefPoint(5,2){B}
+  \tkzDefEquilateral(A,B)
+  \tkzGetPoint{C}
+  \tkzDrawPolygon(A,B,C)
+  \tkzFindAngle(B,A,C)
+  \tkzGetAngle{angleBAC}
+  \edef\angleBAC{\fpeval{round(\angleBAC)}}
+  \tkzDrawPoints(A,B,C)
+  \tkzLabelPoints(A,B)
+  \tkzLabelPoint[right](C){$C$}
+  \tkzLabelAngle(B,A,C){\angleBAC$^\circ$}
+  \tkzMarkAngle[size=1.5cm](B,A,C)
+\end{tikzpicture}
+
+\end{document}

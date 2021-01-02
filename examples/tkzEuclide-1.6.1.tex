@@ -1,0 +1,25 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 17 (Section  1.6.1 : Let's look at a classic example)
+
+\begin{tikzpicture}[scale=.5]
+   % fixed points
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(5,2){B}
+  % calculus
+  \tkzInterCC(A,B)(B,A)
+  \tkzGetPoints{C}{D}
+  % drawings
+  \tkzDrawCircles[gray,dashed](A,B B,A)
+  \tkzDrawPolygon(A,B,C)
+  \tkzDrawPoints(A,...,D)
+  % marking
+  \tkzMarkSegments[mark=s||](A,B B,C C,A)
+  % labelling
+  \tkzLabelSegments[swap](A,B){$c$}
+  \tkzLabelPoints(A,B,D)
+  \tkzLabelPoints[above](C)
+\end{tikzpicture}
+
+\end{document}

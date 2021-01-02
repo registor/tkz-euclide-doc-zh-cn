@@ -1,0 +1,27 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 43 (Section  6.1.8 : Option \tkzname{nagel})
+
+\begin{tikzpicture}[scale=.5]
+  \tkzDefPoints{0/0/A,6/0/B,4/6/C}
+  \tkzDefSpcTriangle[ex](A,B,C){Ja,Jb,Jc}
+  \tkzDefSpcTriangle[extouch](A,B,C){Ta,Tb,Tc}
+  \tkzDrawPoints(Ja,Jb,Jc,Ta,Tb,Tc)
+  \tkzLabelPoints(Ja,Jb,Jc,Ta,Tb,Tc)
+  \tkzDrawPolygon[blue](A,B,C)
+  \tkzDefTriangleCenter[nagel](A,B,C) \tkzGetPoint{Na}
+  \tkzDrawPoints[blue](B,C,A)
+  \tkzDrawPoints[red](Na)
+  \tkzLabelPoints[blue](B,C,A)
+  \tkzLabelPoints[red](Na)
+  \tkzDrawLines[add=0 and 1](A,Ta B,Tb C,Tc)
+  \tkzShowBB\tkzClipBB
+  \tkzDrawLines[add=1 and 1,dashed](A,B B,C C,A)
+  \tkzDrawCircles[ex,gray](A,B,C C,A,B B,C,A)
+  \tkzDrawSegments[dashed](Ja,Ta Jb,Tb Jc,Tc)
+  \tkzMarkRightAngles[fill=gray!20](Ja,Ta,C
+              Jb,Tb,A Jc,Tc,B)
+\end{tikzpicture}
+
+\end{document}

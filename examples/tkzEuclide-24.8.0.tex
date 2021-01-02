@@ -1,0 +1,20 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 207 (Section 24.8 : Option \tkzname{angles}: example 2)
+
+\begin{tikzpicture}
+   \tkzDefPoint(0,0){O}
+   \tkzDefPoint(5,0){I}
+   \tkzDefPoint(0,5){J}
+   \tkzInterCC(O,I)(I,O)\tkzGetPoints{B}{C}
+   \tkzInterCC(O,I)(J,O)\tkzGetPoints{D}{A}
+   \tkzInterCC(I,O)(J,O)\tkzGetPoints{L}{K}
+   \tkzDrawArc[angles](O,I)(0,90)
+   \tkzDrawArc[angles,color=gray,style=dashed](I,O)(90,180)
+   \tkzDrawArc[angles,color=gray,style=dashed](J,O)(-90,0)
+   \tkzDrawPoints(A,B,K)
+   \foreach \point in {I,A,B,J,K}{\tkzDrawSegment(O,\point)}
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,19 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 63 (Section 10.1.4 : Option \tkzname{orthogonal})
+
+\begin{tikzpicture}[scale=1.2,
+  vect/.style={->,shorten >=3pt,>=latex'}]
+   \tkzDefPoint(2,3){A}
+	   \tkzDefPoint(4,2){B}
+   \tkzDefPointWith[orthogonal,K=1](A,B)
+     \tkzGetPoint{C}
+   \tkzDrawPoints[color=red](A,B,C)
+   \tkzLabelPoints[right=3pt](B,C)
+   \tkzLabelPoints[below=3pt](A)
+   \tkzDrawSegments[vect](A,B A,C)
+   \tkzMarkRightAngle(B,A,C)
+\end{tikzpicture}
+
+\end{document}

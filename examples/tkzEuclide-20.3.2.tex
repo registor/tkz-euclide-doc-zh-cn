@@ -1,0 +1,17 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 169 (Section 20.3.2 : Example a mediator)
+
+\begin{tikzpicture}[scale=.5]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(2,2){B}
+  \tkzDrawCircle[color=blue](B,A)
+  \tkzDrawCircle[color=blue](A,B)
+  \tkzInterCC(B,A)(A,B)\tkzGetPoints{M}{N}
+  \tkzDrawLine(A,B)
+  \tkzDrawPoints(M,N)
+  \tkzDrawLine[color=red](M,N)
+\end{tikzpicture}
+
+\end{document}

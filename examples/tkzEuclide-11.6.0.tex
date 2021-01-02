@@ -1,0 +1,32 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 78 (Section 11.6 : Middle of a compass segment)
+
+\begin{tikzpicture}[scale=.75]
+  \tkzDefPoint(0,0){A}
+  \tkzDefRandPointOn[circle= center A radius 4cm]
+  \tkzGetPoint{B}
+  \tkzDrawPoints(A,B)
+  \tkzDefPointBy[rotation= center A angle 180](B)
+  \tkzGetPoint{C}
+  \tkzInterCC[R](A,4 cm)(B,4 cm)
+  \tkzGetPoints{I}{I'}
+  \tkzInterCC[R](A,4 cm)(I,4 cm)
+  \tkzGetPoints{J}{B}
+  \tkzInterCC(B,A)(C,B)
+  \tkzGetPoints{D}{E}
+  \tkzInterCC(D,B)(E,B)
+  \tkzGetPoints{M}{M'}
+  \tikzset{arc/.style={color=brown,style=dashed,delta=10}}
+  \tkzDrawArc[arc](C,D)(E)
+  \tkzDrawArc[arc](B,E)(D)
+  \tkzDrawCircle[color=brown,line width=.2pt](A,B)
+  \tkzDrawArc[arc](D,B)(M)
+  \tkzDrawArc[arc](E,M)(B)
+  \tkzCompasss[color=red,style=solid](B,I I,J J,C)
+  \tkzDrawPoints(B,C,D,E,M)
+  \tkzLabelPoints(A,B,M)
+\end{tikzpicture}
+
+\end{document}

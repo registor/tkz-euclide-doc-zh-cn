@@ -1,0 +1,13 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 125 (Section 17.1.2 : Use of \tkzcname{tkzDefSquare} to obtain an isosceles right-angled triangle)
+
+\begin{tikzpicture}[scale=1]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(3,0){B}
+  \tkzDefSquare(A,B) \tkzGetFirstPoint{C}
+  \tkzDrawPolygon[color=blue,fill=blue!30](A,B,C)
+\end{tikzpicture}
+
+\end{document}

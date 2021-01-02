@@ -1,0 +1,33 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 123 (Section 16.0.8 : Option   \tkzname{euler})
+
+\begin{tikzpicture}[rotate=90,scale=1.25]
+ \tkzDefPoints{0/0/A,6/0/B,0.8/4/C}
+ \tkzDefSpcTriangle[medial,
+     name=M](A,B,C){_A,_B,_C}
+ \tkzDefTriangleCenter[euler](A,B,C)
+     \tkzGetPoint{N} % I= N nine points
+ \tkzDefTriangleCenter[ortho](A,B,C)
+        \tkzGetPoint{H}
+ \tkzDefMidPoint(A,H) \tkzGetPoint{E_A}
+ \tkzDefMidPoint(C,H) \tkzGetPoint{E_C}
+ \tkzDefMidPoint(B,H) \tkzGetPoint{E_B}
+ \tkzDefSpcTriangle[ortho,name=H](A,B,C){_A,_B,_C}
+ \tkzDrawPolygon[color=blue](A,B,C)
+ \tkzDrawCircle(N,E_A)
+ \tkzDrawSegments[blue](A,H_A B,H_B C,H_C)
+ \tkzDrawPoints(A,B,C,N,H)
+ \tkzDrawPoints[red](M_A,M_B,M_C)
+ \tkzDrawPoints[blue]( H_A,H_B,H_C)
+ \tkzDrawPoints[green](E_A,E_B,E_C)
+ \tkzAutoLabelPoints[center=N,font=\scriptsize]%
+(A,B,C,M_A,M_B,M_C,H_A,H_B,H_C,E_A,E_B,E_C)
+\tkzLabelPoints[font=\scriptsize](H,N)
+\tkzMarkSegments[mark=s|,size=3pt,
+  color=blue,line width=1pt](B,E_B E_B,H)
+   \tkzDrawPolygon[color=red](M_A,M_B,M_C)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,17 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 28 (Section  4.2.2 : Equilateral triangle)
+
+\begin{tikzpicture}[scale=1]
+ \tkzDefPoint(2,3){A}
+ \tkzDefShiftPoint[A](30:3){B}
+ \tkzDefShiftPoint[A](-30:3){C}
+ \tkzDrawPolygon(A,B,C)
+ \tkzDrawPoints(A,B,C)
+ \tkzLabelPoints(B,C)
+ \tkzLabelPoints[above left](A)
+ \tkzMarkSegments[mark=|,color=red](A,B A,C B,C)
+\end{tikzpicture}
+
+\end{document}

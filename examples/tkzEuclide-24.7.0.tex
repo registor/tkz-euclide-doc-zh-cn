@@ -1,0 +1,24 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 206 (Section 24.7 : Option \tkzname{angles}: example 1)
+
+\begin{tikzpicture}[scale=.75]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(5,0){B}
+  \tkzDefPoint(2.5,0){O}
+  \tkzDefPointBy[rotation=center O angle 60](B)
+  \tkzGetPoint{D}
+  \tkzDefPointBy[symmetry=center D](O)
+  \tkzGetPoint{E}
+  \tkzSetUpLine[color=Maroon]
+  \tkzDrawArc[angles](O,B)(0,180)
+  \tkzDrawArc[angles,](B,O)(100,180)
+  \tkzCompass[delta=20](D,E)
+  \tkzDrawLines(A,B O,E B,E)
+  \tkzDrawPoints(A,B,O,D,E)
+  \tkzLabelPoints(A,B,O,D,E)
+  \tkzMarkRightAngle(O,B,E)
+\end{tikzpicture}
+
+\end{document}

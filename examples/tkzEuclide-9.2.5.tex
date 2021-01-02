@@ -1,0 +1,22 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 55 (Section  9.2.5 : Example of rotation)
+
+\begin{tikzpicture}[scale=0.5]
+ \tkzDefPoint(0,0){A}
+ \tkzDefPoint(5,0){B}
+ \tkzDrawSegment(A,B)
+ \tkzDefPointBy[rotation=center A angle 60](B)
+ \tkzGetPoint{C}
+ \tkzDefPointBy[symmetry=center C](A)
+ \tkzGetPoint{D}
+ \tkzDrawSegment(A,tkzPointResult)
+ \tkzDrawLine(B,D)
+ \tkzDrawArc[orange,delta=10](A,B)(C)
+ \tkzDrawArc[orange,delta=10](B,C)(A)
+ \tkzDrawArc[orange,delta=10](C,D)(D)
+ \tkzMarkRightAngle(D,B,A)
+\end{tikzpicture}
+
+\end{document}

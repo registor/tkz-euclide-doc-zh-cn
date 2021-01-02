@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 29 (Section  4.2.3 : Parallelogram)
+
+\begin{tikzpicture}
+ \tkzDefPoint(0,0){A}
+ \tkzDefPoint(30:3){B}
+ \tkzDefShiftPointCoord[B](10:2){C}
+ \tkzDefShiftPointCoord[A](10:2){D}
+ \tkzDrawPolygon(A,...,D)
+ \tkzDrawPoints(A,...,D)
+\end{tikzpicture}
+
+\end{document}

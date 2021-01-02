@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 181 (Section 21.4.1 : Example of marking a right angle)
+
+\begin{tikzpicture}
+  \tkzDefPoints{0/0/A,3/1/B,0.9/-1.2/P}
+  \tkzDefPointBy[projection = onto B--A](P)  \tkzGetPoint{H}
+  \tkzDrawLines[add=.5 and .5](P,H)
+  \tkzMarkRightAngle[fill=blue!20,size=.5,draw](A,H,P)
+  \tkzDrawLines[add=.5 and .5](A,B)
+  \tkzMarkRightAngle[fill=red!20,size=.8](B,H,P)
+  \tkzDrawPoints[](A,B,P,H)
+\end{tikzpicture}
+
+\end{document}

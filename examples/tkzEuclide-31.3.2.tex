@@ -1,0 +1,26 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 249 (Section 31.3.2 : Another example of of\tkzcname{tkzSetUpCompass})
+
+\begin{tikzpicture}[scale=1,rotate=90]
+    \tkzDefPoints{0/1/A, 8/3/B, 3/6/C}
+    \tkzDrawPolygon(A,B,C)
+    \tkzSetUpCompass[color=brown,
+            line width=.3 pt,style=tkzdotted]
+    \tkzDefLine[bisector](B,A,C)  \tkzGetPoint{a}
+    \tkzDefLine[bisector](C,B,A)  \tkzGetPoint{b}
+    \tkzInterLL(A,a)(B,b) \tkzGetPoint{I}
+    \tkzDefPointBy[projection= onto A--B](I)
+    \tkzGetPoint{H}
+    \tkzMarkRightAngle(I,H,A)
+    \tkzDrawCircle[radius,color=red](I,H)
+    \tkzDrawSegments[color=red](I,H)
+    \tkzDrawLines[add=0 and -.5,,color=red](A,a)
+    \tkzDrawLines[add=0 and 0,color=red](B,b)
+    \tkzShowLine[bisector,size=2,gap=3](B,A,C)
+    \tkzShowLine[bisector,size=1,gap=3](C,B,A)
+    \tkzLabelPoints(A,B)\tkzLabelPoints[left](C)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 99 (Section 14.2 : Drawing segments \tkzcname{tkzDrawSegments})
+
+\begin{tikzpicture}
+  \tkzInit[xmin=-1,xmax=3,ymin=-1,ymax=2]
+  \tkzClip[space=1]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(2,1){B}
+  \tkzDefPoint(3,0){C}
+  \tkzDrawSegments(A,B B,C)
+  \tkzDrawPoints(A,B,C)
+  \tkzLabelPoints(A,C)
+  \tkzLabelPoints[above](B)
+\end{tikzpicture}
+
+\end{document}

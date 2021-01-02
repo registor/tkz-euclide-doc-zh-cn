@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 132 (Section 17.6.1 : \tkzcname{tkzDrawPolygon})
+
+\begin{tikzpicture} [rotate=18,scale=1.5]
+ \tkzDefPoint(0,0){A}
+ \tkzDefPoint(2.25,0.2){B}
+ \tkzDefPoint(2.5,2.75){C}
+ \tkzDefPoint(-0.75,2){D}
+ \tkzDrawPolygon[fill=black!50!blue!20!](A,B,C,D)
+ \tkzDrawSegments[style=dashed](A,C B,D)
+
+\end{tikzpicture}\end{tkzexample}
+
+\end{document}

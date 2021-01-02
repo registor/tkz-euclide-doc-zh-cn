@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 168 (Section 20.3.1 : Construction of an equilateral triangle)
+
+\begin{tikzpicture}[trim left=-1cm,scale=.5]
+ \tkzDefPoint(1,1){A}
+ \tkzDefPoint(5,1){B}
+ \tkzInterCC(A,B)(B,A)\tkzGetPoints{C}{D}
+ \tkzDrawPoint[color=black](C)
+ \tkzDrawCircle[dashed](A,B)
+ \tkzDrawCircle[dashed](B,A)
+ \tkzCompass[color=red](A,C)
+ \tkzCompass[color=red](B,C)
+ \tkzDrawPolygon(A,B,C)
+ \tkzMarkSegments[mark=s|](A,C B,C)
+ \tkzLabelPoints[](A,B)
+ \tkzLabelPoint[above](C){$C$}
+\end{tikzpicture}
+
+\end{document}

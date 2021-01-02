@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 219 (Section 27.1.2 : Example of \tkzcname{tkzShowLine} and \tkzname{perpendicular})
+
+\begin{tikzpicture}
+\tkzDefPoints{0/0/A, 3/2/B, 2/2/C}
+\tkzDefLine[perpendicular=through C,K=-.5](A,B) \tkzGetPoint{c}
+\tkzShowLine[perpendicular=through C,K=-.5,gap=3](A,B)
+\tkzDefPointBy[projection=onto A--B](c)\tkzGetPoint{h}
+\tkzMarkRightAngle[fill=lightgray](A,h,C)
+\tkzDrawLines[add=.5 and .5](A,B C,c)
+\tkzDrawPoints(A,B,C,h,c)
+\end{tikzpicture}
+
+\end{document}

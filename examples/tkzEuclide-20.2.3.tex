@@ -1,0 +1,22 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 162 (Section 20.2.3 : Circle defined by a center and a measure, and special cases)
+
+\begin{tikzpicture}[scale=.5]
+  \tkzDefPoint(0,8){A}  \tkzDefPoint(8,0){B}
+  \tkzDefPoint(8,8){C}  \tkzDefPoint(4,4){I}
+  \tkzDefPoint(2,7){E}  \tkzDefPoint(6,4){F}
+  \tkzDrawCircle[R](I,4 cm)
+  \tkzInterLC[R](A,C)(I,4 cm)  \tkzGetPoints{I1}{I2}
+  \tkzInterLC[R](B,C)(I,4 cm)  \tkzGetPoints{J1}{J2}
+  \tkzInterLC[R](A,B)(I,4 cm)  \tkzGetPoints{K1}{K2}
+  \tkzDrawPoints[color=red](I1,J1,K1,K2)
+  \tkzDrawLines(A,B B,C A,C)
+  \tkzInterLC[R](E,F)(I,4 cm)  \tkzGetPoints{I2}{J2}
+  \tkzDrawPoints[color=blue](E,F)
+  \tkzDrawPoints[color=red](I2,J2)
+  \tkzDrawLine(I2,J2)
+\end{tikzpicture}
+
+\end{document}

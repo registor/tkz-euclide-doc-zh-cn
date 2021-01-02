@@ -1,0 +1,28 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 191 (Section 22.6.2 : Example of the use of \tkzcname{tkzFindSlopeAngle})
+
+\begin{tikzpicture}
+ \tkzInit
+ \tkzDefPoint(0,0){A}
+ \tkzDefPoint(3,2){B}
+ \tkzDefLine[mediator](A,B)
+ \tkzGetPoints{I}{J}
+ \tkzCalcLength[cm](A,B)
+ \tkzGetLength{dAB}
+ \tkzFindSlopeAngle(A,B)
+ \tkzGetAngle{tkzangle}
+ \begin{scope}[rotate=\tkzangle]
+   \tikzset{arc/.style={color=gray,delta=10}}
+   \tkzDrawArc[orange,R,arc](B,3/4*\dAB)(120,240)
+   \tkzDrawArc[orange,R,arc](A,3/4*\dAB)(-45,60)
+   \tkzDrawLine(I,J)
+   \tkzDrawSegment(A,B)
+  \end{scope}
+  \tkzDrawPoints(A,B,I,J)
+  \tkzLabelPoints(A,B)
+   \tkzLabelPoints[right](I,J)
+\end{tikzpicture}
+
+\end{document}

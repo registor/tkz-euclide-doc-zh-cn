@@ -1,0 +1,24 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 53 (Section  9.2.3 : Example of projection)
+
+\begin{tikzpicture}[scale=1.5]
+ \tkzDefPoint(0,0){A}
+ \tkzDefPoint(0,4){B}
+ \tkzDefTriangle[pythagore](B,A) \tkzGetPoint{C}
+ \tkzDefLine[bisector](B,C,A) \tkzGetPoint{c}
+ \tkzInterLL(C,c)(A,B)        \tkzGetPoint{D}
+ \tkzDefPointBy[projection=onto B--C](D) \tkzGetPoint{G}
+ \tkzInterLC(C,D)(D,A) \tkzGetPoints{E}{F}
+ \tkzDrawPolygon[teal](A,B,C)
+ \tkzDrawSegment(C,D)
+ \tkzDrawCircle(D,A)
+ \tkzDrawSegment[orange](D,G)
+ \tkzMarkRightAngle[fill=orange!20](D,G,B)
+ \tkzDrawPoints(A,C,F) \tkzLabelPoints(A,C,F)
+ \tkzDrawPoints(B,D,E,G)
+ \tkzLabelPoints[above right](B,D,E,G)
+\end{tikzpicture}
+
+\end{document}

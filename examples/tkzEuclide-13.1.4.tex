@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 92 (Section 13.1.4 : Medians in a triangle)
+
+\begin{tikzpicture}[scale=1.25]
+  \tkzDefPoint(0,0){A} \tkzDefPoint(4,0){B}
+  \tkzDefPoint(1,3){C} \tkzDrawPolygon(A,B,C)
+  \tkzSetUpLine[color=blue]
+  \tkzDrawLine[median](B,C,A)
+  \tkzDrawLine[median](C,A,B)
+  \tkzDrawLine[median](A,B,C)
+\end{tikzpicture}
+
+\end{document}

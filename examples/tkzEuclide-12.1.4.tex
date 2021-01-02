@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 82 (Section 12.1.4 : An envelope)
+
+\begin{tikzpicture}[scale=.75]
+ \tkzInit[xmin=-6,ymin=-4,xmax=6,ymax=6] % necessary
+ \tkzClip
+ \tkzDefPoint(0,0){O}
+ \tkzDefPoint(132:4){A}
+ \tkzDefPoint(5,0){B}
+ \foreach \ang in {5,10,...,360}{%
+  \tkzDefPoint(\ang:5){M}
+  \tkzDefLine[mediator](A,M)
+  \tkzDrawLine[color=magenta,add= 3 and 3](tkzFirstPointResult,tkzSecondPointResult)}
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,14 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 218 (Section 27.1.1 : Example of \tkzcname{tkzShowLine} and \tkzname{parallel})
+
+\begin{tikzpicture}
+ \tkzDefPoints{-1.5/-0.25/A,1/-0.75/B,-1.5/2/C}
+ \tkzDrawLine(A,B)
+ \tkzDefLine[parallel=through C](A,B) \tkzGetPoint{c}
+ \tkzShowLine[parallel=through C](A,B)
+ \tkzDrawLine(C,c) \tkzDrawPoints(A,B,C,c)
+\end{tikzpicture}
+
+\end{document}

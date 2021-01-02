@@ -1,0 +1,29 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 44 (Section  6.1.9 : Option   \tkzname{mittenpunkt})
+
+\begin{tikzpicture}[scale=.5]
+ \tkzDefPoints{0/0/A,6/0/B,4/6/C}
+ \tkzDefSpcTriangle[centroid](A,B,C){Ma,Mb,Mc}
+ \tkzDefSpcTriangle[ex](A,B,C){Ja,Jb,Jc}
+ \tkzDefSpcTriangle[extouch](A,B,C){Ta,Tb,Tc}
+ \tkzDefTriangleCenter[mittenpunkt](A,B,C)
+ \tkzGetPoint{Mi}
+ \tkzDrawPoints(Ma,Mb,Mc,Ja,Jb,Jc)
+ \tkzClipBB
+ \tkzDrawPolygon[blue](A,B,C)
+ \tkzDrawLines[add=0 and 1](Ja,Ma
+               Jb,Mb Jc,Mc)
+ \tkzDrawLines[add=1 and 1](A,B A,C B,C)
+ \tkzDrawCircles[gray](Ja,Ta Jb,Tb Jc,Tc)
+ \tkzDrawPoints[blue](B,C,A)
+ \tkzDrawPoints[red](Mi)
+ \tkzLabelPoints[red](Mi)
+ \tkzLabelPoints[left](Mb)
+ \tkzLabelPoints(Ma,Mc,Jb,Jc)
+ \tkzLabelPoints[above left](Ja,Jc)
+ \tkzShowBB
+\end{tikzpicture}
+
+\end{document}

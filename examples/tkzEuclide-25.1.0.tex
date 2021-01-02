@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 208 (Section 25.1 : Duplicate a segment)
+
+\begin{tikzpicture}
+   \tkzDefPoint(0,0){A}
+   \tkzDefPoint(2,-3){B}
+   \tkzDefPoint(2,5){C}
+   \tkzDrawSegments[red](A,B A,C)
+   \tkzDuplicateSegment(A,B)(A,C)
+   \tkzGetPoint{D}
+   \tkzDrawSegment[green](A,D)
+   \tkzDrawPoints[color=red](A,B,C,D)
+   \tkzLabelPoints[above right=3pt](A,B,C,D)
+\end{tikzpicture}
+
+\end{document}

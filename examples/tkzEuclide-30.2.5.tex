@@ -1,0 +1,36 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 235 (Section 30.2.5 : Example 1: John Kitzmiller )
+
+\begin{tikzpicture}[scale=2]
+  \tkzDefPoint[label=below left:A](0,0){A}
+  \tkzDefPoint[label=below right:B](6,0){B}
+  \tkzDefTriangle[equilateral](A,B) \tkzGetPoint{C}
+  \tkzMarkSegments[mark=|](A,B A,C B,C)
+  \tkzDefBarycentricPoint(A=1,B=2) \tkzGetPoint{C'}
+  \tkzDefBarycentricPoint(A=2,C=1) \tkzGetPoint{B'}
+  \tkzDefBarycentricPoint(C=2,B=1) \tkzGetPoint{A'}
+  \tkzInterLL(A,A')(C,C') \tkzGetPoint{J}
+  \tkzInterLL(C,C')(B,B') \tkzGetPoint{K}
+  \tkzInterLL(B,B')(A,A') \tkzGetPoint{L}
+  \tkzLabelPoint[above](C){C}
+  \tkzDrawPolygon(A,B,C) \tkzDrawSegments(A,J B,L C,K)
+  \tkzMarkAngles[size=1 cm](J,A,C K,C,B L,B,A)
+  \tkzMarkAngles[thick,size=1 cm](A,C,J C,B,K B,A,L)
+  \tkzMarkAngles[opacity=.5](A,C,J C,B,K B,A,L)
+  \tkzFillAngles[fill= orange,size=1 cm,opacity=.3](J,A,C K,C,B L,B,A)
+  \tkzFillAngles[fill=orange, opacity=.3,thick,size=1,](A,C,J C,B,K B,A,L)
+  \tkzFillAngles[fill=green, size=1, opacity=.5](A,C,J C,B,K B,A,L)
+  \tkzFillPolygon[color=yellow, opacity=.2](J,A,C)
+  \tkzFillPolygon[color=yellow, opacity=.2](K,B,C)
+  \tkzFillPolygon[color=yellow, opacity=.2](L,A,B)
+  \tkzDrawSegments[line width=3pt,color=cyan,opacity=0.4](A,J C,K B,L)
+  \tkzDrawSegments[line width=3pt,color=red,opacity=0.4](A,L B,K C,J)
+  \tkzMarkSegments[mark=o](J,K K,L L,J)
+  \tkzLabelPoint[right](J){J}
+  \tkzLabelPoint[below](K){K}
+  \tkzLabelPoint[above left](L){L}
+\end{tikzpicture}
+
+\end{document}

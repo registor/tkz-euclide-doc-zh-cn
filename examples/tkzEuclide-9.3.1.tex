@@ -1,0 +1,20 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 59 (Section  9.3.1 : Example of translation)
+
+\begin{tikzpicture}[>=latex]
+ \tkzDefPoint(0,0){A}  \tkzDefPoint(3,1){A'}
+ \tkzDefPoint(3,0){B}  \tkzDefPoint(1,2){C}
+ \tkzDefPointsBy[translation= from A to A'](B,C){}
+ \tkzDrawPolygon[color=blue](A,B,C)
+ \tkzDrawPolygon[color=red](A',B',C')
+ \tkzDrawPoints[color=blue](A,B,C)
+ \tkzDrawPoints[color=red](A',B',C')
+ \tkzLabelPoints(A,B,A',B')
+ \tkzLabelPoints[above](C,C')
+ \tkzDrawSegments[color = gray,->,
+              style=dashed](A,A' B,B' C,C')
+\end{tikzpicture}
+
+\end{document}

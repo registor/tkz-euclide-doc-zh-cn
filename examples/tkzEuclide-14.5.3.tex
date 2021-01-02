@@ -1,0 +1,14 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 107 (Section 14.5.3 : Labels for an isosceles triangle)
+
+\begin{tikzpicture}[scale=1]
+ \tkzDefPoints{0/0/O,2/2/A,4/0/B,6/2/C}
+ \tkzDrawSegments(O,A A,B)
+ \tkzDrawPoints(O,A,B)
+ \tkzDrawLine(O,B)
+ \tkzLabelSegments[color=red,above=4pt](O,A A,B){$a$}
+\end{tikzpicture}
+
+\end{document}

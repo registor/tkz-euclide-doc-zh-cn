@@ -1,0 +1,19 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 144 (Section 18.1.5 : Euler's circle for a given triangle with option \tkzname{euler})
+
+\begin{tikzpicture}[scale=.75]
+   \tkzDefPoint(5,3.5){A}
+   \tkzDefPoint(0,0){B} \tkzDefPoint(7,0){C}
+   \tkzDefCircle[euler](A,B,C)
+   \tkzGetPoint{E}  \tkzGetLength{rEuler}
+   \tkzDefSpcTriangle[medial](A,B,C){M_a,M_b,M_c}
+   \tkzDrawPoints(A,B,C,E,M_a,M_b,M_c)
+   \tkzDrawCircle[R,blue](E,\rEuler pt)
+   \tkzDrawPolygon(A,B,C)
+   \tkzLabelPoints[below](B,C)
+   \tkzLabelPoints[left](A,E)
+\end{tikzpicture}
+
+\end{document}

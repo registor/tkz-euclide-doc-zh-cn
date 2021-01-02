@@ -1,0 +1,22 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 36 (Section  6.1.1 : Option \tkzname{ortho} or \tkzname{orthic})
+
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(5,1){B}
+  \tkzDefPoint(1,4){C}
+  \tkzClipPolygon(A,B,C)
+  \tkzDefTriangleCenter[ortho](B,C,A)
+    \tkzGetPoint{H}
+  \tkzDefSpcTriangle[orthic,name=H](A,B,C){a,b,c}
+  \tkzDrawPolygon[color=blue](A,B,C)
+  \tkzDrawPoints(A,B,C,H)
+  \tkzDrawLines[add=0 and 1](A,Ha B,Hb C,Hc)
+  \tkzLabelPoint(H){$H$}
+  \tkzAutoLabelPoints[center=H](A,B,C)
+  \tkzMarkRightAngles(A,Ha,B B,Hb,C C,Hc,A)
+\end{tikzpicture}
+
+\end{document}

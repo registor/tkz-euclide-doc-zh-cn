@@ -1,0 +1,14 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 131 (Section 17.5.1 : Golden Rectangles)
+
+\begin{tikzpicture}[scale=.6]
+ \tkzDefPoint(0,0){A}      \tkzDefPoint(8,0){B}
+ \tkzDefGoldRectangle(A,B) \tkzGetPoints{C}{D}
+ \tkzDefGoldRectangle(B,C) \tkzGetPoints{E}{F}
+ \tkzDrawPolygon[color=red,fill=red!20](A,B,C,D)
+ \tkzDrawPolygon[color=blue,fill=blue!20](B,C,E,F)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,297 @@
+% tkz-tool-eu-angles.tex
+% Copyright 2020  Alain Matthes
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status “maintained”.
+%
+% The Current Maintainer of this work is Alain Matthes.
+
+%  utf8 encoding
+\def\fileversion{3.06c}
+\def\filedate{2020/04/06}
+\typeout{2020/04/06 3.06c tkz-tool-eu-angles.tex}
+\makeatletter
+%<--------------------------------------------------------------------------–>
+\newdimen\tkz@arcsize% from julian julian@d-and-j.net
+\newdimen\tkz@fillsize
+%<-------------------------------------------------------------------------–>
+
+%<--------------------------------------------------------------------------–>
+%                       tkzDrawArcRAN                                        >
+%<--------------------------------------------------------------------------–>
+\def\tkzDrawArcRAN[#1](#2,#3)(#4,#5){%
+\begingroup
+    \draw[shift = {(#2)},/tkzdrawarc/.cd,#1] (#4:#3) arc (#4:#5:#3);
+\endgroup
+}
+%<--------------- tkzPathArcRAN ----------------------------------
+\def\tkzPathArcRAN[#1](#2,#3)(#4,#5){%
+\begingroup
+    \path[shift = {(#2)},/tkzdrawarc/.cd,#1] (#4:#3) arc (#4:#5:#3);
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+%       Mark an angle modi 3.03 suppression de \tkz@mksize,
+%<--------------------------------------------------------------------------–>
+%                \tkzMarkAngle(B, A, C)
+%
+% Marque d'angle
+% arc de cercle (simple/double/triple) et marque d'églité.
+%
+% Par défaut:
+%                 arc       = simple
+%                 size     = 1cm (rayon de l'arc)
+%                 style traits pleins
+%                 mkpos ?  position: 0.5 (position de la marque)
+%                 mark rien du tout (ignoré si type est utilisé)
+%
+% Paramètres (optionnels)
+%             arc     : l, ll, lll
+%             mksize  : 1cm
+%             gap     : 3pt
+%             dist ?
+%             style   : type de traits
+%             type    : none, |, ||,|||, z, s, x, o, oo
+%             position: 0.5
+%             mark    : none  , |, ||,|||, z, s, x, o, oo mais tous les
+%  % symboles de tikz sont permis
+%<------------------------- Label on angle -------------------------------–>
+\def\tkz@arcsimple{l}
+\def\tkz@arcdouble{ll}
+\def\tkz@arctriple{lll}
+
+%\tikzset{lbstyle/.style = {color=\tkz@mainlinecolor}}
+
+\pgfkeys{/tkzmkangle/.cd,
+      arc/.estore in          = \tkz@arc,
+      size/.store in          = \tkz@size,
+      mark/.store in          = \tkz@markang,
+      mkpos/.estore in        = \tkz@mkpos,
+      mksize/.store in        = \tkz@mksize,
+      mkcolor/.store in       = \tkz@mkcolor,
+      arc                     = l,
+      size                    = 1 cm,
+      mark                    = |,
+      mksize                  = 4pt,
+      mkcolor                 = black,
+      mkpos                   = 0.5,
+  /tkzmkangle/.search also={/tikz}
+}                        \def\tkzMarkAngle{\pgfutil@ifnextchar[{\tkz@MarkAngle}{\tkz@MarkAngle[]}}
+\def\tkz@MarkAngle[#1](#2,#3,#4){%
+\begingroup
+\pgfqkeys{/tkzmkangle}{#1}
+
+\tkzFindSlopeAngle(#3,#2)\tkzGetAngle{tkz@dirOne}
+\tkzFindSlopeAngle(#3,#4)\tkzGetAngle{tkz@dirTwo}
+\tkzNormalizeAngle(\tkz@dirOne,\tkz@dirTwo)
+
+% les marques, aucune si mktype = none
+\def\tkz@mymark{\pgfuseplotmark{\tkz@markang}}
+% draw the arcs
+\begin{scope}[decoration= {markings,
+                        mark=at position \tkz@mkpos with {\tkz@mymark}}]
+  \ifx\tkz@arc\tkz@arcsimple
+    \tkzDrawArcRAN[#1,fill=none,postaction={decorate}]%
+    (#3,\tkz@size)(\tkz@FirstAngle,\tkz@SecondAngle)
+  \else
+    \ifx\tkz@arc\tkz@arcdouble
+     \tkzDrawArcRAN[#1,fill=none](#3,\tkz@size-1.5\pgflinewidth)%
+            (\tkz@FirstAngle,\tkz@SecondAngle)
+       \tkzPathArcRAN[#1,fill=none,postaction={decorate}]%
+           (#3,\tkz@size)(\tkz@FirstAngle,\tkz@SecondAngle)%
+     \tkzDrawArcRAN[#1,fill=none](#3,\tkz@size+1.5\pgflinewidth)%
+                     (\tkz@FirstAngle,\tkz@SecondAngle)%
+    \else
+       \ifx\tkz@arc\tkz@arctriple
+          \tkzDrawArcRAN[#1,fill=none,postaction={decorate}]%
+          (#3,\tkz@size)(\tkz@FirstAngle,\tkz@SecondAngle)%
+          \tkzDrawArcRAN[#1,fill=none](#3,\tkz@size-2.5\pgflinewidth)%
+                    (\tkz@FirstAngle,\tkz@SecondAngle)%
+          \tkzDrawArcRAN[#1,fill=none](#3,\tkz@size+2.5\pgflinewidth)%
+                    (\tkz@FirstAngle,\tkz@SecondAngle)%
+       \fi
+     \fi
+  \fi
+\end{scope}
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+% multiple
+\def\tkz@multiMA#1 #2\@nil{%
+ \protected@edef\tkz@temp{
+   \noexpand \tkzMarkAngle[\tkz@optma](#1)}\tkz@temp%
+   \def\tkz@nextArg{#2}%
+   \ifx\tkzutil@empty\tkz@nextArg
+     \let\next\@gobble
+   \fi
+   \next#2\@nil
+}
+%<--------------------------------------------------------------------------–>
+\def\tkzMarkAngles{\pgfutil@ifnextchar[{\tkz@MarkAngles}{\tkz@MarkAngles[]}}
+\def\tkz@MarkAngles[#1](#2){%
+\xdef\tkz@optma{#1}
+  \begingroup
+   \let\next\tkz@multiMA
+   \next#2 \@nil %
+\endgroup
+}
+% fin de \tkzMarkAngle
+%<--------------------------------------------------------------------------–>
+%                        FillAngle
+%<--------------------------------------------------------------------------–>
+\pgfkeys{/tkzFill/.cd,
+    size/.store in        = \tkz@size,
+    size                  = 1 cm,
+    /tkzFill/.search also = {/tikz}
+  }
+
+\def\tkzFillAngle{\pgfutil@ifnextchar[{\tkz@FillAngle}{\tkz@FillAngle[]}}
+\def\tkz@FillAngle[#1](#2,#3,#4){%
+\begingroup
+\pgfqkeys{/tkzFill}{#1}
+  \tkzFindSlopeAngle(#3,#2)\tkzGetAngle{tkz@dirOne}
+  \tkzFindSlopeAngle(#3,#4)\tkzGetAngle{tkz@dirTwo}
+  \tkzNormalizeAngle(\tkz@dirOne,\tkz@dirTwo)
+    \path[shift  = {(#3)},/tkzFill/.cd,#1]%
+          (#3) -- (\tkz@FirstAngle:\tkz@size) arc%
+          (\tkz@FirstAngle:\tkz@SecondAngle:\tkz@size)--cycle;
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+% multiple
+\def\tkz@multiFA#1 #2\@nil{\protected@edef\tkz@temp{%
+   \noexpand \tkzFillAngle[\tkz@optfa](#1)}%
+   \tkz@temp%
+   \def\tkz@nextArg{#2}%
+   \ifx\tkzutil@empty\tkz@nextArg
+     \let\next\@gobble
+   \fi
+   \next#2\@nil
+}
+%<--------------------------------------------------------------------------–>
+\def\tkzFillAngles{\pgfutil@ifnextchar[{\tkz@MFillAngles}{\tkz@MFillAngles[]}}
+\def\tkz@MFillAngles[#1](#2){%
+\xdef\tkz@optfa{#1}
+\begingroup
+   \let\next\tkz@multiFA
+   \next#2 \@nil %
+\endgroup
+}
+%<------------------------- Label on angle -------------------------------–>
+\pgfkeys{/tkzlabelangle/.cd,
+    dist/.store in                  = \tkzlabeldist,
+    angle/.store in                 = \tkzlabelangle,
+    dist                            = 1,
+    angle                           = {},
+  /tkzlabelangle/.search also={/tikz}
+}
+\def\tkzLabelAngle{\pgfutil@ifnextchar[{\tkz@LabelAngle}{\tkz@LabelAngle[]}}
+\def\tkz@LabelAngle[#1](#2,#3,#4)#5{%2016 added normalize from karu's code
+\begingroup
+  \pgfqkeys{/tkzlabelangle}{#1}
+  \ifx\tkzutil@empty\tkzlabelangle% no value so calc angle of bisector
+      \tkzFindSlopeAngle(#3,#2)\tkzGetAngle{tkz@dirOne}
+        \tkzFindSlopeAngle(#3,#4)\tkzGetAngle{tkz@dirTwo}
+        \tkzNormalizeAngle(\tkz@dirOne,\tkz@dirTwo)
+    \edef\tkzlabelAngle{\fpeval{(\tkz@SecondAngle+\tkz@FirstAngle)/2}}
+  \fi
+  \path  (#3) --+(\tkzlabelAngle:\tkzlabeldist) node[/tkzlabelangle/.cd,#1] {#5};
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+%<--------------------------------------------------------------------------–>
+% multiple labels
+\def\tkz@multiLBA#1 #2\@nil{%
+ \protected@edef\tkz@temp{
+   \noexpand \tkzLabelAngle[\tkz@optlba](#1){\tkz@labelangle}}\tkz@temp%
+   \def\tkz@nextArg{#2}%
+   \ifx\tkzutil@empty\tkz@nextArg
+     \let\next\@gobble
+   \fi
+   \next#2\@nil
+}
+% %<---------------------------------------------------------------------
+\def\tkzLabelAngles{\pgfutil@ifnextchar[{\tkz@LabelAngles}{%
+                                         \tkz@LabelAngles[]}}
+\def\tkz@LabelAngles[#1](#2)#3{%
+ \def\tkz@optlba{#1}
+ \def\tkz@labelangle{#3}
+   \begingroup
+      \let\next\tkz@multiLBA
+      \next#2 \@nil %
+ \endgroup
+}
+%<-----------------------------------------------------------------------
+%                     Symbole droites perpendiculaires
+%<----------------------------------------------------------------------
+\pgfkeys{/tkzrightangle/.cd,
+         norm tkz code/.is if            = normtkzcode@execute,
+         german/.code                    = \normtkzcode@executefalse,
+         size/.store in                  = \tkz@ra@size,
+         dotsize/.store in               = \tkz@dotsize,
+         size                            = .25,
+         dotsize                         = 3 pt,
+  /tkzrightangle/.search also={/tikz},
+}
+\newcommand*{\tkzMarkRightAngle}[1][]{\tkz@RightAngle[#1]}
+\def\tkz@RightAngle[#1](#2,#3,#4){%
+\begingroup
+\normtkzcode@executetrue
+\pgfqkeys{/tkzrightangle}{#1}
+    \tkzpointnormalised{\pgfpointdiff{\pgfpointanchor{#3}{center}}{%
+                                      \pgfpointanchor{#2}{center}}}
+    \tkz@ax=\pgf@x\relax%
+    \tkz@ay=\pgf@y\relax%
+    \tkzpointnormalised{\pgfpointdiff{\pgfpointanchor{#3}{center}}{%
+                                      \pgfpointanchor{#4}{center}}}
+    \tkz@bx=\pgf@x\relax%
+    \tkz@by=\pgf@y\relax%
+  \ifnormtkzcode@execute%
+      \draw[/tkzrightangle/.cd,#1]
+    (#3) --++( 28.45274*\tkz@ra@size\tkz@ax , 28.45274*\tkz@ra@size\tkz@ay)
+         --++( 28.45274*\tkz@ra@size\tkz@bx , 28.45274*\tkz@ra@size\tkz@by)
+         --++(-28.45274*\tkz@ra@size\tkz@ax ,-28.45274*\tkz@ra@size\tkz@ay)
+         -- (#3);
+  \else%
+    % find angles
+      \tkzFindSlopeAngle(#3,#2)\tkzGetAngle{tkz@dirOne}
+      \tkzFindSlopeAngle(#3,#4)\tkzGetAngle{tkz@dirTwo}
+      \tkzNormalizeAngle(\tkz@dirOne,\tkz@dirTwo)
+      \edef\tkzCircleAngle{\fpeval{(\tkz@SecondAngle+\tkz@FirstAngle)/2}}
+      \tkzDrawArcRAN[/tkzrightangle/.cd,#1](#3,\tkz@ra@size)%
+            (\tkz@FirstAngle,\tkz@SecondAngle)
+      \path (#3) --+ (\tkzCircleAngle:\tkz@ra@size/2)
+      node[fill,circle,minimum size=\tkz@dotsize,
+           inner sep=0 pt,/tkzrightangle/.cd,#1] {};
+\fi%
+\endgroup
+}
+%<--------------------------------------------------------------------------–>
+\def\tkz@multiRA#1 #2\@nil{%
+\protected@edef\tkz@temp{
+  \noexpand \tkzMarkRightAngle[\tkz@optRA](#1)}\tkz@temp%
+\def\tkz@nextArg{#2}%
+   \ifx\tkzutil@empty\tkz@nextArg
+      \let\next\@gobble
+   \fi
+\next#2\@nil
+}
+%<--------------------------------------------------------------------------–>
+\def\tkzMarkRightAngles{\pgfutil@ifnextchar[{\tkz@RightAngles}{%
+                                         \tkz@RightAngles[]}}
+\def\tkz@RightAngles[#1](#2){%
+\xdef\tkz@optRA{#1}
+\begingroup
+    \let\next\tkz@multiRA
+    \next#2 \@nil %
+\endgroup
+}
+
+\makeatother
+\endinput

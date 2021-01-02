@@ -1,0 +1,22 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 142 (Section 18.1.3 : Circles inscribed and circumscribed for a given triangle)
+
+\begin{tikzpicture}[scale=1]
+   \tkzDefPoint(2,2){A}
+   \tkzDefPoint(5,-2){B}
+   \tkzDefPoint(1,-2){C}
+   \tkzDefCircle[in](A,B,C)
+   \tkzGetPoint{I}    \tkzGetLength{rIN}
+   \tkzDefCircle[circum](A,B,C)
+   \tkzGetPoint{K}   \tkzGetLength{rCI}
+   \tkzDrawPoints(A,B,C,I,K)
+   \tkzDrawCircle[R,blue](I,\rIN pt)
+   \tkzDrawCircle[R,red](K,\rCI pt)
+   \tkzLabelPoints[below](B,C)
+   \tkzLabelPoints[above left](A,I,K)
+   \tkzDrawPolygon(A,B,C)
+\end{tikzpicture}
+
+\end{document}

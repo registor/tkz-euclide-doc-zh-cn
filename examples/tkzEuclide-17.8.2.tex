@@ -1,0 +1,27 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 136 (Section 17.8.2 : Example: use of "Clip" for Sangaku in a square)
+
+\begin{tikzpicture}[scale=.75]
+ \tkzDefPoint(0,0){A} \tkzDefPoint(8,0){B}
+ \tkzDefSquare(A,B) \tkzGetPoints{C}{D}
+ \tkzDrawPolygon(B,C,D,A)
+ \tkzClipPolygon(B,C,D,A)
+ \tkzDefPoint(4,8){F}
+ \tkzDefTriangle[equilateral](C,D)
+ \tkzGetPoint{I}
+ \tkzDrawPoint(I)
+ \tkzDefPointBy[projection=onto B--C](I)
+ \tkzGetPoint{J}
+ \tkzInterLL(D,B)(I,J)  \tkzGetPoint{K}
+ \tkzDefPointBy[symmetry=center K](B)
+ \tkzGetPoint{M}
+ \tkzDrawCircle(M,I)
+ \tkzCalcLength(M,I)   \tkzGetLength{dMI}
+ \tkzFillPolygon[color = orange](A,B,C,D)
+ \tkzFillCircle[R,color = yellow](M,\dMI pt)
+ \tkzFillCircle[R,color = blue!50!black](F,4 cm)%
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 26 (Section  4.1.5 : Relative points)
+
+\begin{tikzpicture}[scale=1]
+  \tkzSetUpLine[color=blue!60]
+ \begin{scope}[rotate=30]
+  \tkzDefPoint(2,3){A}
+  \begin{scope}[shift=(A)]
+     \tkzDefPoint(90:5){B}
+     \tkzDefPoint(30:5){C}
+  \end{scope}
+ \end{scope}
+ \tkzDrawPolygon(A,B,C)
+\tkzLabelPoints[above](B,C)
+\tkzLabelPoints[below](A)
+\tkzDrawPoints(A,B,C)
+\end{tikzpicture}
+
+\end{document}

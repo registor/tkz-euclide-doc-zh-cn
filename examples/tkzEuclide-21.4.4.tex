@@ -1,0 +1,31 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 184 (Section 21.4.4 : Full example)
+
+\begin{tikzpicture}[rotate=-90]
+\tkzDefPoint(0,1){A}
+\tkzDefPoint(2,4){C}
+\tkzDefPointWith[orthogonal normed,K=7](C,A)
+\tkzGetPoint{B}
+\tkzDrawSegment[green!60!black](A,C)
+\tkzDrawSegment[green!60!black](C,B)
+\tkzDrawSegment[green!60!black](B,A)
+\tkzDrawLine[altitude,dashed,color=magenta](B,C,A)
+\tkzGetPoint{P}
+\tkzLabelPoint[left](A){$A$}
+\tkzLabelPoint[right](B){$B$}
+\tkzLabelPoint[above](C){$C$}
+\tkzLabelPoint[left](P){$P$}
+\tkzLabelSegment[auto](B,A){$c$}
+\tkzLabelSegment[auto,swap](B,C){$a$}
+\tkzLabelSegment[auto,swap](C,A){$b$}
+\tkzMarkAngle[size=1cm,color=cyan,mark=|](C,B,A)
+\tkzMarkAngle[size=1cm,color=cyan,mark=|](A,C,P)
+\tkzMarkAngle[size=0.75cm,color=orange,mark=||](P,C,B)
+\tkzMarkAngle[size=0.75cm,color=orange,mark=||](B,A,C)
+\tkzMarkRightAngle[german](A,C,B)
+\tkzMarkRightAngle[german](B,P,C)
+\end{tikzpicture}
+
+\end{document}

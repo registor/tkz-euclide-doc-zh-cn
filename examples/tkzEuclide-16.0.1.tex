@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 116 (Section 16.0.1 : Option \tkzname{medial} or \tkzname{centroid} )
+
+\begin{tikzpicture}[rotate=90,scale=.75]
+ \tkzDefPoints{0/0/A,6/0/B,0.8/4/C}
+ \tkzDefTriangleCenter[centroid](A,B,C)
+        \tkzGetPoint{M}
+ \tkzDefSpcTriangle[medial,name=M](A,B,C){_A,_B,_C}
+ \tkzDrawPolygon[color=blue](A,B,C)
+ \tkzDrawSegments[dashed,red](A,M_A B,M_B C,M_C)
+ \tkzDrawPolygon[color=red](M_A,M_B,M_C)
+ \tkzDrawPoints(A,B,C,M)
+ \tkzDrawPoints[red](M_A,M_B,M_C)
+\tkzAutoLabelPoints[center=M,font=\scriptsize]%
+(A,B,C,M_A,M_B,M_C)
+ \tkzLabelPoints[font=\scriptsize](M)
+\end{tikzpicture}
+
+\end{document}

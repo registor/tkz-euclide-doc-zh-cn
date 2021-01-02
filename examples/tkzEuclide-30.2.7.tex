@@ -1,0 +1,34 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 237 (Section 30.2.7 : Example 3:  John Kitzmiller )
+
+\begin{tikzpicture}[scale=2]
+  \tkzDefPoints{0/0/B, 5/0/D}       \tkzDefPoint(70:3){A}
+  \tkzDrawPolygon(B,D,A)
+  \tkzDefLine[bisector](B,A,D)      \tkzGetPoint{a}
+  \tkzInterLL(A,a)(B,D)           \tkzGetPoint{C}
+  \tkzDefLine[parallel=through B](A,C) \tkzGetPoint{b}
+  \tkzInterLL(A,D)(B,b)           \tkzGetPoint{P}
+  \begin{scope}[decoration={markings,
+   mark=at position .5 with {\arrow[scale=2]{>}}}]
+   \tkzDrawSegments[postaction={decorate},dashed](C,A P,B)
+  \end{scope}
+  \tkzDrawSegment(A,C) \tkzDrawSegment[style=dashed](A,P)
+  \tkzLabelPoints[below](B,C,D) \tkzLabelPoints[above](A,P)
+  \tkzDrawSegments[color=magenta, line width=3pt, opacity=0.4](B,C P,A)
+  \tkzDrawSegments[color=teal,    line width=3pt, opacity=0.4](C,D A,D)
+  \tkzDrawSegments[color=magenta, line width=3pt, opacity=0.4](A,B)
+  \tkzMarkAngles[size=3mm](B,A,C C,A,D)
+  \tkzMarkAngles[size=3mm](B,A,C A,B,P)
+  \tkzMarkAngles[size=3mm](B,P,A C,A,D)
+  \tkzMarkAngles[size=3mm](B,A,C A,B,P B,P,A C,A,D)
+  \tkzFillAngles[fill=green,  opacity=0.5](B,A,C A,B,P)
+  \tkzFillAngles[fill=yellow, opacity=0.3](B,P,A C,A,D)
+  \tkzFillAngles[fill=green,  opacity=0.6](B,A,C A,B,P B,P,A C,A,D)
+  \tkzLabelAngle[pos=1](B,A,C){1}   \tkzLabelAngle[pos=1](C,A,D){2}
+  \tkzLabelAngle[pos=1](A,B,P){3}    \tkzLabelAngle[pos=1](B,P,A){4}
+  \tkzMarkSegments[mark=|](A,B A,P)
+\end{tikzpicture}
+
+\end{document}

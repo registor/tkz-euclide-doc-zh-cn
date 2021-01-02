@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 193 (Section 23.1.2 : \tkzcname{tkzDrawSector} and \tkzname{rotate})
+
+\begin{tikzpicture}[scale=2]
+ \tkzDefPoint(0,0){O}
+ \tkzDefPoint(2,2){A}
+ \tkzDrawSector[rotate,draw=red!50!black,%
+ fill=red!20](O,A)(30)
+ \tkzDrawSector[rotate,draw=blue!50!black,%
+ fill=blue!20](O,A)(-30)
+\end{tikzpicture}
+
+\end{document}

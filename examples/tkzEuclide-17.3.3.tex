@@ -1,0 +1,24 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 129 (Section 17.3.3 : Construction of the golden rectangle )
+
+\begin{tikzpicture}[scale=.5]
+  \tkzInit[xmax=14,ymax=10]
+  \tkzClip[space=1]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(8,0){B}
+  \tkzDefMidPoint(A,B)\tkzGetPoint{I}
+  \tkzDefSquare(A,B)\tkzGetPoints{C}{D}
+  \tkzDrawSquare(A,B)
+  \tkzInterLC(A,B)(I,C)\tkzGetPoints{G}{E}
+  \tkzDrawArc[style=dashed,color=gray](I,E)(D)
+  \tkzDefPointWith[colinear= at C](E,B)
+  \tkzGetPoint{F}
+  \tkzDrawPoints(C,D,E,F)
+  \tkzLabelPoints(A,B,C,D,E,F)
+  \tkzDrawSegments[style=dashed,color=gray]%
+(E,F C,F B,E)
+\end{tikzpicture}
+
+\end{document}

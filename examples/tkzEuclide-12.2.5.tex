@@ -1,0 +1,27 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 88 (Section 12.2.5 : Drawing a tangent option \tkzimp{from})
+
+\begin{tikzpicture}[scale=.5]
+ \tkzDefPoint(0,0){B}
+ \tkzDefPoint(0,8){A}
+ \tkzDefSquare(A,B)
+ \tkzGetPoints{C}{D}
+ \tkzDrawSquare(A,B)
+ \tkzClipPolygon(A,B,C,D)
+ \tkzDefPoint(4,8){F}
+ \tkzDefPoint(4,0){E}
+ \tkzDefPoint(4,4){Q}
+ \tkzFillPolygon[color = green](A,B,C,D)
+ \tkzDrawCircle[fill = orange](B,A)
+ \tkzDrawCircle[fill = purple](E,B)
+ \tkzDefTangent[from=B](F,A)
+ \tkzInterLL(F,tkzFirstPointResult)(C,D)
+ \tkzInterLL(A,tkzPointResult)(F,E)
+ \tkzDrawCircle[fill = yellow](tkzPointResult,Q)
+ \tkzDefPointBy[projection= onto B--A](tkzPointResult)
+ \tkzDrawCircle[fill = blue!50!black](tkzPointResult,A)
+\end{tikzpicture}
+
+\end{document}

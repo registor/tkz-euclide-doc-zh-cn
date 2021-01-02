@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 224 (Section 28.1.1 : Using \tkzcname{tkzDefEquiPoints} with options)
+
+\begin{tikzpicture}
+  \tkzSetUpCompass[color=purple,line width=1pt]
+  \tkzDefPoint(0,1){A}
+  \tkzDefPoint(5,2){B}
+  \tkzDefPoint(3,4){C}
+  \tkzDefEquiPoints[from=C,dist=1,show,
+      /tkzcompass/delta=20](A,B)
+   \tkzGetPoints{E}{H}
+   \tkzDrawLines[color=blue](C,E C,H A,B)
+   \tkzDrawPoints[color=blue](A,B,C)
+   \tkzDrawPoints[color=red](E,H)
+   \tkzLabelPoints(E,H)
+   \tkzLabelPoints[color=blue](A,B,C)
+\end{tikzpicture}
+
+\end{document}

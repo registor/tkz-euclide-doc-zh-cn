@@ -1,0 +1,22 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 51 (Section  9.2.1 : Example of reflection (orthogonal symmetry))
+
+\begin{tikzpicture}[scale=1]
+ \tkzDefPoints{1.5/-1.5/C,-4.5/2/D}
+ \tkzDefPoint(-4,-2){O}
+ \tkzDefPoint(-2,-2){A}
+ \foreach \i in {0,1,...,4}{%
+ \pgfmathparse{0+\i * 72}
+ \tkzDefPointBy[rotation=%
+ center O angle \pgfmathresult](A)
+  \tkzGetPoint{A\i}
+ \tkzDefPointBy[reflection = over C--D](A\i)
+  \tkzGetPoint{A\i'}}
+ \tkzDrawPolygon(A0, A2, A4, A1, A3)
+ \tkzDrawPolygon(A0', A2', A4', A1', A3')
+ \tkzDrawLine[add= .5 and .5](C,D)
+\end{tikzpicture}
+
+\end{document}

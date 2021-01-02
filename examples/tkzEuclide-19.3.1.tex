@@ -1,0 +1,22 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 155 (Section 19.3.1 : Use of \tkzcname{tkzDrawSemiCircle})
+
+\begin{tikzpicture}
+     \tkzDefPoint(0,0){A} \tkzDefPoint(6,0){B}
+     \tkzDefSquare(A,B) \tkzGetPoints{C}{D}
+     \tkzDrawPolygon(B,C,D,A)
+     \tkzDefPoint(3,6){F}
+     \tkzDefTriangle[equilateral](C,D) \tkzGetPoint{I}
+     \tkzDefPointBy[projection=onto B--C](I) \tkzGetPoint{J}
+     \tkzInterLL(D,B)(I,J)  \tkzGetPoint{K}
+     \tkzDefPointBy[symmetry=center K](B) \tkzGetPoint{M}
+     \tkzDrawCircle(M,I)
+     \tkzCalcLength(M,I)   \tkzGetLength{dMI}
+     \tkzFillPolygon[color = red!50](A,B,C,D)
+     \tkzFillCircle[R,color = yellow](M,\dMI pt)
+     \tkzDrawSemiCircle[fill = blue!50!black](F,D)%
+\end{tikzpicture}
+
+\end{document}

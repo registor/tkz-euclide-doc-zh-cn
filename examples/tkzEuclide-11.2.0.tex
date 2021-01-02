@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 72 (Section 11.2 : Random point in a rectangle)
+
+\begin{tikzpicture}
+  \tkzInit[xmax=5,ymax=5]\tkzGrid
+  \tkzDefPoints{0/0/A,2/2/B,5/5/C}
+  \tkzDefRandPointOn[rectangle = A and B]
+  \tkzGetPoint{a}
+  \tkzDefRandPointOn[rectangle = B and C]
+  \tkzGetPoint{d}
+  \tkzDrawLine(a,d)
+  \tkzDrawPoints(A,B,C,a,d)
+  \tkzLabelPoints(A,B,C,a,d)
+\end{tikzpicture}
+
+\end{document}

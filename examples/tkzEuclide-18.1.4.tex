@@ -1,0 +1,32 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 143 (Section 18.1.4 : Example with option \tkzname{ex})
+
+\begin{tikzpicture}[scale=.75]
+	\tkzDefPoints{ 0/0/A,4/0/B,0.8/4/C}
+	\tkzDefCircle[ex](B,C,A)
+  \tkzGetPoint{J_c} \tkzGetLength{rc}
+	\tkzDefPointBy[projection=onto A--C ](J_c)
+  \tkzGetPoint{X_c}
+  \tkzDefPointBy[projection=onto A--B ](J_c)
+  \tkzGetPoint{Y_c}
+  \tkzGetPoint{I}
+  \tkzDrawPolygon[color=blue](A,B,C)
+  \tkzDrawCircle[R,color=lightgray](J_c,\rc pt)
+  % possible  \tkzDrawCircle[ex](A,B,C)
+  \tkzDrawCircle[in,color=red](A,B,C)    \tkzGetPoint{I}
+	\tkzDefPointBy[projection=onto A--C ](I)
+  \tkzGetPoint{F}
+	\tkzDefPointBy[projection=onto A--B ](I)
+  \tkzGetPoint{D}
+	\tkzDrawLines[add=0 and 2.2,dashed](C,A C,B)
+	\tkzDrawSegments[dashed](J_c,X_c I,D  I,F J_c,Y_c)
+	\tkzMarkRightAngles(A,F,I B,D,I J_c,X_c,A J_c,Y_c,B)
+	\tkzDrawPoints(B,C,A,I,D,F,X_c,J_c,Y_c)
+ 	\tkzLabelPoints(B,A,J_c,I,D,X_c,Y_c)
+ 	\tkzLabelPoints[above left](C)
+	\tkzLabelPoints[left](F)
+\end{tikzpicture}
+
+\end{document}

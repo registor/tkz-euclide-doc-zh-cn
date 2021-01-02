@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 79 (Section 12.1.1 : Example with \tkzname{mediator})
+
+\begin{tikzpicture}[rotate=25]
+ \tkzDefPoints{-2/0/A,1/2/B}
+ \tkzDefLine[mediator](A,B)          \tkzGetPoints{C}{D}
+ \tkzDefPointWith[linear,K=.75](C,D) \tkzGetPoint{D}
+ \tkzDefMidPoint(A,B)                \tkzGetPoint{I}
+ \tkzFillPolygon[color=orange!30](A,C,B,D)
+ \tkzDrawSegments(A,B C,D)
+ \tkzMarkRightAngle(B,I,C)
+ \tkzDrawSegments(D,B D,A)
+ \tkzDrawSegments(C,B C,A)
+\end{tikzpicture}
+
+\end{document}

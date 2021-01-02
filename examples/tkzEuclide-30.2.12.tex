@@ -1,0 +1,50 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 242 (Section 30.2.12 : "The" Circle of APOLLONIUS)
+
+\begin{tikzpicture}[scale=.5]
+  \tkzDefPoints{0/0/A,6/0/B,0.8/4/C}
+  \tkzDefTriangleCenter[euler](A,B,C)        \tkzGetPoint{N}
+  \tkzDefTriangleCenter[circum](A,B,C)       \tkzGetPoint{O}
+  \tkzDefTriangleCenter[lemoine](A,B,C)      \tkzGetPoint{K}
+  \tkzDefTriangleCenter[spieker](A,B,C)      \tkzGetPoint{Sp}
+  \tkzDefExCircle(A,B,C)     \tkzGetPoint{Jb}
+  \tkzDefExCircle(C,A,B)     \tkzGetPoint{Ja}
+  \tkzDefExCircle(B,C,A)     \tkzGetPoint{Jc}
+  \tkzDefPointBy[projection=onto B--C ](Jc)   \tkzGetPoint{Xc}
+  \tkzDefPointBy[projection=onto B--C ](Jb)   \tkzGetPoint{Xb}
+  \tkzDefPointBy[projection=onto A--B ](Ja)   \tkzGetPoint{Za}
+  \tkzDefPointBy[projection=onto A--B ](Jb)   \tkzGetPoint{Zb}
+  \tkzDefLine[parallel=through Xc](A,C)       \tkzGetPoint{X'c}
+  \tkzDefLine[parallel=through Xb](A,B)       \tkzGetPoint{X'b}
+  \tkzDefLine[parallel=through Za](C,A)       \tkzGetPoint{Z'a}
+  \tkzDefLine[parallel=through Zb](C,B)       \tkzGetPoint{Z'b}
+  \tkzInterLL(Xc,X'c)(A,B)                    \tkzGetPoint{B'}
+  \tkzInterLL(Xb,X'b)(A,C)                    \tkzGetPoint{C'}
+  \tkzInterLL(Za,Z'a)(C,B)                    \tkzGetPoint{A''}
+  \tkzInterLL(Zb,Z'b)(C,A)                    \tkzGetPoint{B''}
+  \tkzDefPointBy[reflection= over Jc--Jb](B') \tkzGetPoint{Ca}
+  \tkzDefPointBy[reflection= over Jc--Jb](C') \tkzGetPoint{Ba}
+  \tkzDefPointBy[reflection= over Ja--Jb](A'')\tkzGetPoint{Bc}
+  \tkzDefPointBy[reflection= over Ja--Jb](B'')\tkzGetPoint{Ac}
+  \tkzDefCircle[circum](Ac,Ca,Ba)             \tkzGetPoint{Q}
+  \tkzDrawCircle[circum](Ac,Ca,Ba)
+  \tkzDefPointWith[linear,K=1.1](Q,Ac)        \tkzGetPoint{nAc}
+  \tkzClipCircle[through](Q,nAc)
+  \tkzDrawLines[add=1.5 and 1.5,dashed](A,B B,C A,C)
+  \tkzDrawPolygon[color=blue](A,B,C)
+  \tkzDrawPolygon[dashed,color=blue](Ja,Jb,Jc)
+  \tkzDrawCircles[ex](A,B,C B,C,A C,A,B)
+  \tkzDrawLines[add=0 and 0,dashed](Ca,Bc B,Za A,Ba B',C')
+  \tkzDrawLine[add=1 and 1,dashed](Xb,Xc)
+  \tkzDrawLine[add=7 and 3,blue](O,K)
+  \tkzDrawLine[add=8 and 15,red](N,Sp)
+  \tkzDrawLines[add=10 and 10](K,O N,Sp)
+  \tkzDrawSegments(Ba,Ca Bc,Ac)
+  \tkzDrawPoints(A,B,C,N,Ja,Jb,Jc,Xb,Xc,B',C',Za,Zb,Ba,Ca,Bc,Ac,Q,Sp,K,O)
+  \tkzLabelPoints(A,B,C,N,Ja,Jb,Jc,Xb,Xc,B',C',Za,Zb,Ba,Ca,Bc,Ac,Q,Sp)
+  \tkzLabelPoints[above](K,O)
+\end{tikzpicture}
+
+\end{document}

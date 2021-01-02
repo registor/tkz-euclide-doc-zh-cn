@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 124 (Section 17.1.1 : Using \tkzcname{tkzDefSquare} with two points)
+
+\begin{tikzpicture}[scale=.5]
+  \tkzDefPoint(0,0){A} \tkzDefPoint(3,0){B}
+  \tkzDefSquare(A,B)
+  \tkzDrawPolygon[color=red](A,B,tkzFirstPointResult,%
+               tkzSecondPointResult)
+  \tkzDefSquare(B,A)
+  \tkzDrawPolygon[color=blue](B,A,tkzFirstPointResult,%
+               tkzSecondPointResult)
+\end{tikzpicture}
+
+\end{document}

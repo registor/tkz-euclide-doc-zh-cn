@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 100 (Section 14.2.1 : Place an arrow on segment)
+
+\begin{tikzpicture}
+  \tikzset{
+    arr/.style={postaction=decorate,
+    decoration={markings,
+    mark=at position .5 with {\arrow[thick]{#1}}
+      }}}
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(4,-4){B}
+  \tkzDrawSegments[arr=stealth](A,B)
+  \tkzDrawPoints(A,B)
+\end{tikzpicture}
+
+\end{document}

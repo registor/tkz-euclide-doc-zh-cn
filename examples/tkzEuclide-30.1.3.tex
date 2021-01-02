@@ -1,0 +1,28 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 228 (Section 30.1.3 : "Le Monde" version)
+
+\begin{tikzpicture}[scale=1.25]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(3,0){B}
+  \tkzDefPoint(9,0){C}
+  \tkzDefPoint(1.5,2){X}
+  \tkzDefPoint(6,4){Y}
+  \tkzDefCircle[circum](X,Y,B) \tkzGetPoint{O}
+  \tkzDefMidPoint(X,Y)               \tkzGetPoint{I}
+  \tkzDefPointWith[orthogonal](I,Y)  \tkzGetPoint{i}
+  \tkzDrawLines[add = 2 and 1,color=orange](I,i)
+  \tkzInterLL(I,i)(A,B)              \tkzGetPoint{Z}
+  \tkzInterLC(I,i)(O,B)              \tkzGetSecondPoint{M}
+  \tkzDefPointWith[orthogonal](B,Z)  \tkzGetPoint{b}
+  \tkzDrawCircle(O,B)
+  \tkzDrawLines[add = 0 and 2,color=orange](B,b)
+  \tkzDrawSegments(A,X B,X B,Y C,Y A,C X,Y)
+  \tkzDrawSegments[color=red](X,Z Y,Z)
+  \tkzDrawPoints(A,B,C,X,Y,Z,M,I)
+  \tkzLabelPoints(A,B,C,Z)
+  \tkzLabelPoints[above right](X,Y,M,I)
+\end{tikzpicture}
+
+\end{document}

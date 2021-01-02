@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 182 (Section 21.4.2 : Example of marking a right angle, german style)
+
+\begin{tikzpicture}
+  \tkzDefPoints{0/0/A,3/1/B,0.9/-1.2/P}
+  \tkzDefPointBy[projection = onto B--A](P)  \tkzGetPoint{H}
+  \tkzDrawLines[add=.5 and .5](P,H)
+  \tkzMarkRightAngle[german,size=.5,draw](A,H,P)
+  \tkzDrawPoints[](A,B,P,H)
+  \tkzDrawLines[add=.5 and .5,fill=blue!20](A,B)
+  \tkzMarkRightAngle[german,size=.8](P,H,B)
+\end{tikzpicture}
+
+\end{document}

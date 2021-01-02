@@ -1,0 +1,17 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 141 (Section 18.1.2 : Example with  option \tkzname{diameter})
+
+\begin{tikzpicture}[scale=1]
+    \tkzDefPoint(0,0){A}
+    \tkzDefPoint(2,2){B}
+    \tkzDefCircle[diameter](A,B)
+    \tkzGetPoint{O}
+    \tkzDrawCircle[blue,fill=blue!20](O,B)
+    \tkzDrawSegment(A,B)
+    \tkzDrawPoints(A,B,O)
+    \tkzLabelPoints(A,B,O)
+\end{tikzpicture}
+
+\end{document}

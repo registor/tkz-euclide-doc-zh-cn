@@ -1,0 +1,23 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 239 (Section 30.2.9 : Example 1: from Indonesia)
+
+\begin{tikzpicture}[scale=3]
+   \tkzDefPoints{0/0/A,2/0/B}
+   \tkzDefSquare(A,B) \tkzGetPoints{C}{D}
+   \tkzDefPointBy[rotation=center D angle 45](C)\tkzGetPoint{G}
+   \tkzDefSquare(G,D)\tkzGetPoints{E}{F}
+   \tkzInterLL(B,C)(E,F)\tkzGetPoint{H}
+   \tkzFillPolygon[gray!10](D,E,H,C,D)
+   \tkzDrawPolygon(A,...,D)\tkzDrawPolygon(D,...,G)
+   \tkzDrawSegment(B,E)
+   \tkzMarkSegments[mark=|,size=3pt,color=gray](A,B B,C C,D D,A E,F F,G G,D D,E)
+   \tkzMarkSegments[mark=||,size=3pt,color=gray](B,E E,H)
+   \tkzLabelPoints[left](A,D)
+   \tkzLabelPoints[right](B,C,F,H)
+   \tkzLabelPoints[above](G)\tkzLabelPoints[below](E)
+   \tkzMarkRightAngles(D,A,B D,G,F)
+\end{tikzpicture}
+
+\end{document}

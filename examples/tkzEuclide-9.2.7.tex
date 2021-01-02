@@ -1,0 +1,26 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 57 (Section  9.2.7 : Inversion of points)
+
+\begin{tikzpicture}[scale=1.5]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(1,0){A}
+  \tkzDefPoint(-1.5,-1.5){z1}
+  \tkzDefPoint(0.35,0){z2}
+  \tkzDefPointBy[inversion =%
+      center O through A](z1)
+  \tkzGetPoint{Z1}
+  \tkzDefPointBy[inversion =%
+      center O through A](z2)
+  \tkzGetPoint{Z2}
+  \tkzDrawCircle(O,A)
+  \tkzDrawPoints[color=black,
+      fill=red,size=4](Z1,Z2)
+  \tkzDrawSegments(z1,Z1 z2,Z2)
+  \tkzDrawPoints[color=black,
+      fill=red,size=4](O,z1,z2)
+  \tkzLabelPoints(O,A,z1,z2,Z1,Z2)
+\end{tikzpicture}
+
+\end{document}

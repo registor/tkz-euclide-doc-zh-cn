@@ -1,0 +1,22 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 210 (Section 25.2.1 : Compass square construction)
+
+\begin{tikzpicture}[scale=1]
+  \tkzDefPoint(0,0){A} \tkzDefPoint(4,0){B}
+  \tkzDrawLine[add= .6 and .2](A,B)
+  \tkzCalcLength[cm](A,B)\tkzGetLength{dAB}
+  \tkzDefLine[perpendicular=through A](A,B)
+  \tkzDrawLine(A,tkzPointResult) \tkzGetPoint{D}
+  \tkzShowLine[orthogonal=through A,gap=2](A,B)
+  \tkzMarkRightAngle(B,A,D)
+  \tkzVecKOrth[-1](B,A)\tkzGetPoint{C}
+  \tkzCompasss(A,D D,C)
+  \tkzDrawArc[R](B,\dAB)(80,110)
+  \tkzDrawPoints(A,B,C,D)
+  \tkzDrawSegments[color=gray,style=dashed](B,C C,D)
+  \tkzLabelPoints(A,B,C,D)
+\end{tikzpicture}
+
+\end{document}

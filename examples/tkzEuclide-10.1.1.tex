@@ -1,0 +1,17 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 60 (Section 10.1.1 : Option \tkzname{colinear at})
+
+\begin{tikzpicture}[scale=1.2,
+   vect/.style={->,shorten >=3pt,>=latex'}]
+  \tkzDefPoint(2,3){A}   \tkzDefPoint(4,2){B}
+  \tkzDefPoint(0,1){C}
+  \tkzDefPointWith[colinear=at C](A,B)
+  \tkzGetPoint{D}
+  \tkzDrawPoints[color=red](A,B,C,D)
+  \tkzLabelPoints[above right=3pt](A,B,C,D)
+  \tkzDrawSegments[vect](A,B C,D)
+\end{tikzpicture}
+
+\end{document}

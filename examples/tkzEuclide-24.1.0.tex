@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 200 (Section 24.1 : Option \tkzname{towards})
+
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(2,-1){A}
+  \tkzDefPointBy[rotation= center O angle 90](A)
+  \tkzGetPoint{B}
+  \tkzDrawArc[color=blue,<->](O,A)(B)
+  \tkzDrawArc(O,B)(A)
+  \tkzDrawLines[add = 0 and .5](O,A O,B)
+  \tkzDrawPoints(O,A,B)
+  \tkzLabelPoints[below](O,A,B)
+\end{tikzpicture}
+
+\end{document}

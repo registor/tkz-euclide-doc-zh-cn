@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 203 (Section 24.4 : Option \tkzname{R})
+
+\begin{tikzpicture}
+  \tkzDefPoints{0/0/O}
+  \tikzset{compass style/.append style={<->}}
+  \tkzDrawArc[R,color=orange,double](O,3cm)(270,360)
+  \tkzDrawArc[R,color=blue,double](O,2cm)(0,270)
+  \tkzDrawPoint(O)
+  \tkzLabelPoint[below](O){$O$}
+\end{tikzpicture}
+
+\end{document}

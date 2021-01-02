@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 119 (Section 16.0.4 : Option \tkzname{intouch})
+
+\begin{tikzpicture}[scale=.75]
+ \tkzDefPoints{0/0/A,6/0/B,0.8/4/C}
+ \tkzDefSpcTriangle[intouch,name=X](A,B,C){_a,_b,_c}
+ \tkzInCenter(A,B,C)\tkzGetPoint{I}
+ \tkzDrawPolygon[red](A,B,C)
+ \tkzDrawPolygon[blue](X_a,X_b,X_c)
+ \tkzDrawPoints[red](A,B,C)
+ \tkzDrawPoints[blue](X_a,X_b,X_c)
+ \tkzDrawCircle[in](A,B,C)
+ \tkzAutoLabelPoints[center=I,blue,font=\scriptsize]%
+(X_a,X_b,X_c)
+ \tkzAutoLabelPoints[center=I,red,font=\scriptsize]%
+(A,B,C)
+\end{tikzpicture}
+
+\end{document}

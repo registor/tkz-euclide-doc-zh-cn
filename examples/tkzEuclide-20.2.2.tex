@@ -1,0 +1,29 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 161 (Section 20.2.2 : More complex example of a line-circle intersection)
+
+\begin{tikzpicture}[scale=.75]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(8,0){B}
+  \tkzDefMidPoint(A,B)
+  \tkzGetPoint{O}
+  \tkzDrawCircle(O,B)
+  \tkzDefMidPoint(O,B)
+  \tkzGetPoint{O'}
+  \tkzDrawCircle(O',B)
+  \tkzDefTangent[from=A](O',B)
+  \tkzGetSecondPoint{E}
+  \tkzInterLC(A,E)(O,B)
+  \tkzGetSecondPoint{D}
+  \tkzDefPointBy[projection=onto A--B](D)
+   \tkzGetPoint{F}
+  \tkzMarkRightAngle(D,F,B)
+  \tkzDrawSegments(A,D A,B D,F)
+  \tkzDrawSegments[color=red,line width=1pt,
+      opacity=.4](A,O F,B)
+  \tkzDrawPoints(A,B,O,O',E,D)
+  \tkzLabelPoints(A,B,O,O',E,D)
+\end{tikzpicture}
+
+\end{document}

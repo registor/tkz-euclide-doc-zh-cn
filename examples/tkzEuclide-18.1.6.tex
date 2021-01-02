@@ -1,0 +1,23 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 145 (Section 18.1.6 : Apollonius circles for a given segment option \tkzname{apollonius})
+
+\begin{tikzpicture}[scale=0.75]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(4,0){B}
+  \tkzDefCircle[apollonius,K=2](A,B)
+  \tkzGetPoint{K1}
+  \tkzGetLength{rAp}
+  \tkzDrawCircle[R,color = blue!50!black,
+      fill=blue!20,opacity=.4](K1,\rAp pt)
+  \tkzDefCircle[apollonius,K=3](A,B)
+  \tkzGetPoint{K2}   \tkzGetLength{rAp}
+  \tkzDrawCircle[R,color=red!50!black,
+   fill=red!20,opacity=.4](K2,\rAp pt)
+  \tkzLabelPoints[below](A,B,K1,K2)
+  \tkzDrawPoints(A,B,K1,K2)
+  \tkzDrawLine[add=.2 and 1](A,B)
+\end{tikzpicture}
+
+\end{document}

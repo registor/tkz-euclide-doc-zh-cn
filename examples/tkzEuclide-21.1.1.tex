@@ -1,0 +1,14 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 173 (Section 21.1.1 : Example with \tkzname{size})
+
+\begin{tikzpicture}
+   \tkzInit
+   \tkzDefPoints{0/0/O,2.5/0/A,1.5/2/B}
+   \tkzFillAngle[size=2cm, fill=gray!10](A,O,B)
+   \tkzDrawLines(O,A O,B)
+   \tkzDrawPoints(O,A,B)
+\end{tikzpicture}
+
+\end{document}

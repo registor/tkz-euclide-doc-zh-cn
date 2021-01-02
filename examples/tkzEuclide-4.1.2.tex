@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 23 (Section  4.1.2 : Calculations with \tkzNamePack{xfp})
+
+\begin{tikzpicture}[scale=1]
+  \tkzInit[xmax=4,ymax=4]
+  \tkzGrid
+  \tkzDefPoint(-1+2,sqrt(4)){O}
+  \tkzDefPoint({3*ln(exp(1))},{exp(1)}){A}
+  \tkzDefPoint({4*sin(pi/6)},{4*cos(pi/6)}){B}
+  \tkzDrawPoints[color=blue](O,B,A)
+\end{tikzpicture}
+
+\end{document}

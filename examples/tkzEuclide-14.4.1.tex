@@ -1,0 +1,14 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 103 (Section 14.4.1 : Marks for an isosceles triangle)
+
+\begin{tikzpicture}[scale=1]
+ \tkzDefPoints{0/0/O,2/2/A,4/0/B,6/2/C}
+ \tkzDrawSegments(O,A A,B)
+ \tkzDrawPoints(O,A,B)
+ \tkzDrawLine(O,B)
+ \tkzMarkSegments[mark=||,size=6pt](O,A A,B)
+\end{tikzpicture}
+
+\end{document}

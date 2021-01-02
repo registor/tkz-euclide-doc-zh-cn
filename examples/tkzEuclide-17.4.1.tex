@@ -1,0 +1,24 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 130 (Section 17.4.1 : The idea is to inscribe two squares in a semi-circle.)
+
+\begin{tikzpicture}[scale=.75]
+   \tkzInit[ymax=8,xmax=8]
+ \tkzClip[space=.25]    \tkzDefPoint(0,0){A}
+ \tkzDefPoint(8,0){B}  \tkzDefPoint(4,0){I}
+ \tkzDefSquare(A,B)    \tkzGetPoints{C}{D}
+ \tkzInterLC(I,C)(I,B) \tkzGetPoints{E'}{E}
+ \tkzInterLC(I,D)(I,B) \tkzGetPoints{F'}{F}
+ \tkzDefPointsBy[projection=onto A--B](E,F){H,G}
+ \tkzDefPointsBy[symmetry   = center H](I){J}
+ \tkzDefSquare(H,J)    \tkzGetPoints{K}{L}
+ \tkzDrawSector[fill=yellow](I,B)(A)
+ \tkzFillPolygon[color=red!40](H,E,F,G)
+ \tkzFillPolygon[color=blue!40](H,J,K,L)
+ \tkzDrawPolySeg[color=red](H,E,F,G)
+ \tkzDrawPolySeg[color=red](J,K,L)
+ \tkzDrawPoints(E,G,H,F,J,K,L)
+\end{tikzpicture}
+
+\end{document}

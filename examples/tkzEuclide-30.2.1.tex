@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 231 (Section 30.2.1 :  Square root of the integers)
+
+\begin{tikzpicture}[scale=1.5]
+  \tkzDefPoint(0,0){O}
+  \tkzDefPoint(1,0){a0}
+   \tkzDrawSegment[blue](O,a0)
+  \foreach \i [count=\j] in {0,...,10}{%
+    \tkzDefPointWith[orthogonal normed](a\i,O)
+    \tkzGetPoint{a\j}
+    \tkzDrawPolySeg[color=blue](a\i,a\j,O)}
+\end{tikzpicture}
+
+\end{document}

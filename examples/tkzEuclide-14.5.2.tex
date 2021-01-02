@@ -1,0 +1,33 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 106 (Section 14.5.2 : Labels and right-angled triangle)
+
+\begin{tikzpicture}[rotate=-60]
+\tikzset{label seg style/.append style = {%
+	        color      = red,
+	        }}
+\tkzDefPoint(0,1){A}
+\tkzDefPoint(2,4){C}
+\tkzDefPointWith[orthogonal normed,K=7](C,A)
+\tkzGetPoint{B}
+\tkzDrawPolygon[green!60!black](A,B,C)
+\tkzDrawLine[altitude,dashed,color=magenta](B,C,A)
+\tkzGetPoint{P}
+\tkzLabelPoint[left](A){$A$}
+\tkzLabelPoint[right](B){$B$}
+\tkzLabelPoint[above](C){$C$}
+\tkzLabelPoint[below](P){$P$}
+\tkzLabelSegment[](B,A){$c$}
+\tkzLabelSegment[swap](B,C){$a$}
+\tkzLabelSegment[swap](C,A){$b$}
+\tkzMarkAngles[size=1cm,
+     color=cyan,mark=|](C,B,A A,C,P)
+\tkzMarkAngle[size=0.75cm,
+     color=orange,mark=||](P,C,B)
+\tkzMarkAngle[size=0.75cm,
+      color=orange,mark=||](B,A,C)
+\tkzMarkRightAngles[german](A,C,B B,P,C)
+\end{tikzpicture}
+
+\end{document}

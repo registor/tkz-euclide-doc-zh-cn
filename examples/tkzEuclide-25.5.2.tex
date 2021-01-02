@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 213 (Section 25.5.2 : Sum of vectors with \tkzcname{tkzGetPointCoord})
+
+\begin{tikzpicture}[>=latex]
+  \tkzDefPoint(1,4){a}
+  \tkzDefPoint(3,2){b}
+  \tkzDefPoint(1,1){c}
+  \tkzDrawSegment[->,red](a,b)
+  \tkzGetPointCoord(c){c}
+  \draw[color=blue,->](a) -- ([shift=(b)]\cx,\cy) ;
+  \draw[color=purple,->](b) -- ([shift=(b)]\cx,\cy) ;
+  \tkzDrawSegment[->,blue](a,c)
+  \tkzDrawSegment[->,purple](b,c)
+\end{tikzpicture}
+
+\end{document}

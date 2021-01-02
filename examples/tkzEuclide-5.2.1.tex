@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 33 (Section  5.2.1 : Using \tkzcname{tkzDefBarycentricPoint} with two points)
+
+\begin{tikzpicture}
+  \tkzDefPoint(2,3){A}
+  \tkzDefShiftPointCoord[2,3](30:4){B}
+  \tkzDefBarycentricPoint(A=1,B=2)
+  \tkzGetPoint{I}
+  \tkzDrawPoints(A,B,I)
+  \tkzDrawLine(A,B)
+  \tkzLabelPoints(A,B,I)
+\end{tikzpicture}
+
+\end{document}

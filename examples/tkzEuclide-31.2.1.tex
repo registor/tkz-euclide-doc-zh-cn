@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 246 (Section 31.2.1 : Use of \tkzcname{tkzSetUpPoint})
+
+\begin{tikzpicture}
+  \tkzSetUpPoint[shape = cross out,color=blue]
+  \tkzInit[xmax=100,xstep=20,ymax=.5]
+  \tkzDefPoint(20,1){A}
+  \tkzDefPoint(80,0){B}
+  \tkzDrawLine(A,B)
+  \tkzDrawPoints(A,B)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,17 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 39 (Section  6.1.4 : Option \tkzname{in})
+
+\begin{tikzpicture}
+  \tkzDefPoints{0/1/A,3/2/B,1/4/C}
+  \tkzDefTriangleCenter[in](A,B,C)\tkzGetPoint{I}
+  \tkzDefPointBy[projection=onto A--C](I)
+  \tkzGetPoint{Ib}
+  \tkzDrawPolygon[color=blue](A,B,C)
+  \tkzDrawPoints(A,B,C,I)
+  \tkzDrawLines[add = 0 and 2/3](A,I B,I C,I)
+  \tkzDrawCircle(I,Ib)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,14 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 226 (Section 29.2 : The circular protractor, transparent and returned)
+
+\begin{tikzpicture}[scale=.5]
+  \tkzDefPoint(2,3){A}
+  \tkzDefShiftPoint[A](31:5){B}
+   \tkzDefShiftPoint[A](158:5){C}
+  \tkzDrawSegments[color=red,line width=1pt](A,B A,C)
+  \tkzProtractor[return](A,C)
+\end{tikzpicture}
+
+\end{document}

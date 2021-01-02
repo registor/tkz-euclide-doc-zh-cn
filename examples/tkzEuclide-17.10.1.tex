@@ -1,0 +1,17 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 138 (Section 17.10.1 : Option \tkzname{center})
+
+\begin{tikzpicture}
+	\tkzDefPoints{0/0/P0,0/0/Q0,2/0/P1}
+	\tkzDefMidPoint(P0,P1) \tkzGetPoint{Q1}
+  \tkzDefRegPolygon[center,sides=7](P0,P1)
+	\tkzDefMidPoint(P1,P2) \tkzGetPoint{Q1}
+  \tkzDefRegPolygon[center,sides=7,name=Q](P0,Q1)
+	\tkzDrawPolygon(P1,P...,P7)
+	\tkzFillPolygon[gray!20](Q0,Q1,P2,Q2)
+	\foreach \j in {1,...,7} {\tkzDrawSegment[black](P0,Q\j)}
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 90 (Section 13.1.2 : Example with \tkzcname{tkzDrawLines})
+
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(2,0){B}
+  \tkzDefPoint(1,2){C}
+  \tkzDefPoint(3,2){D}
+  \tkzDrawLines(A,B C,D A,C B,D)
+  \tkzLabelPoints(A,B,C,D)
+\end{tikzpicture}
+
+\end{document}
